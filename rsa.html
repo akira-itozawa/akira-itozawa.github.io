@@ -1,0 +1,819 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071417">
+<title>RSA教本｜Restaurant Service Architect</title>
+<meta name="description" content="Restaurant Service Architect — The Complete Framework。全73章の学習設計、深化編集、公式用語、第46章を統合した閲覧資料。">
+<style>
+:root{--night:#071417;--deep:#112a2c;--teal:#0f766e;--mint:#dff5ef;--paper:#fbfcf8;--ink:#1f2a2d;--muted:#667477;--gold:#b58a45;--gold2:#d8bc86;--line:#cbd9d6;--warm:#f7f1e7;--white:#fff;--red:#87483f}
+*{box-sizing:border-box}html{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}body{width:100%;max-width:100%;margin:0;background:var(--night);color:var(--ink);overflow-x:hidden;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",Meiryo,sans-serif;line-height:1.78;letter-spacing:.015em}
+#rsa-master{min-height:100svh;padding:36px 16px 54px;background:radial-gradient(circle at 82% 12%,rgba(181,138,69,.22),transparent 28%),linear-gradient(145deg,#071417,#123638);color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",Meiryo,sans-serif}
+.rsa-master-inner{width:min(760px,100%);margin:auto}.rsa-kicker{color:#bfe4db;font-size:11px;font-weight:900;letter-spacing:.2em}.rsa-title{margin:13px 0 9px;color:#fff;font:clamp(38px,11vw,68px)/1 Georgia,"Times New Roman",serif}.rsa-title span{display:block;margin-top:10px;color:#d8bc86;font-size:.38em}.rsa-intro{max-width:650px;color:#d8e9e5;font-size:15px;line-height:1.85}
+#rsa-master-nav{position:static;display:grid;gap:10px;margin-top:28px;padding:0;background:none;border-radius:0;overflow:visible}#rsa-master-nav a{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:10px;padding:17px;border:1px solid rgba(255,255,255,.14);border-radius:15px;background:#fbfcf8;color:#112a2c;text-decoration:none;white-space:normal}#rsa-master-nav span{color:#b58a45;font:23px Georgia,serif}#rsa-master-nav b{font-size:14px;line-height:1.4}#rsa-master-nav em{padding:6px 9px;border-radius:999px;background:#0f766e;color:#fff;font-size:11px;font-style:normal;font-weight:900}
+.rsa-doc{position:relative;width:100%;max-width:100%;margin:0;padding:0 0 55px;background:var(--night);overflow:hidden}.rsa-doc-label{position:sticky;top:0;z-index:90;display:flex;align-items:center;gap:9px;padding:11px 15px;background:rgba(7,20,23,.96);border-bottom:1px solid rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:800;line-height:1.3}.rsa-doc-label span{color:var(--gold2);font:18px Georgia,serif}.rsa-return{display:block;width:calc(100% - 30px);max-width:720px;margin:18px auto 0;padding:14px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:var(--teal);color:#fff;text-align:center;text-decoration:none;font-weight:900;font-size:13px}.hubback{display:none!important}
+.rsa-doc .shell,.rsa-doc .wrap{width:100%;max-width:820px;margin:0 auto;padding:12px 12px 58px}.rsa-doc .hero{width:100%;min-height:auto;margin:0;padding:44px 24px;border-radius:20px;background:radial-gradient(circle at 82% 12%,rgba(181,138,69,.25),transparent 28%),linear-gradient(135deg,#0a1d20,#113c3a 62%,#0f766e);color:#fff;box-shadow:0 18px 48px rgba(0,0,0,.25)}
+.eyebrow{color:#c7e9df;font-size:10px;font-weight:900;letter-spacing:.17em}.hero h1{margin:13px 0 18px;color:#fff;font:clamp(34px,10vw,56px)/1.05 Georgia,"Times New Roman",serif}.hero h1 span{display:block;margin-top:11px;color:var(--gold2);font-size:.42em}.lead{color:#e8f4f0;font-size:16px}.manifesto,.thesis,.definition-hero{margin-top:22px;padding:15px 17px;border-left:4px solid var(--gold);background:rgba(255,255,255,.09);color:#fff}.stats,.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}.stat,.hero-stats>div{padding:11px;border:1px solid rgba(255,255,255,.18);border-radius:11px;background:rgba(255,255,255,.07)}
+.rsa-doc nav{display:flex;gap:7px;overflow-x:auto;width:100%;margin:12px 0;padding:8px;border-radius:12px;background:#0b2021}.rsa-doc nav a{flex:0 0 auto;padding:7px 10px;border:1px solid rgba(255,255,255,.15);border-radius:999px;color:#fff;text-decoration:none;font-size:11px;font-weight:800;white-space:nowrap}
+.rsa-doc section{width:100%;max-width:100%;margin:14px 0;padding:24px 18px;border-radius:18px;background:var(--paper);box-shadow:0 10px 28px rgba(0,0,0,.14)}h2{margin:0 0 18px;color:var(--deep);font:clamp(27px,8vw,40px)/1.22 Georgia,"Times New Roman",serif}h3{margin:24px 0 9px;color:var(--deep);font-size:19px}p{max-width:100%}.intro{font-size:15px}.tag,.pill,.chip{display:inline-block;margin:2px;padding:4px 8px;border-radius:999px;background:var(--mint);color:#18554f;font-size:11px;font-weight:800}
+.grid,.grid3,.grid4,.chapters{display:grid!important;grid-template-columns:1fr!important;gap:10px}.card,.volume,.chapter,.step,.item,.role,.method{min-width:0;padding:16px;border:1px solid var(--line);border-radius:13px;background:#fff}.card b,.item b{color:var(--teal)}.callout,.note,.quote{margin:16px 0;padding:16px;border-left:5px solid var(--gold);border-radius:11px;background:var(--warm)}
+.flow{display:grid!important;grid-template-columns:1fr!important;gap:7px}.flow>div{padding:13px;border-radius:11px;background:var(--deep);color:#fff;text-align:left}.layers{display:grid;gap:7px}.layer{display:block;padding:13px 15px;border-radius:11px;background:#28575b;color:#fff}.layer span{display:block;margin-top:4px;text-align:left}.meta{display:grid!important;grid-template-columns:1fr!important;gap:7px}.meta>div{padding:11px;border-radius:10px;background:var(--warm)}
+.scroll{display:block;width:100%;max-width:100%;margin:14px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}table{display:block;width:100%;max-width:100%;overflow-x:auto;border-collapse:collapse;background:#fff;font-size:12px}thead,tbody{white-space:normal}th,td{min-width:118px;padding:10px;border:1px solid var(--line);vertical-align:top;text-align:left;overflow-wrap:anywhere}th{background:#dcefe9;color:#173f3b}.sheet{width:100%;padding:18px;border:2px solid var(--deep);border-radius:14px;background:#fff}.line{min-height:48px;padding:9px;border:1px dashed #9fb4ae;border-radius:9px}.search{display:flex;gap:7px}.search input{width:100%;min-width:0;padding:10px;border:1px solid var(--line);border-radius:10px}.search button{flex:0 0 auto;padding:10px;border:0;border-radius:10px;background:var(--teal);color:#fff}details.term{width:100%;margin:9px 0;border:1px solid var(--line);border-radius:12px;background:#fff;overflow:hidden}details.term summary{padding:15px;font-weight:900}.footer{padding:22px 8px;color:#b9cfca;text-align:center;font-size:11px}
+@media(max-width:600px){#rsa-master{min-height:auto;padding:30px 14px 44px}#rsa-master-nav a{grid-template-columns:36px 1fr auto;padding:14px 12px}.rsa-doc-label{font-size:11px}.rsa-doc .shell,.rsa-doc .wrap{padding-left:8px;padding-right:8px}.rsa-doc .hero{padding:38px 20px}.rsa-doc section{padding:22px 16px}}
+@media print{#rsa-master-nav em,.rsa-return{display:none}.rsa-doc-label{position:static}}
+</style>
+</head>
+<body>
+<header id="rsa-master"><div class="rsa-master-inner">
+  <div class="rsa-kicker">RESTAURANT SERVICE ARCHITECT</div>
+  <h1 class="rsa-title">RSA<span>THE COMPLETE FRAMEWORK</span></h1>
+  <p class="rsa-intro">理念から現場実装、未来のレストランまで。新入社員から店長・管理者へ、考え、設計し、育てるための統合資料。</p>
+  <nav id="rsa-master-nav" aria-label="資料一覧"><a href="#rsa-learning"><span>01</span><b>RSA Learning Spine</b><em>開く</em></a><a href="#rsa-program"><span>02</span><b>全73章・実践プログラム</b><em>開く</em></a><a href="#rsa-deepening"><span>03</span><b>全73章・深化編集設計</b><em>開く</em></a><a href="#rsa-lexicon"><span>04</span><b>公式用語集・メソッドマップ</b><em>開く</em></a><a href="#rsa-chapter46"><span>05</span><b>第46章 Restaurant Service Architectureの定義</b><em>開く</em></a></nav>
+</div></header>
+
+  <article class="rsa-doc" id="rsa-learning">
+    <div class="rsa-doc-label"><span>01</span>RSA Learning Spine</div>
+    
+
+<main class="shell">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 01</div>
+  <h1>RSA Learning Spine<span>理念を現場判断へ変える共通学習軸</span></h1>
+  <p class="lead">全8巻を「知識の集合」から、立場が上がるほど判断と設計の質が深まる教育体系へ。</p>
+  <div class="thesis">接客の正解を覚えるのではなく、現場を観察し、意味を読み、価値ある行動を設計し、結果から更新できる人を育てる。</div>
+</header>
+
+<nav><a href="#learning-next">今週の一手</a><a href="#learning-issues">整合性</a><a href="#learning-spine">共通学習軸</a><a href="#learning-map">8巻マップ</a><a href="#learning-module">研修</a><a href="#learning-sheet">ワークシート</a><a href="#learning-rubric">評価</a><a href="#learning-guide">指導者ガイド</a></nav>
+
+<section id="learning-next">
+  <span class="tag">HIGHEST-VALUE NEXT STEP</span>
+  <h2>全73章に「役割別の到達証拠」を持たせる</h2>
+  <p>最優先は、新しい章を増やすことではなく、既存の73章を新人から管理者まで一貫して使えるようにする共通学習軸の導入である。現在は各章に知識とキーワードがある一方、学習後に何ができれば修了なのか、立場によって成果がどう変わるのかが明示されていない。</p>
+  <div class="grid">
+    <div class="card"><span class="num">01</span><b>理解を行動へ変える</b>「分かった」ではなく、観察可能な実践を修了条件にする。</div>
+    <div class="card"><span class="num">02</span><b>同じ章を全階層で使う</b>新人は再現、リーダーは支援、管理者は仕組み化まで深める。</div>
+    <div class="card"><span class="num">03</span><b>巻間を一本につなぐ</b>理念・心理・体験・育成・数字を一つの現場判断に統合する。</div>
+    <div class="card"><span class="num">04</span><b>評価を証拠で行う</b>印象評定を減らし、言葉・行動・結果・改善の証拠で確認する。</div>
+  </div>
+</section>
+
+<section id="learning-issues">
+  <span class="tag">CONSISTENCY REVIEW</span>
+  <h2>今週修正すべき整合性</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>論点</th><th>現状</th><th>修正方針</th><th>反映先</th></tr></thead>
+    <tbody>
+      <tr><td>演習設計</td><td>73章すべてが「自店への置換・強み・次の一行動」という同一問い。</td><td>各巻の思考特性に合わせ、章ごとに成果物と観察証拠を変える。</td><td>全章末</td></tr>
+      <tr><td>対象者レベル</td><td>新人・自立者・指導者・管理者の到達差が章内にない。</td><td>同じテーマを「再現→判断→支援→設計」の4段階で定義する。</td><td>各巻冒頭／スキルマップ</td></tr>
+      <tr><td>第Ⅶ巻の位置づけ</td><td>「ケーススタディ」と個別ケース章が残り、ケースを外す編集方針と不一致。</td><td>固有ケースを「状況診断テーマ」へ再編し、事実・原因・設計・検証の汎用型にする。</td><td>第Ⅶ巻 58–63章</td></tr>
+      <tr><td>方法論の階層</td><td>7 Layers、Purpose to Action、OIDIE、Quality Loopなどの主従関係が曖昧。</td><td>7 Layers＝設計対象、Purpose to Action＝翻訳、OIDIE＝実践手順、Quality Loop＝運用定着と定義する。</td><td>第Ⅵ巻 冒頭</td></tr>
+      <tr><td>評価の接続</td><td>スキルマップL0–L5とArchitect Scorecardの関係が示されていない。</td><td>前者は「人の成長」、後者は「店舗システムの成熟」と評価対象を分け、相互参照する。</td><td>第Ⅳ・Ⅵ巻／付録</td></tr>
+      <tr><td>章数表記</td><td>現行マスターは全73章。過去版で用いた別の総章数と混在する可能性。</td><td>版ごとに章数・改訂日・変更履歴を明示し、現行版は「全73章」に統一する。</td><td>表紙／目次／奥付</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="learning-spine">
+  <span class="tag">THE LEARNING SPINE</span>
+  <h2>共通する5つの判断動作</h2>
+  <p>第Ⅵ巻49章の <strong>Observe・Interpret・Design・Implement・Evolve</strong> を、全巻共通の学習手順として採用する。これは新しい理論を足すのではなく、既存理論を読む順序と使う順序をそろえる編集である。</p>
+  <div class="flow">
+    <div>Observe<small>事実を見る</small></div>
+    <div>Interpret<small>意味を読む</small></div>
+    <div>Design<small>価値を設計する</small></div>
+    <div>Implement<small>小さく実行する</small></div>
+    <div>Evolve<small>証拠から更新する</small></div>
+  </div>
+  <div class="note"><strong>事実と解釈を分ける。</strong>「お客様が不満そうだった」は解釈。「視線が3回スタッフを追い、注文から8分後に声をかけた」は事実。RSAの学習は、観察精度を上げるところから始まる。</div>
+
+  <h3>4段階の到達レベル</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>段階</th><th>役割</th><th>学習後にできること</th><th>提出する証拠</th></tr></thead>
+    <tbody>
+      <tr><td class="level">L1 再現</td><td>新人</td><td>目的を理解し、基準行動を安定して実践できる。</td><td>行動チェック＋自分の言葉による目的説明</td></tr>
+      <tr><td class="level">L2 判断</td><td>自立スタッフ</td><td>相手と状況を観察し、基準を適切に調整できる。</td><td>事実・解釈・選択理由・反応の記録</td></tr>
+      <tr><td class="level">L3 支援</td><td>リーダー／教育担当</td><td>他者の判断過程を問いで支え、再現可能な学びにできる。</td><td>観察記録＋フィードバック＋再実践の変化</td></tr>
+      <tr><td class="level">L4 設計</td><td>店長／管理者</td><td>理念・顧客価値・人財・数字を統合し、仕組みを更新できる。</td><td>基準変更案＋指標＋検証結果＋次の意思決定</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="learning-map">
+  <span class="tag">VOLUME I–VIII</span>
+  <h2>8巻を貫く学習成果マップ</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>巻</th><th>固有の学び方</th><th>章末で残す成果物</th><th>核となる問い</th></tr></thead>
+    <tbody>
+      <tr><td>Ⅰ Philosophy</td><td>考える</td><td>判断原則の一文</td><td>私たちは、誰にどんな状態をつくるのか。</td></tr>
+      <tr><td>Ⅱ Experience Design</td><td>描く</td><td>接点・感情・行動の設計図</td><td>どの瞬間を、どのように変えるのか。</td></tr>
+      <tr><td>Ⅲ Human Psychology</td><td>検証する</td><td>観察仮説と反応記録</td><td>その反応を生んだ心理的負担・期待は何か。</td></tr>
+      <tr><td>Ⅳ Human Development</td><td>育てる</td><td>学習支援計画</td><td>次の一歩を本人が選べる支援は何か。</td></tr>
+      <tr><td>Ⅴ Management</td><td>判断する</td><td>指標を伴う意思決定</td><td>顧客価値を継続するため、何を配分するか。</td></tr>
+      <tr><td>Ⅵ RSA Method</td><td>統合する</td><td>理念から指標までの翻訳図</td><td>各要素を一つの構造としてどう接続するか。</td></tr>
+      <tr><td>Ⅶ Field Implementation</td><td>実行する</td><td>実装ログと更新基準</td><td>何を、誰が、いつ試し、何で変化を確認するか。</td></tr>
+      <tr><td>Ⅷ Future Restaurant</td><td>構想する</td><td>未来仮説と今始める実験</td><td>未来に残す人間価値と、技術に委ねる領域は何か。</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="learning-module">
+  <span class="tag">30-MINUTE TRAINING MODULE</span>
+  <h2>研修｜一つの場面を設計し直す</h2>
+  <p><span class="pill">対象：全階層</span> <span class="pill">人数：1〜6名</span> <span class="pill">準備：直近営業の一場面</span></p>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–3分</span><br><strong>場面を選ぶ</strong><br>成功・失敗を問わず、顧客またはチームの反応が変化した一場面を一つ選ぶ。</div></div>
+    <div class="step"><div><span class="time">3–8分</span><br><strong>事実だけを書く</strong><br>見た・聞いた・測った事実を記録する。人物評価や推測語を外す。</div></div>
+    <div class="step"><div><span class="time">8–13分</span><br><strong>意味を読む</strong><br>顧客価値、心理、動線、チーム、数字の観点から複数の解釈を出す。</div></div>
+    <div class="step"><div><span class="time">13–19分</span><br><strong>一行動を設計する</strong><br>理念と体験価値につながり、次の営業で観察できる行動を一つ決める。</div></div>
+    <div class="step"><div><span class="time">19–23分</span><br><strong>役割と期限を決める</strong><br>誰が、どの場面で、何回実践するかを明確にする。</div></div>
+    <div class="step"><div><span class="time">23–27分</span><br><strong>確認方法を決める</strong><br>顧客反応、チーム行動、品質、数字のうち、最も近い証拠を一つ選ぶ。</div></div>
+    <div class="step"><div><span class="time">27–30分</span><br><strong>互いに説明する</strong><br>一人60秒で「事実→意味→行動→確認」を共有し、質問を一つ受ける。</div></div>
+  </div>
+</section>
+
+<section id="learning-sheet">
+  <span class="tag">READY-TO-USE WORKSHEET</span>
+  <h2>One Scene Design Sheet</h2>
+  <div class="sheet">
+    <p><strong>学習テーマ：</strong>＿＿＿＿＿＿＿＿＿＿＿＿　<strong>巻／章：</strong>＿＿＿＿＿＿＿＿　<strong>到達レベル：</strong> L1・L2・L3・L4</p>
+    <div class="field"><label>1｜Observe — 何が起きたか</label><div class="line"></div><div class="hint">見た・聞いた・時間・回数・言葉。評価語と原因推測は書かない。</div></div>
+    <div class="field"><label>2｜Interpret — どんな意味が考えられるか</label><div class="line"></div><div class="hint">一つに決めつけず、顧客／心理／体験／チーム／経営から二つ以上の仮説を出す。</div></div>
+    <div class="field"><label>3｜Philosophy — 守る価値と判断原則</label><div class="line"></div><div class="hint">私たちは、誰にどんな状態をつくるために判断するのか。</div></div>
+    <div class="field"><label>4｜Design — 次の一行動</label><div class="line"></div><div class="hint">誰が見ても実施の有無を確認できる行動として書く。</div></div>
+    <div class="field"><label>5｜Implement — 実行条件</label><div class="line"></div><div class="hint">担当者／場面／開始日／回数／必要な支援。</div></div>
+    <div class="field"><label>6｜Evolve — 何を見て更新するか</label><div class="line"></div><div class="hint">顧客の言葉・表情・再注文・時間・ミス・チーム反応など、最も近い証拠を一つ。</div></div>
+    <div class="field"><label>7｜Reflection — 実践後に残った判断</label><div class="line"></div><div class="hint">続ける／変える／やめる。理由を証拠とともに記す。</div></div>
+  </div>
+</section>
+
+<section id="learning-rubric">
+  <span class="tag">EVIDENCE-BASED ASSESSMENT</span>
+  <h2>4段階評価ルーブリック</h2>
+  <div class="scroll"><table class="rubric">
+    <thead><tr><th>観点</th><th>L1 再現</th><th>L2 判断</th><th>L3 支援</th><th>L4 設計</th></tr></thead>
+    <tbody>
+      <tr><td>観察</td><td>基準行動と顧客反応を記録できる。</td><td>事実と解釈を分け、変化を捉える。</td><td>他者の観察精度を問いで高める。</td><td>複数場面の傾向を構造的課題として捉える。</td></tr>
+      <tr><td>解釈</td><td>行動の目的を自分の言葉で説明する。</td><td>複数仮説から妥当な判断を選ぶ。</td><td>決めつけず、本人の見立てを引き出す。</td><td>顧客・人財・品質・経営を統合して読む。</td></tr>
+      <tr><td>設計</td><td>決められた基準を実践する。</td><td>状況に合わせ一行動を調整する。</td><td>チームで再現できる支援方法を組む。</td><td>基準・役割・資源・指標を一体で設計する。</td></tr>
+      <tr><td>検証</td><td>実践の有無を振り返る。</td><td>相手の反応を根拠に更新する。</td><td>再実践の変化を確認して承認する。</td><td>結果から仕組みと意思決定を更新する。</td></tr>
+    </tbody>
+  </table></div>
+  <div class="note"><strong>合格判定：</strong>「知っている」ではなく、対象レベルの証拠が直近の現場から一つ提出できること。人格や印象は評価対象にしない。</div>
+</section>
+
+<section id="learning-guide">
+  <span class="tag">FACILITATOR GUIDE</span>
+  <h2>指導者が守る進行原則</h2>
+  <div class="grid">
+    <div class="card"><b>先に答えを渡さない</b>「何が見えた？」「ほかの意味は？」の順に、本人の観察と判断を引き出す。</div>
+    <div class="card"><b>事実へ戻す</b>感想や人物評価が出たら、「そう考えた根拠として、何を見た？」と確認する。</div>
+    <div class="card"><b>一度に一行動</b>改善案を増やしすぎず、次の営業で検証できる最小単位に絞る。</div>
+    <div class="card"><b>成功も検証する</b>良かった場面も、何が価値を生んだかを言語化し、再現条件を残す。</div>
+  </div>
+  <h3>章末演習の編集テンプレート</h3>
+  <ul class="check">
+    <li><strong>Why：</strong>この章が守る顧客価値・組織価値を一文で示す。</li>
+    <li><strong>Observe：</strong>現場で何を見れば、このテーマの状態が分かるかを示す。</li>
+    <li><strong>Practice：</strong>対象レベル別に、一つの実践課題を置く。</li>
+    <li><strong>Evidence：</strong>提出する言葉・行動・結果・改善記録を明示する。</li>
+    <li><strong>Transfer：</strong>次に教える相手、共有する場、基準へ反映する条件を決める。</li>
+  </ul>
+  <div class="note"><strong>次回編集への接続：</strong>このテンプレートを使い、まず第Ⅰ巻の9章について、同一だった章末演習を章固有の問いと役割別課題へ置き換える。</div>
+</section>
+
+<div class="footer">Restaurant Service Architect — The Complete Framework<br>Weekly Development 01｜RSA Learning Spine</div>
+</main>
+
+    <a class="rsa-return" href="#rsa-master">資料一覧へ戻る</a>
+  </article>
+
+  <article class="rsa-doc" id="rsa-program">
+    <div class="rsa-doc-label"><span>02</span>全73章・実践プログラム</div>
+    
+
+<main class="shell">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — ACADEMY FRAMEWORK</div>
+  <h1>73 Chapters<span>Practice Program</span></h1>
+  <p class="lead">PhilosophyからFuture Restaurantまでを、理解・実践・指導・設計へつなぐ全階層型育成プログラム。</p>
+  <div class="hero-stats"><div><b>8</b><small>Volumes</small></div><div><b>73</b><small>Chapters</small></div><div><b>36</b><small>Weeks</small></div><div><b>4</b><small>Levels</small></div></div>
+</header>
+
+<nav><a href="#program-purpose">目的</a><a href="#program-levels">育成段階</a><a href="#program-curriculum">36週間</a><a href="#program-directory">73章</a><a href="#program-session">研修進行</a><a href="#program-tracks">階層別</a><a href="#program-assessment">評価</a><a href="#program-tools">実践シート</a></nav>
+
+<section id="program-purpose">
+  <span class="tag">PROGRAM PURPOSE</span><h2>知識を増やす教本から、判断を育てる教本へ</h2>
+  <p class="intro">RSAは接客の正解を暗記するためのマニュアルではない。現場を読み解き、理念と顧客価値を基準に行動を設計し、結果から仕組みを更新できる人財を育てる。</p>
+  <div class="flow"><div>Observe<small>事実を見る</small></div><div>Interpret<small>意味を読む</small></div><div>Design<small>価値を設計</small></div><div>Implement<small>現場で試す</small></div><div>Evolve<small>証拠で更新</small></div></div>
+  <div class="callout"><strong>学習単位：</strong>一度に一つの場面、一つの行動、一つの確認指標。講義で終わらせず、次の営業で実践し、顧客・チーム・品質・数字の変化を持ち帰る。</div>
+</section>
+
+<section id="program-levels">
+  <span class="tag">FOUR DEVELOPMENT LEVELS</span><h2>新人から管理者までの到達設計</h2>
+  <div class="grid4">
+    <div class="card level" data-level="L1"><b>再現｜新人</b>目的を理解し、基準行動を安定して実践する。<br><small>証拠：行動＋目的説明</small></div>
+    <div class="card level" data-level="L2"><b>判断｜自立スタッフ</b>相手と状況を読み、基準を適切に調整する。<br><small>証拠：事実＋選択理由＋反応</small></div>
+    <div class="card level" data-level="L3"><b>支援｜リーダー</b>他者の判断を問いで支え、学びを再現可能にする。<br><small>証拠：観察＋支援＋再実践</small></div>
+    <div class="card level" data-level="L4"><b>設計｜店長・管理者</b>理念・人財・体験・数字を統合して仕組みを更新する。<br><small>証拠：設計＋指標＋意思決定</small></div>
+  </div>
+  <h3>認定原則</h3>
+  <div class="scroll"><table><thead><tr><th>評価対象</th><th>確認すること</th><th>評価しないこと</th></tr></thead><tbody>
+    <tr><td>理解</td><td>章の目的を自分の言葉で説明できる</td><td>用語の丸暗記</td></tr>
+    <tr><td>判断</td><td>事実と解釈を分け、選択理由を示せる</td><td>上司と同じ答えかどうか</td></tr>
+    <tr><td>実践</td><td>観察可能な行動として実施できる</td><td>意欲や印象だけの評価</td></tr>
+    <tr><td>進化</td><td>反応や結果から行動・基準を更新できる</td><td>一度の成功・失敗だけでの断定</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="program-curriculum">
+  <span class="tag">36-WEEK MASTER CURRICULUM</span><h2>全73章を現場能力へ変える36週間</h2>
+  <p><span class="pill">週1回60分</span><span class="pill">現場実践7日間</span><span class="pill">1週1成果物</span><span class="pill">6週ごとにレビュー</span></p>
+  <div class="scroll"><table>
+    <thead><tr><th>週</th><th>章</th><th>学習テーマ</th><th>現場成果物</th></tr></thead><tbody>
+    <tr><td class="week">01</td><td>1–2</td><td>レストランの役割／来店動機</td><td>顧客が求める状態の一文</td></tr>
+    <tr><td class="week">02</td><td>3–4</td><td>ServiceとHospitality</td><td>基準行動と個別配慮の仕分け</td></tr>
+    <tr><td class="week">03</td><td>5–6</td><td>サービス思想／価値共創</td><td>顧客参加で価値が生まれる接点図</td></tr>
+    <tr><td class="week">04</td><td>7–9</td><td>体験経済／感動／文化</td><td>自店が残したい記憶の定義</td></tr>
+    <tr><td class="week">05</td><td>10–11</td><td>ジャーニー／五感</td><td>来店前から退店後までの感情曲線</td></tr>
+    <tr><td class="week">06</td><td>12–13</td><td>空間／動線</td><td>滞留・交錯・見落としマップ</td></tr>
+    <tr><td class="week">07</td><td>14–16</td><td>照明／音／香り</td><td>時間帯別の感覚環境チェック</td></tr>
+    <tr><td class="week">08</td><td>17–18</td><td>時間設計／ブループリント</td><td>一接点の表舞台・裏舞台設計図</td></tr>
+    <tr><td class="week">09</td><td>19–20</td><td>顧客心理／第一印象</td><td>最初の90秒の観察記録</td></tr>
+    <tr><td class="week">10</td><td>21–22</td><td>信頼形成／行動経済学</td><td>迷いを減らす説明・選択設計</td></tr>
+    <tr><td class="week">11</td><td>23–24</td><td>ピーク・エンド／共感・傾聴</td><td>記憶に残る瞬間と言葉の記録</td></tr>
+    <tr><td class="week">12</td><td>25–26</td><td>感情伝染／リカバリー</td><td>空気の変化と回復行動ログ</td></tr>
+    <tr><td class="week">13</td><td>27–28</td><td>育成原理／オンボーディング</td><td>初日・7日・30日の到達設計</td></tr>
+    <tr><td class="week">14</td><td>29–30</td><td>OJT／面談</td><td>説明・実演・実践・確認シート</td></tr>
+    <tr><td class="week">15</td><td>31–32</td><td>フィードバック／評価</td><td>事実基準のフィードバック記録</td></tr>
+    <tr><td class="week">16</td><td>33–34</td><td>段階認定／コーチング</td><td>次の一段を本人が選ぶ成長計画</td></tr>
+    <tr><td class="week">17</td><td>35–36</td><td>店長／多国籍チーム育成</td><td>役割期待と文化翻訳の共有表</td></tr>
+    <tr><td class="week">18</td><td>37–38</td><td>顧客創造／KGI・CSF・KPI</td><td>顧客価値から日々の行動への指標ツリー</td></tr>
+    <tr><td class="week">19</td><td>39–41</td><td>利益／FL／人時生産性</td><td>価値を守りながら改善する一施策</td></tr>
+    <tr><td class="week">20</td><td>42–43</td><td>組織／ブランド</td><td>意思決定権と守るブランド原則</td></tr>
+    <tr><td class="week">21</td><td>44–45</td><td>コンセプト／会議</td><td>一枚コンセプトと意思決定議事録</td></tr>
+    <tr><td class="week">22</td><td>46–47</td><td>RSA定義／7 Layers</td><td>自店の7層構造診断</td></tr>
+    <tr><td class="week">23</td><td>48–49</td><td>Purpose to Action／OIDIE</td><td>理念から行動・指標までの翻訳図</td></tr>
+    <tr><td class="week">24</td><td>50–51</td><td>Value Triangle／Service Translation</td><td>料理・ブランド・顧客をつなぐ説明</td></tr>
+    <tr><td class="week">25</td><td>52–53</td><td>One Table, One Value／Quality Loop</td><td>一卓の価値設計と品質レビュー</td></tr>
+    <tr><td class="week">26</td><td>54–55</td><td>Daily Behavior／Scorecard</td><td>日常行動と5領域診断</td></tr>
+    <tr><td class="week">27</td><td>56–57</td><td>店舗診断／改善プロジェクト</td><td>重要度×実行度による90日計画</td></tr>
+    <tr><td class="week">28</td><td>58–59</td><td>顧客関係／価値と客単価</td><td>再来店障壁と価値提案の仮説</td></tr>
+    <tr><td class="week">29</td><td>60–61</td><td>デジタル接点／店長の育成機能</td><td>人が担う接点と育成責任の再設計</td></tr>
+    <tr><td class="week">30</td><td>62–63</td><td>新人定着／多国籍連携</td><td>離脱兆候と連携ルールの可視化</td></tr>
+    <tr><td class="week">31</td><td>64</td><td>定着までの実装</td><td>実装・確認・修正・標準化の完了条件</td></tr>
+    <tr><td class="week">32</td><td>65–66</td><td>Restaurant 5.0／AI</td><td>人に残す価値とAIに委ねる業務の境界</td></tr>
+    <tr><td class="week">33</td><td>67–68</td><td>DX／パーソナライゼーション</td><td>データ利用と顧客配慮の原則</td></tr>
+    <tr><td class="week">34</td><td>69–70</td><td>未来人財／文化翻訳</td><td>未来の役割要件と多文化展開基準</td></tr>
+    <tr><td class="week">35</td><td>71–72</td><td>サステナビリティ／2035年人財</td><td>持続可能性を日常行動へ変える設計</td></tr>
+    <tr><td class="week">36</td><td>73</td><td>未来を創るレストラン</td><td>2035構想と今期から始める一実験</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="program-directory">
+  <span class="tag">COMPLETE DIRECTORY</span><h2>全8巻・73章</h2>
+  <div class="search"><input id="program-chapterSearch" type="search" placeholder="章番号・キーワードで検索"><button type="button" onclick="clearSearch()">解除</button></div><div id="program-searchResult" class="result">73章を表示中</div>
+
+  <div class="volume"><div class="vhead"><b>Ⅰ｜Philosophy</b><span>サービス哲学｜考える</span></div><div class="chapters">
+    <div class="chapter"><strong>1.</strong>レストランとは何か</div><div class="chapter"><strong>2.</strong>人は何を食べに来るのか</div><div class="chapter"><strong>3.</strong>サービスとは何か</div><div class="chapter"><strong>4.</strong>ServiceとHospitality</div><div class="chapter"><strong>5.</strong>ミシュランサービス思想</div><div class="chapter"><strong>6.</strong>SDL｜価値共創</div><div class="chapter"><strong>7.</strong>Experience Economy</div><div class="chapter"><strong>8.</strong>人はなぜ感動するのか</div><div class="chapter"><strong>9.</strong>レストラン文化論</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅱ｜Experience Design</b><span>体験設計｜描く</span></div><div class="chapters">
+    <div class="chapter"><strong>10.</strong>サービスジャーニー</div><div class="chapter"><strong>11.</strong>五感設計</div><div class="chapter"><strong>12.</strong>空間設計</div><div class="chapter"><strong>13.</strong>動線設計</div><div class="chapter"><strong>14.</strong>照明設計</div><div class="chapter"><strong>15.</strong>音楽と音環境</div><div class="chapter"><strong>16.</strong>香りの設計</div><div class="chapter"><strong>17.</strong>時間設計</div><div class="chapter"><strong>18.</strong>サービスブループリント</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅲ｜Human Psychology</b><span>サービス心理学｜検証する</span></div><div class="chapters">
+    <div class="chapter"><strong>19.</strong>顧客心理の基本</div><div class="chapter"><strong>20.</strong>第一印象</div><div class="chapter"><strong>21.</strong>信頼形成</div><div class="chapter"><strong>22.</strong>行動経済学</div><div class="chapter"><strong>23.</strong>ピーク・エンド</div><div class="chapter"><strong>24.</strong>共感と傾聴</div><div class="chapter"><strong>25.</strong>感情伝染とチームの空気</div><div class="chapter"><strong>26.</strong>サービスリカバリー心理</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅳ｜Human Development</b><span>人財育成｜育てる</span></div><div class="chapters">
+    <div class="chapter"><strong>27.</strong>育成の基本原理</div><div class="chapter"><strong>28.</strong>オンボーディング</div><div class="chapter"><strong>29.</strong>OJTと教え方</div><div class="chapter"><strong>30.</strong>面談設計</div><div class="chapter"><strong>31.</strong>フィードバック</div><div class="chapter"><strong>32.</strong>評価制度</div><div class="chapter"><strong>33.</strong>スキルマップと段階認定</div><div class="chapter"><strong>34.</strong>コーチング</div><div class="chapter"><strong>35.</strong>店長育成</div><div class="chapter"><strong>36.</strong>多国籍チームの育成</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅴ｜Restaurant Management</b><span>レストラン・マネジメント｜判断する</span></div><div class="chapters">
+    <div class="chapter"><strong>37.</strong>ドラッカーと顧客創造</div><div class="chapter"><strong>38.</strong>KGI・CSF・KPI</div><div class="chapter"><strong>39.</strong>利益構造</div><div class="chapter"><strong>40.</strong>FLコントロール</div><div class="chapter"><strong>41.</strong>人時生産性</div><div class="chapter"><strong>42.</strong>組織設計</div><div class="chapter"><strong>43.</strong>ブランド・マネジメント</div><div class="chapter"><strong>44.</strong>コンセプトシート</div><div class="chapter"><strong>45.</strong>会議とレビュー</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅵ｜Restaurant Service Architecture</b><span>RSA理論｜統合する</span></div><div class="chapters">
+    <div class="chapter"><strong>46.</strong>Restaurant Service Architectureの定義</div><div class="chapter"><strong>47.</strong>ITOZAWA 7 Layers</div><div class="chapter"><strong>48.</strong>Purpose to Action</div><div class="chapter"><strong>49.</strong>Observe・Interpret・Design・Implement・Evolve</div><div class="chapter"><strong>50.</strong>Value Triangle</div><div class="chapter"><strong>51.</strong>Service Translation</div><div class="chapter"><strong>52.</strong>One Table, One Value</div><div class="chapter"><strong>53.</strong>Service Quality Loop</div><div class="chapter"><strong>54.</strong>Culture by Daily Behavior</div><div class="chapter"><strong>55.</strong>Architect Scorecard</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅶ｜Field Implementation</b><span>現場実装｜実行する</span></div><div class="chapters">
+    <div class="chapter"><strong>56.</strong>店舗診断</div><div class="chapter"><strong>57.</strong>改善プロジェクト</div><div class="chapter revised"><strong>58.</strong>顧客関係の継続診断<em>改訂</em></div><div class="chapter revised"><strong>59.</strong>価値設計と客単価<em>改訂</em></div><div class="chapter revised"><strong>60.</strong>デジタル接点と人の温度<em>改訂</em></div><div class="chapter revised"><strong>61.</strong>店長の育成機能<em>改訂</em></div><div class="chapter revised"><strong>62.</strong>新人定着の構造<em>改訂</em></div><div class="chapter revised"><strong>63.</strong>多国籍チームの連携設計<em>改訂</em></div><div class="chapter"><strong>64.</strong>定着までの実装</div>
+  </div></div>
+  <div class="volume"><div class="vhead"><b>Ⅷ｜Future Restaurant</b><span>未来のレストラン｜構想する</span></div><div class="chapters">
+    <div class="chapter"><strong>65.</strong>Restaurant 5.0</div><div class="chapter"><strong>66.</strong>AIとサービス</div><div class="chapter"><strong>67.</strong>DXと顧客体験</div><div class="chapter"><strong>68.</strong>パーソナライゼーション</div><div class="chapter"><strong>69.</strong>未来の人財育成</div><div class="chapter"><strong>70.</strong>海外展開と文化翻訳</div><div class="chapter"><strong>71.</strong>サステナビリティ</div><div class="chapter"><strong>72.</strong>2035年のサービスパーソン</div><div class="chapter"><strong>73.</strong>未来を創るレストラン</div>
+  </div></div>
+</section>
+
+<section id="program-session">
+  <span class="tag">STANDARD 60-MINUTE SESSION</span><h2>毎週の研修進行</h2>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–5分</span><br><strong>前週の証拠を共有</strong><br>実行した行動、相手の反応、続ける・変える・やめるを一人60秒で報告する。</div></div>
+    <div class="step"><div><span class="time">5–15分</span><br><strong>Whyを理解</strong><br>章の中心概念を、顧客価値と組織価値に結びつけて学ぶ。</div></div>
+    <div class="step"><div><span class="time">15–25分</span><br><strong>現場を観察</strong><br>直近の一場面から、見た事実と自分の解釈を分けて記録する。</div></div>
+    <div class="step"><div><span class="time">25–38分</span><br><strong>意味を複数方向から読む</strong><br>顧客心理、体験、チーム、品質、数字から二つ以上の仮説を出す。</div></div>
+    <div class="step"><div><span class="time">38–48分</span><br><strong>一行動を設計</strong><br>次の営業で誰が見ても実施確認できる最小行動を決める。</div></div>
+    <div class="step"><div><span class="time">48–55分</span><br><strong>検証条件を決める</strong><br>担当、場面、回数、期限、確認する一つの証拠を定める。</div></div>
+    <div class="step"><div><span class="time">55–60分</span><br><strong>60秒宣言</strong><br>「事実→意味→行動→確認」を説明し、仲間から質問を一つ受ける。</div></div>
+  </div>
+  <div class="callout"><strong>運用ルール：</strong>講義30％、対話30％、現場設計40％。説明の巧さより、次の営業で確認できる行動と証拠を優先する。</div>
+</section>
+
+<section id="program-tracks">
+  <span class="tag">ROLE-BASED LEARNING TRACKS</span><h2>階層別の使い分け</h2>
+  <div class="scroll"><table><thead><tr><th>対象</th><th>期間</th><th>優先章</th><th>到達目標</th><th>認定成果物</th></tr></thead><tbody>
+    <tr><td class="phase">新人</td><td>90日</td><td>1–4、10–11、17、19–21、24、26–29、49、51–53</td><td>基準の目的を理解し、顧客反応を見ながら安定して実践する。</td><td>One Scene記録3件＋実技観察</td></tr>
+    <tr><td class="phase">自立スタッフ</td><td>16週</td><td>Ⅰ〜Ⅲ、46–53、56</td><td>状況に応じて基準を調整し、自分の選択理由を説明する。</td><td>接点改善1件＋反応比較</td></tr>
+    <tr><td class="phase">リーダー・教育担当</td><td>24週</td><td>Ⅳ、42、45、49、53–54、57、61–63</td><td>問いとフィードバックで他者の判断力を育てる。</td><td>育成計画＋再実践の変化</td></tr>
+    <tr><td class="phase">店長・管理者</td><td>36週</td><td>全73章</td><td>理念・顧客・人財・品質・数字を統合し、店舗システムを更新する。</td><td>90日改善計画＋Scorecard変化</td></tr>
+  </tbody></table></div>
+  <h3>新人90日プログラム</h3>
+  <div class="grid4">
+    <div class="card"><span class="n">0–7</span><b>安心と意味</b>理念、役割、基準の理由、質問経路を理解する。</div>
+    <div class="card"><span class="n">8–30</span><b>基準の再現</b>第一印象、傾聴、基本動線、提供時間を安定させる。</div>
+    <div class="card"><span class="n">31–60</span><b>状況判断</b>顧客の迷い・不安・期待を読み、一行動を調整する。</div>
+    <div class="card"><span class="n">61–90</span><b>自立と改善</b>一場面を自ら観察・設計・検証し、学びを説明する。</div>
+  </div>
+</section>
+
+<section id="program-assessment">
+  <span class="tag">ASSESSMENT & CERTIFICATION</span><h2>評価・認定の仕組み</h2>
+  <div class="scroll"><table><thead><tr><th>観点</th><th>配点</th><th>評価証拠</th><th>合格条件</th></tr></thead><tbody>
+    <tr><td>Concept｜理解</td><td>20</td><td>目的と概念を自分の言葉で説明</td><td>主要概念の誤解がない</td></tr>
+    <tr><td>Judgment｜判断</td><td>30</td><td>事実・解釈・選択理由の記録</td><td>事実と推測が分離されている</td></tr>
+    <tr><td>Practice｜実践</td><td>30</td><td>行動観察と顧客・チームの反応</td><td>現場で再現確認できる</td></tr>
+    <tr><td>Evolution｜進化</td><td>20</td><td>結果による継続・変更・中止判断</td><td>証拠に基づき更新している</td></tr>
+  </tbody></table></div>
+  <div class="grid">
+    <div class="card"><b>章修了</b>70点以上＋現場証拠1件。知識点だけでの合格は認めない。</div>
+    <div class="card"><b>レベル認定</b>対象レベルの証拠を異なる3場面で確認し、指導者と本人が合意する。</div>
+    <div class="card"><b>再評価</b>未達は人格評価にせず、観察・実践・支援条件を変えて再挑戦する。</div>
+    <div class="card"><b>管理者認定</b>個人実践に加え、チーム行動と店舗指標の変化を確認する。</div>
+  </div>
+</section>
+
+<section id="program-tools">
+  <span class="tag">FIELD IMPLEMENTATION TOOLS</span><h2>現場で使う記録シート</h2>
+  <div class="sheet">
+    <h3 style="margin-top:0">One Scene Design Sheet</h3>
+    <p><strong>巻／章：</strong>＿＿＿＿＿＿＿＿　<strong>対象レベル：</strong>L1・L2・L3・L4　<strong>実践日：</strong>＿＿＿＿＿＿</p>
+    <div class="field"><label>1｜Observe — 見た・聞いた事実</label><div class="line"></div><div class="hint">時間、回数、言葉、視線、動作。評価語と原因推測を外す。</div></div>
+    <div class="field"><label>2｜Interpret — 考えられる意味</label><div class="line"></div><div class="hint">一つに決めつけず、異なる観点から二つ以上の仮説を出す。</div></div>
+    <div class="field"><label>3｜Philosophy — 守る価値と判断原則</label><div class="line"></div><div class="hint">誰に、どんな状態をつくるための判断か。</div></div>
+    <div class="field"><label>4｜Design — 次の一行動</label><div class="line"></div><div class="hint">誰が見ても実施の有無を確認できる表現にする。</div></div>
+    <div class="field"><label>5｜Implement — 担当・場面・回数・期限</label><div class="line"></div></div>
+    <div class="field"><label>6｜Evolve — 確認する証拠と実践後の判断</label><div class="line"></div><div class="hint">続ける・変える・やめる。顧客、チーム、品質、数字の証拠を添える。</div></div>
+  </div>
+  <h3>指導者チェック</h3>
+  <ul class="check"><li>本人より先に答えを言わず、観察事実を尋ねた</li><li>複数の解釈を出してから行動を選ばせた</li><li>改善行動を一つに絞った</li><li>次回確認する具体的な証拠を決めた</li><li>できた点を事実で承認した</li></ul>
+</section>
+
+<div class="footer">Restaurant Service Architect — 73 Chapters Practice Program</div>
+</main>
+
+
+    <a class="rsa-return" href="#rsa-master">資料一覧へ戻る</a>
+  </article>
+
+  <article class="rsa-doc" id="rsa-deepening">
+    <div class="rsa-doc-label"><span>03</span>全73章・深化編集設計</div>
+    
+
+<main class="shell">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — EDITORIAL BLUEPRINT</div>
+  <h1>Deepening 73 Chapters<span>RSA教本・深化編集設計</span></h1>
+  <p class="lead">全73章を、概念解説から現場判断・人財育成・組織実装まで届く専門教本へ進化させるための編集基準。</p>
+  <div class="manifesto">情報量を増やすのではなく、読者が「理解する・見抜く・実践する・教える・設計する」まで到達できる深さをつくる。</div>
+  <div class="stats"><div class="stat"><b>8</b><small>Volumes</small></div><div class="stat"><b>73</b><small>Chapters</small></div><div class="stat"><b>10</b><small>Elements per Chapter</small></div><div class="stat"><b>4</b><small>Learning Levels</small></div></div>
+</header>
+
+<nav><a href="#deepening-purpose">目的</a><a href="#deepening-principles">編集原則</a><a href="#deepening-format">章構造</a><a href="#deepening-volumes">巻別方針</a><a href="#deepening-hierarchy">理論整理</a><a href="#deepening-architecture">成果物構成</a><a href="#deepening-process">制作工程</a><a href="#deepening-quality">品質基準</a></nav>
+
+<section id="deepening-purpose">
+  <span class="tag">WHY DEEPEN NOW</span><h2>次に必要なのは、章の追加ではなく学習深度</h2>
+  <p class="intro">現行の73章は、PhilosophyからFuture Restaurantまで必要領域を広く網羅している。次の課題は、各章の概念を説明する段階から、現場で判断し、他者を育て、店舗の仕組みを更新できる段階へ引き上げることである。</p>
+  <div class="grid">
+    <div class="card"><span class="n">01</span><b>定義の明確化</b>似た言葉の違いと適用範囲を明確にし、読者の解釈の揺れを減らす。</div>
+    <div class="card"><span class="n">02</span><b>理論と現場の接続</b>抽象概念を、観察できる場面・行動・結果へ翻訳する。</div>
+    <div class="card"><span class="n">03</span><b>階層別の成長</b>同じ章を、新人は再現、スタッフは判断、指導者は支援、管理者は設計として学ぶ。</div>
+    <div class="card"><span class="n">04</span><b>組織への定着</b>個人の理解で終えず、教育・評価・会議・KPI・文化へ接続する。</div>
+  </div>
+</section>
+
+<section id="deepening-principles">
+  <span class="tag">EDITORIAL PRINCIPLES</span><h2>深化編集の7原則</h2>
+  <div class="grid3">
+    <div class="card"><b>1｜一章一判断</b>一つの章が、読者にどの判断力を与えるのかを明確にする。</div>
+    <div class="card"><b>2｜事実から始める</b>理想論だけでなく、現場で何を見れば状態が分かるかを示す。</div>
+    <div class="card"><b>3｜理論を翻訳する</b>学術用語を並べず、レストランの顧客・人・時間・数字に置き換える。</div>
+    <div class="card"><b>4｜答えを固定しない</b>基準を示しながら、状況に応じて自ら設計し直す思考を育てる。</div>
+    <div class="card"><b>5｜階層差をつくる</b>新人から管理者まで、同じテーマでも求める成果と証拠を変える。</div>
+    <div class="card"><b>6｜重複は統合する</b>同じ説明を繰り返さず、主章を決め、他章は相互参照にする。</div>
+    <div class="card"><b>7｜実装で閉じる</b>章末は感想ではなく、実践課題・確認証拠・更新判断で終える。</div>
+  </div>
+  <div class="callout"><strong>文体基準：</strong>固有店舗に依存しない。冒頭と締めの定型文を置かない。「簡易」「参考程度」といった価値を弱める表現を避け、否定で終わらず設計原則を示す。</div>
+</section>
+
+<section id="deepening-format">
+  <span class="tag">STANDARD CHAPTER FORMAT</span><h2>全章共通の10項目構造</h2>
+  <div class="structure">
+    <div class="item"><div><b>Chapter Purpose</b>この章を学ぶことで、何を見抜き、どの判断ができるようになるか。</div></div>
+    <div class="item"><div><b>Definition</b>中心概念を一文で定義し、近接概念との違いと適用範囲を示す。</div></div>
+    <div class="item"><div><b>Why It Matters</b>顧客体験、人財、品質、経営にどのような影響を与えるか。</div></div>
+    <div class="item"><div><b>Core Theory</b>背景理論、成立条件、限界、誤用しやすい点を整理する。</div></div>
+    <div class="item"><div><b>RSA Translation</b>理論を理念・体験・行動・人財・数字・進化へ翻訳する。</div></div>
+    <div class="item"><div><b>Observation Points</b>現場で見るべき言葉、表情、動作、時間、回数、連携、数値を示す。</div></div>
+    <div class="item"><div><b>Field Practice</b>次の営業で実施できる一つの行動と、実施条件を定める。</div></div>
+    <div class="item"><div><b>Level Development</b>L1再現、L2判断、L3支援、L4設計の到達差を明示する。</div></div>
+    <div class="item"><div><b>Worksheet</b>事実・解釈・設計・実践・結果・更新を一枚で記録する。</div></div>
+    <div class="item"><div><b>Assessment</b>理解ではなく、言葉・行動・結果・改善の観察証拠で修了を判定する。</div></div>
+  </div>
+  <h3>章あたりの基本ボリューム</h3>
+  <div class="scroll"><table><thead><tr><th>要素</th><th>目安</th><th>役割</th></tr></thead><tbody>
+    <tr><td class="key">本文</td><td>2,000〜4,000字</td><td>定義・理論・RSAへの翻訳を十分に説明する。</td></tr>
+    <tr><td class="key">図表</td><td>1〜3点</td><td>関係性、順序、判断軸、比較を視覚化する。</td></tr>
+    <tr><td class="key">実践課題</td><td>1課題</td><td>一週間以内に現場で試せる行動にする。</td></tr>
+    <tr><td class="key">ワークシート</td><td>1枚</td><td>学びを自店・自分の言葉へ変換する。</td></tr>
+    <tr><td class="key">評価基準</td><td>L1〜L4</td><td>役割別の到達証拠を明示する。</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="deepening-volumes">
+  <span class="tag">VOLUME-SPECIFIC DEPTH</span><h2>8巻ごとに深める方向を変える</h2>
+  <div class="scroll"><table><thead><tr><th>巻</th><th>学び方</th><th>深掘りの中心</th><th>章末成果物</th></tr></thead><tbody>
+    <tr><td class="key">Ⅰ Philosophy</td><td>考える</td><td>存在意義、価値観、判断原則、文化的役割を言語化する。</td><td>自分の判断原則</td></tr>
+    <tr><td class="key">Ⅱ Experience Design</td><td>描く</td><td>顧客の感情・五感・動線・時間と、裏側の業務を構造化する。</td><td>体験設計図</td></tr>
+    <tr><td class="key">Ⅲ Human Psychology</td><td>検証する</td><td>人の感情と判断の特性を、操作ではなく負担軽減に使う。</td><td>観察仮説と反応記録</td></tr>
+    <tr><td class="key">Ⅳ Human Development</td><td>育てる</td><td>安心・理解・実践・承認・挑戦を、教育者の行動へ落とす。</td><td>育成支援計画</td></tr>
+    <tr><td class="key">Ⅴ Management</td><td>判断する</td><td>顧客価値、人財、品質、利益を一つの意思決定として扱う。</td><td>指標を伴う意思決定</td></tr>
+    <tr><td class="key">Ⅵ RSA Method</td><td>統合する</td><td>全巻の概念を、理念から行動・指標・進化まで一つにつなぐ。</td><td>統合設計図</td></tr>
+    <tr><td class="key">Ⅶ Field Implementation</td><td>実行する</td><td>固有ケースを使わず、状況診断・仮説・実装・定着の汎用型を示す。</td><td>実装ログと完了条件</td></tr>
+    <tr><td class="key">Ⅷ Future Restaurant</td><td>構想する</td><td>技術に委ねる領域と、人間が高める価値の境界を設計する。</td><td>未来仮説と現在の実験</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="deepening-hierarchy">
+  <span class="tag">THEORY ARCHITECTURE</span><h2>第Ⅵ巻を全体系の接続装置にする</h2>
+  <p class="intro">独自理論を同列に並べるのではなく、設計対象・翻訳・実践・運用・評価という役割に分ける。これにより、似たメソッドの重複と使い分けの迷いを減らす。</p>
+  <div class="scroll"><table><thead><tr><th>理論・ツール</th><th>体系上の役割</th><th>中心となる問い</th></tr></thead><tbody>
+    <tr><td class="key">ITOZAWA 7 Layers</td><td>設計対象の全体図</td><td>どの層に問題があり、どの層との接続が切れているか。</td></tr>
+    <tr><td class="key">Purpose to Action</td><td>理念を現場へ翻訳する構造</td><td>理念を約束・基準・行動・指標へどう落とすか。</td></tr>
+    <tr><td class="key">OIDIE</td><td>問題発見と改善の実践手順</td><td>何を見て、どう読み、何を試し、どう更新するか。</td></tr>
+    <tr><td class="key">Value Triangle</td><td>価値の均衡確認</td><td>顧客・働く人・経営に持続する価値があるか。</td></tr>
+    <tr><td class="key">Service Translation</td><td>意味と言葉の翻訳</td><td>専門性とブランド思想を相手が楽しめる言葉にできるか。</td></tr>
+    <tr><td class="key">One Table, One Value</td><td>一卓単位の体験設計</td><td>この一卓に、今どの価値をつくるか。</td></tr>
+    <tr><td class="key">Service Quality Loop</td><td>日常運用と定着</td><td>基準・実践・観察・レビュー・改善が循環しているか。</td></tr>
+    <tr><td class="key">Architect Scorecard</td><td>店舗システムの成熟評価</td><td>顧客・人財・品質・経営・進化のどこを次に変えるか。</td></tr>
+  </tbody></table></div>
+  <div class="flow"><div>7 Layers<small>全体を見る</small></div><div>Purpose to Action<small>理念を翻訳</small></div><div>OIDIE<small>実践する</small></div><div>Quality Loop<small>定着させる</small></div><div>Scorecard<small>進化を測る</small></div></div>
+</section>
+
+<section id="deepening-architecture">
+  <span class="tag">DELIVERABLE ARCHITECTURE</span><h2>完成版は8冊＋統合索引</h2>
+  <p class="intro">全73章を一つの巨大なHTMLへ詰め込まず、巻ごとの学習特性を保った8冊と、全体を横断するMaster Indexで構成する。</p>
+  <div class="grid">
+    <div class="card"><b>RSA Master Index</b>全73章検索、用語索引、理論間リンク、対象レベル、学習進捗、改訂履歴を統合する。</div>
+    <div class="card"><b>Volume Ⅰ–Ⅷ</b>各巻を独立して読めるHTML教本とし、巻ごとの学び方・図表・演習を最適化する。</div>
+    <div class="card"><b>Field Tool Library</b>ワークシート、評価票、診断、面談、会議、実装計画を用途別にまとめる。</div>
+    <div class="card"><b>Facilitator Guide</b>研修時間、問い、観察点、フィードバック、認定方法を指導者向けに整理する。</div>
+  </div>
+  <h3>共通仕様</h3>
+  <p><span class="pill">スマホファースト</span><span class="pill">章内検索</span><span class="pill">相互参照リンク</span><span class="pill">印刷対応</span><span class="pill">改訂履歴</span><span class="pill">進捗保存</span></p>
+</section>
+
+<section id="deepening-process">
+  <span class="tag">PRODUCTION SEQUENCE</span><h2>読む順番と、制作する順番を分ける</h2>
+  <p class="intro">読者はⅠからⅧへ進む。編集では、先に第Ⅵ巻の用語と理論の役割を固定し、その基準を全巻へ反映することで、後戻りと重複を抑える。</p>
+  <div class="scroll"><table><thead><tr><th>制作順</th><th>対象</th><th>目的</th><th>完了条件</th></tr></thead><tbody>
+    <tr><td class="order">01</td><td>用語集＋第Ⅵ巻</td><td>RSA独自理論の定義・階層・接続関係を固定する。</td><td>同じ意味の用語と重複モデルが整理されている。</td></tr>
+    <tr><td class="order">02</td><td>第Ⅰ巻</td><td>全巻の判断基盤となる哲学と価値観を確立する。</td><td>各章から現場判断原則が一文で導ける。</td></tr>
+    <tr><td class="order">03</td><td>第Ⅱ・Ⅲ巻</td><td>体験設計と心理観察を一つの顧客理解へつなぐ。</td><td>操作ではなく、顧客負担軽減の原則で統一されている。</td></tr>
+    <tr><td class="order">04</td><td>第Ⅳ・Ⅴ巻</td><td>人財育成と経営判断を組織能力へ統合する。</td><td>教育・評価・KPI・会議が同じ行動基準を参照する。</td></tr>
+    <tr><td class="order">05</td><td>第Ⅶ巻</td><td>理論を汎用的な診断・実装・定着方法へ変える。</td><td>固有ケースなしで多業態に適用できる。</td></tr>
+    <tr><td class="order">06</td><td>第Ⅷ巻</td><td>現在の原則を未来の技術・社会・人財へ接続する。</td><td>未来予測だけでなく、今始める実験が示されている。</td></tr>
+    <tr><td class="order">07</td><td>統合編集</td><td>索引、相互参照、レベル、図表、重複、章数を最終調整する。</td><td>全73章が一つの成長導線として読める。</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="deepening-quality">
+  <span class="tag">QUALITY GATE</span><h2>各章の完成判定</h2>
+  <div class="grid">
+    <div class="card"><b>概念</b><ul class="check"><li>定義を一文で説明できる</li><li>近接概念との違いが明確</li><li>適用条件と限界が示されている</li></ul></div>
+    <div class="card"><b>現場</b><ul class="check"><li>観察すべき事実が具体的</li><li>次の営業で試せる課題がある</li><li>結果確認の証拠が決まっている</li></ul></div>
+    <div class="card"><b>育成</b><ul class="check"><li>L1〜L4の到達差がある</li><li>指導者の問いが用意されている</li><li>人格ではなく行動を評価する</li></ul></div>
+    <div class="card"><b>体系</b><ul class="check"><li>他章との重複が整理されている</li><li>第Ⅵ巻の理論と接続している</li><li>理念から結果まで論理が切れない</li></ul></div>
+  </div>
+  <div class="callout"><strong>編集完了の定義：</strong>内容が詳しいことではなく、読者が現場で一つの判断を変え、その変化を証拠で確認できること。</div>
+</section>
+
+<div class="footer">Restaurant Service Architect｜73章深化編集設計</div>
+</main>
+
+    <a class="rsa-return" href="#rsa-master">資料一覧へ戻る</a>
+  </article>
+
+  <article class="rsa-doc" id="rsa-lexicon">
+    <div class="rsa-doc-label"><span>04</span>公式用語集・メソッドマップ</div>
+    
+
+<main class="shell">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 02</div>
+  <h1>Core Lexicon<span>全巻共通用語・RSA Method Map</span></h1>
+  <p class="lead">73章の言葉を揃え、理念・体験・育成・経営・現場実装を同じ意味体系でつなぐ。</p>
+  <div class="manifesto">一つの言葉に一つの基準。定義の統一が、教育・評価・会議・現場判断の一貫性をつくる。</div>
+  <div class="stats"><div class="stat"><b>20</b><small>Core Terms</small></div><div class="stat"><b>8</b><small>RSA Methods</small></div><div class="stat"><b>4</b><small>Learning Levels</small></div><div class="stat"><b>1</b><small>Shared Language</small></div></div>
+</header>
+
+<nav><a href="#lexicon-next">今週の一手</a><a href="#lexicon-issues">整合性</a><a href="#lexicon-rules">用語ルール</a><a href="#lexicon-lexicon">公式用語集</a><a href="#lexicon-methods">理論選択</a><a href="#lexicon-training">研修</a><a href="#lexicon-sheet">実践シート</a><a href="#lexicon-rubric">評価</a></nav>
+
+<section id="lexicon-next">
+  <span class="tag">HIGHEST-VALUE NEXT STEP</span><h2>全巻の公式用語を先に固定する</h2>
+  <p class="intro">前回までに学習構造と制作方針は整った。本文を深掘りする前に、全73章で繰り返し使う言葉の意味と相互関係を固定する。これにより、巻ごとの説明の揺れ、評価基準の混線、独自理論の重複を防ぐ。</p>
+  <div class="grid">
+    <div class="card"><span class="n">01</span><b>本文の一貫性</b>同じ言葉を章ごとに別の意味で使わない。</div>
+    <div class="card"><span class="n">02</span><b>教育の再現性</b>指導者が変わっても、同じ定義と問いで教えられる。</div>
+    <div class="card"><span class="n">03</span><b>評価の公平性</b>人格や印象ではなく、共通語で行動と結果を確認する。</div>
+    <div class="card"><span class="n">04</span><b>理論の選択性</b>課題に応じて、どのRSAメソッドを使うか判断できる。</div>
+  </div>
+</section>
+
+<section id="lexicon-issues">
+  <span class="tag">CONSISTENCY REVIEW</span><h2>今回修正する6つの意味の揺れ</h2>
+  <div class="scroll"><table><thead><tr><th>論点</th><th>混線しやすい状態</th><th>統一方針</th><th>主な接続章</th></tr></thead><tbody>
+    <tr><td class="key">Service／Hospitality</td><td>どちらも「良い接客」として扱われる。</td><td>Service＝約束を再現する設計と行動。Hospitality＝相手に応じた状況判断。</td><td class="chapter">3・4・46・52</td></tr>
+    <tr><td class="key">Value／Experience</td><td>体験そのものを価値と呼び、成果との区別がない。</td><td>Experience＝接点を通じた主観的過程。Value＝利用場面で顧客が受け取る意味と便益。</td><td class="chapter">6・7・10・50</td></tr>
+    <tr><td class="key">Standard／Manual／Judgment</td><td>標準化と個別対応が対立概念になる。</td><td>Standard＝守る最低状態。Manual＝実行支援。Judgment＝原則と状況から最適行動を選ぶ力。</td><td class="chapter">29・32・48・53</td></tr>
+    <tr><td class="key">Skill Map／Scorecard</td><td>人の成長評価と店舗診断が同じ評価として扱われる。</td><td>Skill Map＝個人能力。Architect Scorecard＝店舗システムの成熟度。</td><td class="chapter">33・55・56</td></tr>
+    <tr><td class="key">Implementation／Embedding</td><td>施策を始めた時点で完了とみなす。</td><td>Implementation＝実践開始。Embedding＝外部の強制なしに継続される状態。</td><td class="chapter">53・54・57・64</td></tr>
+    <tr><td class="key">Architecture／Architect</td><td>方法論と役割名が混在する。</td><td>Architecture＝統合設計方法。Architect＝統合設計を担う人。</td><td class="chapter">46・47・55</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="lexicon-rules">
+  <span class="tag">TERMINOLOGY GOVERNANCE</span><h2>73章で守る用語ルール</h2>
+  <div class="grid3">
+    <div class="card"><b>一語一義</b>中心用語は一つの公式定義を持ち、章ごとに意味を変えない。</div>
+    <div class="card"><b>初出で定義</b>最初に登場する主章で定義し、後続章は相互参照する。</div>
+    <div class="card"><b>近接語を区別</b>似た言葉は「何が違うか」「いつ使うか」を必ず示す。</div>
+    <div class="card"><b>行動へ翻訳</b>抽象語には、現場で観察できる言葉・行動・状態を付ける。</div>
+    <div class="card"><b>日英を固定</b>日本語と英語の表記を統一し、無目的な言い換えを避ける。</div>
+    <div class="card"><b>版を管理</b>用語変更は定義・該当章・変更理由を改訂履歴に残す。</div>
+  </div>
+  <div class="callout"><strong>章の書き方：</strong>定義 → 区別 → 現場で見える状態 → 読者が行う判断、の順で説明する。用語解説だけで終えない。</div>
+</section>
+
+<section id="lexicon-lexicon">
+  <span class="tag">OFFICIAL CORE LEXICON v1</span><h2>全巻共通・20の公式定義</h2>
+
+  <details class="term" open><summary>01｜Restaurant <span class="en">レストラン</span></summary><div class="body"><p class="definition">料理・空間・人・時間・運営を統合し、人と社会に価値ある体験と関係を生み出す文化的・経営的システム。</p><div class="meta"><div><b>区別</b>料理を提供する場所だけではない。</div><div><b>観察証拠</b>料理以外の接点にも一貫した意味がある。</div><div><b>主章</b>1・2・9・46</div></div></div></details>
+  <details class="term"><summary>02｜Service <span class="en">サービス</span></summary><div class="body"><p class="definition">顧客との約束を、再現可能な仕組みと行動を通じて実現する価値提供。</p><div class="meta"><div><b>区別</b>親切心や個人技だけを指さない。</div><div><b>観察証拠</b>誰が担当しても守られる基準行動。</div><div><b>主章</b>3・46・48・53</div></div></div></details>
+  <details class="term"><summary>03｜Hospitality <span class="en">ホスピタリティ</span></summary><div class="body"><p class="definition">相手の状況・感情・目的を読み、サービスの約束を損なわずに行動を調整する他者中心の判断。</p><div class="meta"><div><b>区別</b>過剰提供や自己満足ではない。</div><div><b>観察証拠</b>相手の反応に応じて、量・速度・距離・言葉を変える。</div><div><b>主章</b>4・19・24・52</div></div></div></details>
+  <details class="term"><summary>04｜Customer Value <span class="en">顧客価値</span></summary><div class="body"><p class="definition">顧客が利用場面の中で、費用・時間・心理負担との関係から受け取る便益・意味・満足。</p><div class="meta"><div><b>区別</b>提供者が「価値がある」と宣言するだけでは成立しない。</div><div><b>観察証拠</b>選択、再来店、紹介、言葉、行動変化。</div><div><b>主章</b>2・6・37・50</div></div></div></details>
+  <details class="term"><summary>05｜Value Co-creation <span class="en">価値共創</span></summary><div class="body"><p class="definition">提供者が資源と提案を用意し、顧客の参加・解釈・利用によって価値が成立する過程。</p><div class="meta"><div><b>区別</b>店が完成品として価値を一方的に渡す考えではない。</div><div><b>観察証拠</b>顧客の選択、会話、参加によって体験が変わる。</div><div><b>主章</b>6・10・22・50</div></div></div></details>
+  <details class="term"><summary>06｜Experience <span class="en">体験</span></summary><div class="body"><p class="definition">複数の接点を通して顧客の知覚・感情・行動・意味づけが変化する主観的な過程。</p><div class="meta"><div><b>区別</b>演出やイベントだけを指さない。</div><div><b>観察証拠</b>感情曲線、記憶、行動、語られ方。</div><div><b>主章</b>7・10・17・18</div></div></div></details>
+  <details class="term"><summary>07｜Touchpoint <span class="en">顧客接点</span></summary><div class="body"><p class="definition">顧客が店・ブランド・人・仕組みを知覚し、期待や評価を更新する瞬間。</p><div class="meta"><div><b>区別</b>対面接客だけではなく、予約・案内・会計・退店後も含む。</div><div><b>観察証拠</b>接点前後の感情・行動変化。</div><div><b>主章</b>10・18・60・67</div></div></div></details>
+  <details class="term"><summary>08｜Standard <span class="en">基準</span></summary><div class="body"><p class="definition">顧客との約束を守るため、誰が見ても実施の有無と状態を確認できる最低限の行動・品質条件。</p><div class="meta"><div><b>区別</b>全員を同じ動きに縛る規則ではない。</div><div><b>観察証拠</b>行動、時間、状態が第三者にも確認できる。</div><div><b>主章</b>29・32・48・53</div></div></div></details>
+  <details class="term"><summary>09｜Manual <span class="en">マニュアル</span></summary><div class="body"><p class="definition">基準を安定して実行するため、手順・判断条件・注意点・支援情報を整理した実務文書。</p><div class="meta"><div><b>区別</b>基準そのものでも、判断を不要にする台本でもない。</div><div><b>観察証拠</b>迷いとばらつきを減らし、教育を支援する。</div><div><b>主章</b>28・29・53・64</div></div></div></details>
+  <details class="term"><summary>10｜Judgment <span class="en">判断</span></summary><div class="body"><p class="definition">観察した事実を原則と目的に照らし、状況に最も適した行動を選ぶこと。</p><div class="meta"><div><b>区別</b>直感任せや上司の正解当てではない。</div><div><b>観察証拠</b>事実・原則・選択理由を説明できる。</div><div><b>主章</b>19・34・45・49</div></div></div></details>
+  <details class="term"><summary>11｜Behavior <span class="en">行動</span></summary><div class="body"><p class="definition">理念・意図・判断が、第三者に観察できる言葉・動作・選択として現れたもの。</p><div class="meta"><div><b>区別</b>思い、姿勢、性格の推測とは分ける。</div><div><b>観察証拠</b>いつ、誰が、何をしたかを記録できる。</div><div><b>主章</b>31・32・48・54</div></div></div></details>
+  <details class="term"><summary>12｜Service Quality <span class="en">サービス品質</span></summary><div class="body"><p class="definition">店の約束が安定して再現され、顧客と状況に応じて適切に調整される程度。</p><div class="meta"><div><b>区別</b>手順遵守率や高級感だけでは測れない。</div><div><b>観察証拠</b>基準実施、顧客反応、回復力、ばらつき。</div><div><b>主章</b>18・26・53・55</div></div></div></details>
+  <details class="term"><summary>13｜Culture <span class="en">文化</span></summary><div class="body"><p class="definition">組織内で繰り返され、承認され、教え継がれる判断・行動・言葉の集積。</p><div class="meta"><div><b>区別</b>理念文や雰囲気だけではない。</div><div><b>観察証拠</b>上司不在時にも同じ判断が選ばれる。</div><div><b>主章</b>9・25・43・54</div></div></div></details>
+  <details class="term"><summary>14｜Human Development <span class="en">人財育成</span></summary><div class="body"><p class="definition">本人が理解・実践・判断・指導・改善できる範囲を、支援と経験によって広げること。</p><div class="meta"><div><b>区別</b>不足の指摘や作業の教え込みだけではない。</div><div><b>観察証拠</b>自立度、判断説明、他者支援、改善行動。</div><div><b>主章</b>27・29・33・35</div></div></div></details>
+  <details class="term"><summary>15｜Management <span class="en">マネジメント</span></summary><div class="body"><p class="definition">目的と成果に向け、人・時間・資金・情報・仕組みを配分し、意思決定と実行を継続させる働き。</p><div class="meta"><div><b>区別</b>管理、指示、数字確認だけを指さない。</div><div><b>観察証拠</b>優先順位、役割、期限、資源、確認方法が決まる。</div><div><b>主章</b>37・38・42・45</div></div></div></details>
+  <details class="term"><summary>16｜Indicator <span class="en">指標</span></summary><div class="body"><p class="definition">目的・成果・重要条件・日々の行動が、望む方向へ進んでいるかを確認する観測点。</p><div class="meta"><div><b>区別</b>測れるものを何でもKPIにする考えではない。</div><div><b>観察証拠</b>KGI・CSF・KPIの因果関係を説明できる。</div><div><b>主章</b>38・41・45・55</div></div></div></details>
+  <details class="term"><summary>17｜Implementation <span class="en">実装</span></summary><div class="body"><p class="definition">設計した基準・行動・仕組みが、担当・場面・期限を伴って現場で実践される状態。</p><div class="meta"><div><b>区別</b>資料作成、説明会、導入決定だけでは実装ではない。</div><div><b>観察証拠</b>実施者、回数、場面、結果が記録される。</div><div><b>主章</b>49・53・57・64</div></div></div></details>
+  <details class="term"><summary>18｜Embedding <span class="en">定着</span></summary><div class="body"><p class="definition">実装した行動や仕組みが、外部の継続的な強制がなくても日常的に再現・修正される状態。</p><div class="meta"><div><b>区別</b>一度実行した状態や、短期的な遵守とは異なる。</div><div><b>観察証拠</b>複数人・複数期間で継続し、逸脱時に自己修正される。</div><div><b>主章</b>53・54・64</div></div></div></details>
+  <details class="term"><summary>19｜Restaurant Service Architecture <span class="en">RSA方法論</span></summary><div class="body"><p class="definition">理念・ブランド・体験・行動・人財・経営・進化を接続し、サービスを個人技から組織能力へ変える統合設計方法。</p><div class="meta"><div><b>区別</b>接客技術集や単独の研修プログラムではない。</div><div><b>観察証拠</b>理念から行動・指標・改善まで論理がつながる。</div><div><b>主章</b>46–55</div></div></div></details>
+  <details class="term"><summary>20｜Restaurant Service Architect <span class="en">役割</span></summary><div class="body"><p class="definition">料理・空間・人・時間・経営を横断し、顧客価値を再現可能な仕組みと文化へ翻訳・実装する人。</p><div class="meta"><div><b>区別</b>接客の模範者、現場監督、助言だけを行う人に限定しない。</div><div><b>観察証拠</b>部門間をつなぎ、判断基準と実装構造を残す。</div><div><b>主章</b>46・47・55・73</div></div></div></details>
+</section>
+
+<section id="lexicon-methods">
+  <span class="tag">RSA METHOD SELECTION MAP</span><h2>課題に応じて8つの方法を選ぶ</h2>
+  <div class="flow"><div>7 Layers<small>全体を診る</small></div><div>Purpose to Action<small>理念を翻訳</small></div><div>OIDIE<small>改善を進める</small></div><div>Quality Loop<small>日常に定着</small></div><div>Scorecard<small>成熟度を測る</small></div></div>
+  <div class="grid">
+    <div class="card method" data-role="設計対象"><b>ITOZAWA 7 Layers</b>Philosophy・Brand・Experience・Behavior・Team・Management・Evolutionを一つの構造として診る。<div class="q">問い：どの層の接続が切れているか。</div></div>
+    <div class="card method" data-role="理念翻訳"><b>Purpose to Action</b>理念を約束・基準・行動・指標へ落とし、抽象語を日常判断へ変える。<div class="q">問い：この理念は、今日の何の行動になるか。</div></div>
+    <div class="card method" data-role="改善手順"><b>OIDIE</b>Observe・Interpret・Design・Implement・Evolveで、事実から改善を進める。<div class="q">問い：何を見て、どう読み、何を試すか。</div></div>
+    <div class="card method" data-role="価値均衡"><b>Value Triangle</b>Customer・People・Businessに持続する価値があるかを確認する。<div class="q">問い：誰か一者の負担で成立していないか。</div></div>
+    <div class="card method" data-role="意味翻訳"><b>Service Translation</b>料理人の意図、ブランドの思想、顧客の関心を相手基準の言葉でつなぐ。<div class="q">問い：相手が楽しめる長さと言葉になっているか。</div></div>
+    <div class="card method" data-role="一卓設計"><b>One Table, One Value</b>一卓ごとの目的・状態・関係性を読み、今つくる価値を決める。<div class="q">問い：この一卓に、今必要な価値は何か。</div></div>
+    <div class="card method" data-role="日常運用"><b>Service Quality Loop</b>Standard・Practice・Observe・Review・Improveを循環させる。<div class="q">問い：基準が実践・観察・改善へつながっているか。</div></div>
+    <div class="card method" data-role="成熟評価"><b>Architect Scorecard</b>Customer・People・Quality・Business・Evolutionの5領域で店舗を診断する。<div class="q">問い：次の重点行動を一つに絞るなら何か。</div></div>
+  </div>
+  <div class="callout alert"><strong>使い分け原則：</strong>メソッドを全部同時に使わない。最初に7 Layersで位置を見立て、課題に最も近い一つを選び、OIDIEで実践する。</div>
+</section>
+
+<section id="lexicon-training">
+  <span class="tag">45-MINUTE TRAINING MODULE</span><h2>研修｜言葉を揃え、判断を揃える</h2>
+  <p><span class="pill">対象：新人〜管理者</span><span class="pill">人数：2〜8名</span><span class="pill">準備：最近の一場面</span></p>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–5分</span><br><strong>三つの言葉を書く</strong><br>Service・Hospitality・Customer Valueを、各自が一文で定義する。</div></div>
+    <div class="step"><div><span class="time">5–12分</span><br><strong>公式定義と比較する</strong><br>正誤ではなく、抜けていた観点と混同していた近接語を確認する。</div></div>
+    <div class="step"><div><span class="time">12–20分</span><br><strong>一場面を共通語で記述する</strong><br>最近の営業場面を、事実・基準・判断・行動・顧客価値に分けて書く。</div></div>
+    <div class="step"><div><span class="time">20–28分</span><br><strong>使うメソッドを選ぶ</strong><br>8つのRSAメソッドから、現在の課題に最も近い一つを選び、理由を説明する。</div></div>
+    <div class="step"><div><span class="time">28–38分</span><br><strong>次の一行動へ翻訳する</strong><br>公式用語を使って「誰が・どの場面で・何をし・何を見るか」を決める。</div></div>
+    <div class="step"><div><span class="time">38–45分</span><br><strong>定義と行動を共有する</strong><br>一人60秒で、用語・見立て・選択メソッド・次の一行動を説明する。</div></div>
+  </div>
+</section>
+
+<section id="lexicon-sheet">
+  <span class="tag">READY-TO-USE WORKSHEET</span><h2>Terminology Alignment Sheet</h2>
+  <div class="sheet">
+    <p><strong>対象場面：</strong>＿＿＿＿＿＿＿＿＿＿＿＿　<strong>主な章：</strong>＿＿＿＿　<strong>記入者：</strong>＿＿＿＿＿＿</p>
+    <div class="field"><label>1｜事実 — 実際に見た・聞いたこと</label><div class="line"></div><div class="hint">人物評価・原因推測を除き、時間・回数・言葉・動作を書く。</div></div>
+    <div class="field"><label>2｜中心用語 — この場面を説明する公式用語</label><div class="line"></div><div class="hint">一つ選び、公式定義を自分の言葉で説明する。</div></div>
+    <div class="field"><label>3｜近接語との違い — なぜ別の言葉ではないか</label><div class="line"></div></div>
+    <div class="field"><label>4｜選択メソッド — どのRSA方法を使うか</label><div class="line"></div><div class="hint">7 Layersで位置を確認し、一つ選ぶ。</div></div>
+    <div class="field"><label>5｜次の一行動と確認証拠</label><div class="line"></div><div class="hint">担当・場面・期限・回数・顧客またはチームの反応。</div></div>
+    <div class="field"><label>6｜実践後の更新 — 続ける・変える・やめる</label><div class="line"></div><div class="hint">判断の根拠となった証拠を添える。</div></div>
+  </div>
+</section>
+
+<section id="lexicon-rubric">
+  <span class="tag">LEVEL-BASED ASSESSMENT</span><h2>用語を「使える」状態の評価</h2>
+  <div class="scroll"><table><thead><tr><th>レベル</th><th>到達状態</th><th>提出する証拠</th><th>指導者の確認問い</th></tr></thead><tbody>
+    <tr><td class="key">L1｜再現</td><td>公式定義を自分の言葉で説明し、基準行動を実践できる。</td><td>定義説明＋行動観察</td><td>「この言葉は何を守るためにある？」</td></tr>
+    <tr><td class="key">L2｜判断</td><td>近接語との違いを理解し、状況に適した言葉と行動を選べる。</td><td>事実＋選択理由＋反応</td><td>「なぜ別の用語・行動ではない？」</td></tr>
+    <tr><td class="key">L3｜支援</td><td>他者の言葉の混線を事実と問いで整え、再実践を支援できる。</td><td>観察記録＋問い＋変化</td><td>「本人が自分で違いに気づく問いは？」</td></tr>
+    <tr><td class="key">L4｜設計</td><td>用語を基準・教育・評価・会議・指標へ一貫して組み込める。</td><td>制度・基準変更＋検証結果</td><td>「組織のどの仕組みまで揃えた？」</td></tr>
+  </tbody></table></div>
+  <h3>修了チェック</h3>
+  <ul class="check"><li>中心用語を公式定義と矛盾せず説明できる</li><li>近接語との違いと使う場面を説明できる</li><li>現場の事実を共通用語で記述できる</li><li>課題に合うRSAメソッドを一つ選べる</li><li>選んだ言葉を次の行動と確認証拠へ翻訳できる</li></ul>
+  <div class="callout"><strong>次の本文制作：</strong>この用語集を基準として、第46章「Restaurant Service Architectureの定義」を10項目構造で深掘りし、第47〜55章がどの役割を担うかを本文内で接続する。</div>
+</section>
+
+<div class="footer">Restaurant Service Architect｜Core Lexicon & Method Map v1</div>
+</main>
+
+    <a class="rsa-return" href="#rsa-master">資料一覧へ戻る</a>
+  </article>
+
+  <article class="rsa-doc" id="rsa-chapter46">
+    <div class="rsa-doc-label"><span>05</span>第46章 Restaurant Service Architectureの定義</div>
+    
+
+<main class="shell">
+<header class="hero">
+  <div class="eyebrow">VOLUME Ⅵ｜RESTAURANT SERVICE ARCHITECTURE</div>
+  <div class="chapter-no">CHAPTER 46</div>
+  <h1>Restaurant Service Architecture<span>レストランサービスを、組織能力として設計する</span></h1>
+  <p class="lead">料理・空間・人・時間・経営を分断せず、理念から顧客体験、日常行動、育成、数字、改善までを一つの構造として扱う。</p>
+  <div class="definition-hero">Restaurant Service Architectureとは、理念・ブランド・体験・行動・人財・経営・進化を接続し、サービスを個人技から再現可能な組織能力へ変える統合設計方法である。</div>
+  <div class="chips"><span class="chip">Philosophy</span><span class="chip">Experience</span><span class="chip">Behavior</span><span class="chip">People</span><span class="chip">Management</span><span class="chip">Evolution</span></div>
+</header>
+
+<nav><a href="#chapter46-purpose">目的</a><a href="#chapter46-definition">定義</a><a href="#chapter46-why">必要性</a><a href="#chapter46-theory">理論</a><a href="#chapter46-translation">RSA翻訳</a><a href="#chapter46-observe">観察</a><a href="#chapter46-practice">実践</a><a href="#chapter46-levels">階層別</a><a href="#chapter46-worksheet">シート</a><a href="#chapter46-assessment">評価</a></nav>
+
+<section id="chapter46-purpose">
+  <span class="tag">01｜CHAPTER PURPOSE</span><h2>この章で身につける判断力</h2>
+  <p class="intro">店舗で起きている問題を、誰か一人の能力や努力の不足だけで説明せず、理念・体験・行動・チーム・経営の接続状態として捉える。そして、改善すべき場所と順序を構造的に判断できるようになる。</p>
+  <div class="grid">
+    <div class="card"><span class="n">01</span><b>分断を見抜く</b>料理、接客、教育、数字を別々の問題として扱わない。</div>
+    <div class="card"><span class="n">02</span><b>原因の層を見極める</b>表面の行動と、その行動を生む基準・役割・仕組みを分けて考える。</div>
+    <div class="card"><span class="n">03</span><b>理念を行動へ翻訳する</b>抽象的な価値観を、観察可能な行動と指標に落とす。</div>
+    <div class="card"><span class="n">04</span><b>定着まで設計する</b>提案や研修で終わらず、日常的に再現・修正される状態をつくる。</div>
+  </div>
+</section>
+
+<section id="chapter46-definition">
+  <span class="tag">02｜DEFINITION</span><h2>Restaurant Service Architectureとは何か</h2>
+  <div class="quote">サービスを「人のセンス」から、「理念に基づいて判断・実践・改善できる組織の構造」へ変える。</div>
+  <p>レストランの顧客体験は、サービススタッフの接客だけで生まれるものではない。料理の意図、予約時の期待、空間の見え方、照明や音、提供時間、厨房とホールの連携、スタッフの心理状態、店長の意思決定、利益構造までが、一卓の体験に影響する。</p>
+  <p>Restaurant Service Architectureは、これらの要素を一つのシステムとして捉える。良い接客者を増やすことだけを目的とせず、誰が担当しても店の約束が守られ、同時に目の前のお客様へ適切に調整できる状態をつくる。</p>
+  <div class="scroll"><table><thead><tr><th>Architectureに含むもの</th><th>Architectureだけではないもの</th></tr></thead><tbody>
+    <tr><td>理念から行動・指標までの翻訳</td><td>理念文を掲示すること</td></tr>
+    <tr><td>顧客体験と業務プロセスの接続</td><td>接客マニュアルを作ること</td></tr>
+    <tr><td>人財育成と評価基準の統合</td><td>研修を一度実施すること</td></tr>
+    <tr><td>現場実践・観察・改善・定着</td><td>改善案を提案すること</td></tr>
+    <tr><td>顧客・人財・品質・経営の均衡</td><td>顧客満足だけを追求すること</td></tr>
+  </tbody></table></div>
+  <div class="callout"><strong>適用単位：</strong>新規開業、既存店改善、ブランド再設計、人財育成、サービス基準、会議、評価制度、DX導入など、顧客価値を組織として再現するすべての活動。</div>
+</section>
+
+<section id="chapter46-why">
+  <span class="tag">03｜WHY IT MATTERS</span><h2>なぜ統合設計が必要なのか</h2>
+  <div class="grid3">
+    <div class="card"><b>個人依存</b>優秀な一人がいる時だけ品質が上がり、異動や退職で価値が失われる。</div>
+    <div class="card"><b>理念と営業の断絶</b>理念は語られていても、忙しい営業中の優先順位に変換されていない。</div>
+    <div class="card"><b>部門の分断</b>厨房、ホール、予約、管理が自部門の最適を優先し、一卓の体験が切れる。</div>
+    <div class="card"><b>教育の属人化</b>教える人によって内容が変わり、できる・できないが印象で評価される。</div>
+    <div class="card"><b>施策の未定着</b>会議や研修で決めたことが、営業行動・役割・確認方法へ落ちていない。</div>
+    <div class="card"><b>数字と価値の分離</b>KPIが顧客価値やスタッフ行動と結びつかず、数字だけが目的化する。</div>
+  </div>
+  <div class="callout alert"><strong>構造上の問い：</strong>「誰が悪いか」ではなく、「望む行動が自然に選ばれる基準・役割・情報・支援・確認が設計されているか」を問う。</div>
+</section>
+
+<section id="chapter46-theory">
+  <span class="tag">04｜CORE THEORY</span><h2>四つの理論基盤</h2>
+  <div class="grid">
+    <div class="card role" data-role="SYSTEM"><b>システム思考</b>店舗の結果は、一つの原因ではなく、相互に影響する要素の関係から生まれる。目の前の症状だけを直さず、症状を生む構造を見る。</div>
+    <div class="card role" data-role="SDL"><b>価値共創</b>店は価値を完成品として渡すのではない。料理・人・空間という資源を提示し、顧客の参加・解釈・利用によって価値が成立する。</div>
+    <div class="card role" data-role="EXPERIENCE"><b>体験設計</b>顧客体験は単一の接客ではなく、来店前から退店後までの接点、感情、時間、五感、意味づけの連続である。</div>
+    <div class="card role" data-role="LEARNING"><b>学習する組織</b>正解を上から与えるだけでなく、現場が事実を観察し、仮説を立て、試し、結果から基準を更新できる力を持つ。</div>
+  </div>
+  <h3>RSAが扱う三つの時間</h3>
+  <div class="scroll"><table><thead><tr><th>時間</th><th>設計対象</th><th>代表的な問い</th></tr></thead><tbody>
+    <tr><td class="key">一場面</td><td>目の前の一卓・一接点</td><td>このお客様に、今どの価値をつくるか。</td></tr>
+    <tr><td class="key">一営業</td><td>チーム連携・品質・流れ</td><td>店の約束を、全体でどう再現するか。</td></tr>
+    <tr><td class="key">一期間</td><td>育成・経営・改善・文化</td><td>価値が続く仕組みへ、何を更新するか。</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="chapter46-translation">
+  <span class="tag">05｜RSA TRANSLATION</span><h2>理念から進化までを接続する</h2>
+  <div class="layers">
+    <div class="layer"><b>1｜Philosophy</b><span>なぜ存在し、誰にどんな状態をつくるのか</span></div>
+    <div class="layer"><b>2｜Brand</b><span>何を約束し、何を選び、何をしないのか</span></div>
+    <div class="layer"><b>3｜Experience</b><span>顧客が接点の中で何を感じ、どう意味づけるか</span></div>
+    <div class="layer"><b>4｜Behavior</b><span>約束が、どの言葉・動作・判断として現れるか</span></div>
+    <div class="layer"><b>5｜Team</b><span>行動を支える役割・連携・育成・心理的安全性</span></div>
+    <div class="layer"><b>6｜Management</b><span>人・時間・資金・情報・指標をどう配分するか</span></div>
+    <div class="layer"><b>7｜Evolution</b><span>結果から基準・仕組み・文化をどう更新するか</span></div>
+  </div>
+  <h3>縦の翻訳</h3>
+  <div class="flow"><div>Purpose<small>存在意義</small></div><div>Promise<small>顧客との約束</small></div><div>Standard<small>守る基準</small></div><div>Behavior<small>観察可能な行動</small></div><div>Indicator<small>変化の証拠</small></div></div>
+  <p>理念が行動へ届かなければ、理念は営業から切り離される。指標が理念へ戻れなければ、数字は目的化する。RSAは、この縦のつながりを往復できる状態にする。</p>
+  <h3>第47〜55章との役割分担</h3>
+  <div class="scroll"><table><thead><tr><th>章</th><th>方法</th><th>第46章から引き継ぐ役割</th></tr></thead><tbody>
+    <tr><td class="chapter">47</td><td>ITOZAWA 7 Layers</td><td>設計対象の全体図を示し、分断箇所を見立てる。</td></tr>
+    <tr><td class="chapter">48</td><td>Purpose to Action</td><td>理念を約束・基準・行動・指標へ翻訳する。</td></tr>
+    <tr><td class="chapter">49</td><td>OIDIE</td><td>観察・解釈・設計・実装・進化の改善手順を示す。</td></tr>
+    <tr><td class="chapter">50</td><td>Value Triangle</td><td>顧客・人財・経営に持続する価値があるか確認する。</td></tr>
+    <tr><td class="chapter">51</td><td>Service Translation</td><td>専門性とブランド思想を相手基準の言葉へ変える。</td></tr>
+    <tr><td class="chapter">52</td><td>One Table, One Value</td><td>一卓単位で、その瞬間につくる価値を決める。</td></tr>
+    <tr><td class="chapter">53</td><td>Service Quality Loop</td><td>基準・実践・観察・レビュー・改善を循環させる。</td></tr>
+    <tr><td class="chapter">54</td><td>Culture by Daily Behavior</td><td>繰り返す判断と行動を文化へ変える。</td></tr>
+    <tr><td class="chapter">55</td><td>Architect Scorecard</td><td>店舗システムの成熟度を5領域で評価する。</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="chapter46-observe">
+  <span class="tag">06｜OBSERVATION POINTS</span><h2>現場で見るべき構造の証拠</h2>
+  <div class="scroll"><table><thead><tr><th>領域</th><th>観察する事実</th><th>構造が弱い兆候</th><th>確認問い</th></tr></thead><tbody>
+    <tr><td class="key">Philosophy</td><td>優先順位、判断理由、断る基準</td><td>理念が抽象語で、行動選択に使われない</td><td>忙しい時にも守ることは何か。</td></tr>
+    <tr><td class="key">Experience</td><td>接点、感情変化、待ち時間、五感</td><td>部門ごとの業務は動くが、顧客の流れが切れる</td><td>顧客から見ると、どこで体験が途切れるか。</td></tr>
+    <tr><td class="key">Behavior</td><td>言葉、動作、タイミング、判断</td><td>「丁寧に」「気を利かせる」など観察不能な基準</td><td>できたかどうか、第三者が確認できるか。</td></tr>
+    <tr><td class="key">Team</td><td>役割、情報共有、支援、フィードバック</td><td>特定者への集中、属人的な教育、助けを求めにくい</td><td>誰が、誰を、どの情報で支えるか。</td></tr>
+    <tr><td class="key">Management</td><td>人員、時間、会議、KPI、意思決定</td><td>価値と無関係な数字管理、決定者と期限が曖昧</td><td>目的に対して、何を配分し直すか。</td></tr>
+    <tr><td class="key">Evolution</td><td>レビュー、改善、再実践、標準化</td><td>提案・研修・導入で完了し、結果確認がない</td><td>何を見て、続ける・変える・やめるを決めるか。</td></tr>
+  </tbody></table></div>
+  <div class="callout"><strong>観察原則：</strong>最初に評価をつけず、「誰が・いつ・どこで・何を言い・何をし・何が変わったか」を記録する。構造の見立ては、その後に行う。</div>
+</section>
+
+<section id="chapter46-practice">
+  <span class="tag">07｜FIELD PRACTICE</span><h2>60分研修｜一つの問題を構造へ戻す</h2>
+  <p><span class="pill">対象：全階層</span><span class="pill">人数：2〜8名</span><span class="pill">準備：直近の現場課題</span></p>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–8分</span><br><strong>事実を置く</strong><br>直近の問題を一つ選び、人物評価と原因推測を除いて記述する。</div></div>
+    <div class="step"><div><span class="time">8–18分</span><br><strong>症状と構造を分ける</strong><br>目に見えた行動を症状として、その背景にある基準・役割・情報・支援・資源を列挙する。</div></div>
+    <div class="step"><div><span class="time">18–30分</span><br><strong>7 Layersへ配置する</strong><br>事実を7層へ置き、最初に切れている接続を一つ特定する。</div></div>
+    <div class="step"><div><span class="time">30–40分</span><br><strong>Purposeへ戻す</strong><br>誰にどんな状態をつくる問題なのかを明確にし、守る約束を一文にする。</div></div>
+    <div class="step"><div><span class="time">40–50分</span><br><strong>一つの構造変更を設計する</strong><br>個人への注意ではなく、基準・役割・情報・教育・確認方法のいずれかを変える。</div></div>
+    <div class="step"><div><span class="time">50–60分</span><br><strong>実装条件を決める</strong><br>担当、開始日、実践場面、回数、確認証拠、レビュー日を決める。</div></div>
+  </div>
+  <div class="callout alert"><strong>禁止する終わり方：</strong>「意識を上げる」「もっと気をつける」「コミュニケーションを増やす」。誰が見ても実施の有無を確認できる構造変更にする。</div>
+</section>
+
+<section id="chapter46-levels">
+  <span class="tag">08｜LEVEL DEVELOPMENT</span><h2>新人から管理者までの到達差</h2>
+  <div class="scroll"><table><thead><tr><th>レベル</th><th>理解</th><th>実践</th><th>提出する証拠</th></tr></thead><tbody>
+    <tr><td class="key">L1｜再現</td><td>自分の行動が、店の約束と顧客体験の一部であると説明できる。</td><td>基準行動を安定して実践し、相手の反応を観察する。</td><td>目的説明＋行動観察＋顧客反応</td></tr>
+    <tr><td class="key">L2｜判断</td><td>一場面を、事実・意味・判断・行動へ分けて説明できる。</td><td>基準を守りながら、相手と状況に応じて行動を調整する。</td><td>事実＋選択理由＋結果</td></tr>
+    <tr><td class="key">L3｜支援</td><td>個人の失敗を、教育・役割・情報・連携の構造として見立てられる。</td><td>問いとフィードバックで、本人が再設計できるよう支援する。</td><td>観察＋支援記録＋再実践の変化</td></tr>
+    <tr><td class="key">L4｜設計</td><td>理念・体験・人財・経営・進化の接続を診断できる。</td><td>基準・役割・資源・指標を統合し、店舗システムを更新する。</td><td>設計変更＋実装記録＋指標変化</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="chapter46-worksheet">
+  <span class="tag">09｜WORKSHEET</span><h2>RSA Structure Diagnosis Sheet</h2>
+  <div class="sheet">
+    <p><strong>対象テーマ：</strong>＿＿＿＿＿＿＿＿＿＿＿＿　<strong>記入者：</strong>＿＿＿＿＿＿　<strong>確認日：</strong>＿＿＿＿＿＿</p>
+    <div class="field"><label>1｜Observable Fact — 実際に何が起きたか</label><div class="line"></div><div class="hint">時間・回数・言葉・動作・顧客反応。人物評価は書かない。</div></div>
+    <div class="field"><label>2｜Customer State — 誰に、どんな状態をつくる問題か</label><div class="line"></div></div>
+    <div class="field"><label>3｜Broken Connection — 7層のどこが切れているか</label><div class="line"></div><div class="hint">Philosophy／Brand／Experience／Behavior／Team／Management／Evolution。</div></div>
+    <div class="field"><label>4｜Structural Cause — 行動を生んだ基準・役割・情報・支援・資源</label><div class="line"></div></div>
+    <div class="field"><label>5｜Design Change — 一つ変える構造</label><div class="line"></div><div class="hint">個人への注意ではなく、望む行動が選ばれやすくなる変更を書く。</div></div>
+    <div class="field"><label>6｜Implementation — 担当・場面・開始日・回数</label><div class="line"></div></div>
+    <div class="field"><label>7｜Evidence — 何を見て変化を確認するか</label><div class="line"></div><div class="hint">顧客、チーム、品質、数字から最も近い証拠を一つ選ぶ。</div></div>
+    <div class="field"><label>8｜Evolution — 続ける・変える・やめる</label><div class="line"></div><div class="hint">レビュー日と次の意思決定を記録する。</div></div>
+  </div>
+</section>
+
+<section id="chapter46-assessment">
+  <span class="tag">10｜ASSESSMENT</span><h2>章修了の評価基準</h2>
+  <div class="scroll"><table><thead><tr><th>評価観点</th><th>未達</th><th>基礎</th><th>実践</th><th>設計</th></tr></thead><tbody>
+    <tr><td class="key">定義</td><td>接客技術や研修と同義で説明する。</td><td>統合設計方法と説明できる。</td><td>個人技から組織能力への転換を説明できる。</td><td>他者に教え、既存施策を定義に照らして再編できる。</td></tr>
+    <tr><td class="key">観察</td><td>人物評価と推測が中心。</td><td>事実を記録できる。</td><td>事実を7層へ配置できる。</td><td>複数場面から構造的な傾向を見抜ける。</td></tr>
+    <tr><td class="key">診断</td><td>目に見えた行動だけを原因にする。</td><td>症状と背景を分ける。</td><td>最初に切れた接続を特定する。</td><td>顧客・人財・品質・経営への波及を統合して読む。</td></tr>
+    <tr><td class="key">設計</td><td>注意喚起や意識改善で終わる。</td><td>一つの行動を決める。</td><td>基準・役割・情報・支援を変更する。</td><td>資源・指標・レビューまで一体で設計する。</td></tr>
+    <tr><td class="key">進化</td><td>実施して終了する。</td><td>結果を確認する。</td><td>証拠から行動を更新する。</td><td>学びを基準・教育・会議・文化へ反映する。</td></tr>
+  </tbody></table></div>
+  <h3>修了条件</h3>
+  <ul class="check"><li>Restaurant Service Architectureを一文で定義できる</li><li>接客技術・マニュアル・研修との違いを説明できる</li><li>現場の一問題を7層へ配置できる</li><li>症状と構造原因を分けて記述できる</li><li>一つの構造変更と確認証拠を設計できる</li></ul>
+  <div class="callout"><strong>章修了：</strong>5項目すべてを満たし、直近の現場からRSA Structure Diagnosis Sheetを一件提出する。知識説明だけでは修了としない。</div>
+</section>
+
+<div class="footer">Volume Ⅵ｜Chapter 46｜Restaurant Service Architecture</div>
+</main>
+
+    <a class="rsa-return" href="#rsa-master">資料一覧へ戻る</a>
+  </article>
+</body>
+</html>
