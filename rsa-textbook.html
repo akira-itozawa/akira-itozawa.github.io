@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="ja"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RSA教本｜第1章–第4章 完全統合版</title>
+<style>
+
+:root{--night:#071417;--deep:#112a2c;--teal:#0f766e;--teal2:#dff5ef;--paper:#fbfcf8;--ink:#1f2a2d;--muted:#687579;--gold:#b58a45;--gold2:#dcc28d;--line:#cbd9d6;--warm:#f7f1e7;--red:#8a4e45;--white:#fff}
+*{box-sizing:border-box}html{width:100%;max-width:100%;overflow-x:hidden;scroll-behavior:smooth}body{width:100%;max-width:100%;margin:0;overflow-x:hidden;background:var(--night);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic","Noto Sans JP",Meiryo,sans-serif;line-height:1.82;letter-spacing:.015em}.shell{width:min(980px,100%);margin:auto;padding:12px 12px 64px}
+.hero{padding:clamp(40px,8vw,78px) clamp(22px,7vw,70px);border-radius:24px;color:#fff;background:radial-gradient(circle at 83% 13%,rgba(181,138,69,.27),transparent 28%),linear-gradient(135deg,#09191c,#123638 60%,#0f766e);box-shadow:0 24px 65px rgba(0,0,0,.32)}.eyebrow{color:#c8e9e1;font-size:10px;font-weight:900;letter-spacing:.2em}.chapter{margin-top:18px;color:var(--gold2);font:25px Georgia,serif}.hero h1{margin:7px 0 18px;color:#fff;font:clamp(38px,10vw,70px)/1.04 Georgia,"Times New Roman",serif}.hero h1 span{display:block;margin-top:12px;color:#d9ebe7;font-size:.38em}.lead{max-width:780px;color:#e8f4f1;font-size:clamp(16px,2.2vw,22px)}.definition{max-width:820px;margin-top:27px;padding:18px 20px;border-left:5px solid var(--gold);background:rgba(255,255,255,.09);font-size:17px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:22px}.chip{padding:5px 9px;border:1px solid rgba(255,255,255,.2);border-radius:999px;color:#e1eeeb;font-size:11px;font-weight:800}
+nav{position:sticky;top:0;z-index:20;display:flex;gap:7px;overflow-x:auto;margin:12px 0;padding:8px;border-radius:12px;background:rgba(7,20,23,.96);scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{flex:0 0 auto;padding:7px 10px;border:1px solid rgba(255,255,255,.16);border-radius:999px;color:#fff;text-decoration:none;font-size:11px;font-weight:800;white-space:nowrap}
+section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);border-radius:20px;background:var(--paper);box-shadow:0 13px 34px rgba(0,0,0,.15)}.tag{display:inline-block;margin-bottom:9px;padding:4px 8px;border-radius:999px;background:var(--gold);color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em}h2{margin:0 0 19px;color:var(--deep);font:clamp(27px,6.8vw,42px)/1.22 Georgia,"Times New Roman",serif}h3{margin:25px 0 9px;color:var(--deep);font-size:19px}.intro{font-size:16px}.small{color:var(--muted);font-size:12px}.gold{color:var(--gold)}
+.callout{margin:18px 0;padding:17px 18px;border:1px solid #d9dfd8;border-left:5px solid var(--gold);border-radius:12px;background:linear-gradient(135deg,#eef8f5,var(--warm))}.alert{border-left-color:var(--red);background:#fff5f2}.quote{margin:21px 0;padding:20px;border-left:6px solid var(--gold);border-radius:13px;background:var(--warm);color:var(--deep);font:clamp(19px,4.8vw,27px)/1.56 Georgia,"Times New Roman",serif}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.card{min-width:0;padding:17px;border:1px solid var(--line);border-radius:14px;background:#fff}.card b{display:block;margin-bottom:5px;color:var(--teal)}.num{color:var(--gold);font:29px Georgia,serif}.question{margin-top:9px;padding:9px 11px;border-radius:9px;background:var(--teal2);color:#18554f;font-size:12px;font-weight:800}
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:18px 0}.flow div{padding:13px 8px;border-radius:11px;background:var(--deep);color:#fff;text-align:center;font-weight:900}.flow small{display:block;margin-top:3px;color:#bdded7;font-weight:500}.arrow{color:var(--gold2)}
+.scroll{display:block;width:100%;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}table{width:100%;border-collapse:separate;border-spacing:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;font-size:12px}th,td{padding:10px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;overflow-wrap:anywhere}th{background:#dcefe9;color:#173f3b;font-weight:900}tr:last-child td{border-bottom:0}.key{color:var(--teal);font-weight:900}.level{white-space:nowrap;color:var(--gold);font-weight:900}
+.agenda{counter-reset:step}.step{display:grid;grid-template-columns:42px 1fr;gap:11px;margin:9px 0;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff}.step:before{counter-increment:step;content:counter(step);display:grid;place-items:center;width:39px;height:39px;border-radius:50%;background:var(--deep);color:#fff;font:19px Georgia,serif}.time{color:var(--gold);font-weight:900}
+.sheet{padding:clamp(18px,4vw,30px);border:2px solid var(--deep);border-radius:15px;background:#fff}.field{margin:15px 0}.field label{display:block;margin-bottom:5px;color:var(--deep);font-weight:900}.line{min-height:52px;padding:10px;border:1px dashed #97afa9;border-radius:9px;background:#fbfdfc}.hint{color:var(--muted);font-size:11px}.check{list-style:none;padding:0}.check li{position:relative;margin:7px 0;padding-left:26px}.check li:before{content:"□";position:absolute;left:0;color:var(--teal);font-size:19px;line-height:1.25}
+.ladder{display:grid;gap:8px}.rung{padding:14px 16px;border-left:7px solid var(--teal);border-radius:10px;background:#fff}.rung:nth-child(2){border-left-color:#4d8982}.rung:nth-child(3){border-left-color:var(--gold)}.rung:nth-child(4){border-left-color:#805c3d}.rung b{display:block;color:var(--deep)}
+.footer{padding:25px 8px;color:#b9cfca;text-align:center;font-size:11px}
+@media(max-width:720px){.shell{padding:8px 8px 52px}.hero{padding:40px 21px;border-radius:18px}section{padding:22px 16px;border-radius:17px}.grid,.grid3{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow div{text-align:left}.scroll{margin-left:-6px;width:calc(100% + 12px)}table{min-width:690px}.agenda .step{grid-template-columns:38px 1fr}.hero h1{font-size:39px}}
+@media print{body{background:#fff}.shell{max-width:none;padding:0}.hero,section{margin:0;border-radius:0;box-shadow:none}.hero{page-break-after:always}nav{display:none}section{page-break-before:always}.card,.step,.rung,tr{break-inside:avoid}.line{min-height:44px}.footer{color:#555}}
+
+.master-cover{padding:46px 24px;border-radius:20px;background:linear-gradient(145deg,#071417,#153f3a);color:#fff}.master-cover h1{margin:14px 0 6px;font:clamp(38px,10vw,62px)/1.05 Georgia,serif}.master-cover h1 span{display:block;margin-top:11px;color:#d5bd8a;font:17px/1.5 Georgia,serif}.master-cover p{color:#d9e8e5}.master-map{margin:14px 0;padding:21px;border-radius:17px;background:#f8fbfa}.master-map h2{margin-top:0}.master-links{display:grid;gap:9px}.master-links a{display:block;padding:14px 16px;border-radius:12px;background:#176d65;color:#fff;text-decoration:none;font-weight:900}.chapter-module{display:block;scroll-margin-top:66px}.chapter-module+.chapter-module{margin-top:42px;padding-top:42px;border-top:2px solid #b78944}.backtop{display:block;margin:16px 0;padding:12px;border-radius:11px;background:#dcefe9;color:#174d48;text-align:center;text-decoration:none;font-weight:900}@media print{.master-map{page-break-after:always}.chapter-module+.chapter-module{border:0}}
+</style></head><body>
+<main class="shell">
+<header id="top" class="master-cover">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — THE COMPLETE FRAMEWORK</div>
+  <h1>RSA教本<span>Philosophy｜第1章–第4章 完全統合版</span></h1>
+  <p>全内容を一つのファイルに収録。別ファイルへ移動せず、章一覧から直接読めます。</p>
+</header>
+<section id="toc" class="master-map">
+  <span class="tag">CONTENTS</span><h2>章一覧</h2>
+  <div class="master-links">
+    <a href="#chapter-1">01｜レストランとは何か</a>
+    <a href="#chapter-2">02｜人は何を食べに来るのか</a>
+    <a href="#chapter-3">03｜サービスとは何か</a>
+    <a href="#chapter-4">04｜ServiceとHospitality</a>
+  </div>
+</section>
+<article id="chapter-1" class="chapter-module">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 03</div>
+  <div class="chapter">CHAPTER 01</div>
+  <h1>レストランとは何か<span>Restaurant as a Living Value System</span></h1>
+  <p class="lead">料理・空間・人・時間・経営を、顧客が参加する一つの価値生成プロセスとして捉える。</p>
+  <div class="definition"><strong>公式定義：</strong>レストランとは、食と飲料を中心に、人・空間・時間・知識・運営資源を調整し、顧客の参加と解釈を通じて価値が成立し、その結果から組織自身も学習・更新する社会的なサービスシステムである。</div>
+  <div class="chips"><span class="chip">I PHILOSOPHY</span><span class="chip">L1–L4</span><span class="chip">60 MIN TRAINING</span><span class="chip">FIELD WORKSHEET</span><span class="chip">ASSESSMENT</span></div>
+</header>
+
+<nav aria-label="章内ナビゲーション">
+  <a href="#toc">章一覧</a><a href="#chapter-2">次章 →</a><a href="#c1-priority">今週の一手</a><a href="#c1-audit">整合性</a><a href="#c1-text">教本本文</a><a href="#c1-practice">現場演習</a><a href="#c1-levels">役割別到達</a><a href="#c1-training">研修</a><a href="#c1-sheet">シート</a><a href="#c1-assessment">評価</a><a href="#c1-guide">指導者</a>
+</nav>
+
+<section id="c1-priority">
+  <span class="tag">WEEKLY PRIORITY</span><h2>今週の最重要な次の一手</h2>
+  <div class="quote">第1章を、全73章の「本文完成基準」として仕上げる。</div>
+  <p class="intro">学習軸と公式用語が整った段階で必要なのは、構造設計を実際の本文品質へ変えることです。第1章は全巻の入口であり、ここでレストランを「料理を出す場所」と狭く捉えると、体験設計・心理・人財・経営・RSA理論が後から付け足しになります。</p>
+  <div class="grid3">
+    <div class="card"><div class="num">01</div><b>全巻の前提を固定</b>レストランを複数資源が協働するサービスシステムとして定義する。</div>
+    <div class="card"><div class="num">02</div><b>章の品質を固定</b>本文、観察、設計、実装、評価までを一章内で接続する。</div>
+    <div class="card"><div class="num">03</div><b>73章へ展開</b>「知った」ではなく「現場で証拠を示せる」を各章の修了条件にする。</div>
+  </div>
+  <div class="callout"><strong>過去成果との非重複：</strong>Learning Spineは「どう学ぶか」、Core Lexiconは「同じ言葉で考える」、第46章は「RSA方法論とは何か」を扱いました。今回は初めて、教本本文の完成モデルを提示します。</div>
+</section>
+
+<section id="c1-audit">
+  <span class="tag">CONSISTENCY AUDIT</span><h2>全体構造の整合性と修正</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>論点</th><th>現状の不整合</th><th>今回の修正</th><th>次章・巻への接続</th></tr></thead>
+    <tbody>
+      <tr><td class="key">章の守備範囲</td><td>第1章でService・Hospitality・SDLまで説明すると、第3・4・6章と重複する。</td><td>第1章は「レストランというシステム」の定義に限定。各概念は位置づけだけ示す。</td><td>第2章で顧客目的、第3章でService、第4章でHospitality、第6章で価値共創を深化。</td></tr>
+      <tr><td class="key">ValueとExperience</td><td>体験が良ければ価値がある、と同一視しやすい。</td><td>Experienceは主観的な過程、Valueは利用場面で受け取る意味・便益として区別。</td><td>第7〜18章の体験設計を、第37章以降の経営成果へ接続。</td></tr>
+      <tr><td class="key">対象者レベル</td><td>新人にも管理者にも同じ「レストラン観」を求めると評価できない。</td><td>L1は場面を説明、L2は関係を解釈、L3は改善を設計、L4は経営構造を更新。</td><td>全73章の役割別到達証拠へ展開。</td></tr>
+      <tr><td class="key">理念から実装</td><td>理念が抽象語のまま現場行動へ降りない。</td><td>約束→資源→相互作用→価値の証拠→学習の順で一場面を読み解く。</td><td>第18章Blueprint、第46〜55章RSA理論、第56〜64章現場実装へ接続。</td></tr>
+      <tr><td class="key">評価対象</td><td>「理解した」「共感した」で修了しやすい。</td><td>観察事実・解釈理由・再設計案・検証指標を成果物として残す。</td><td>Human Skill Mapは人の能力、Architect Scorecardは設計成果を評価。</td></tr>
+      <tr><td class="key">再現性</td><td>優秀者の気づきが本人だけに留まる。</td><td>一場面の学びを、問い・証拠・改善案の3点で次の2人へ共有する。</td><td>重点指導育成から全体へのバイラルな再現性を形成。</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="c1-text">
+  <span class="tag">TEXTBOOK MANUSCRIPT</span><h2>第1章｜レストランとは何か</h2>
+  <h3>1. 場所ではなく、関係が動くシステム</h3>
+  <p>レストランを「料理をつくり、提供する場所」と捉えるだけでは、その全体像は見えません。同じ料理、同じ価格、同じ内装でも、お客様が受け取る価値は変わります。予約時の期待、入口での安心、席に着くまでの速度、料理を待つ時間、説明の言葉、同行者との会話、会計時の納得、退店後に残る記憶。これらは互いに影響し合っています。</p>
+  <p>レストランは建物や業態の名称ではなく、複数の人と資源が動き、顧客との相互作用を通じて価値が成立するシステムです。厨房だけでも、ホールだけでも、経営だけでも完成しません。料理、空間、時間、情報、技術、判断、感情、収益がつながったとき、店としての経験が生まれます。</p>
+
+  <h3>2. 店は価値を完成品として渡せない</h3>
+  <p>店は料理、席、情報、技術、提案を用意できます。しかし「価値」そのものを完成品として渡すことはできません。静かに過ごしたい人と、会話を楽しみたい人では、同じサービスの意味が異なります。短時間で食事を終えたい日と、記念日では、望ましい時間設計も変わります。</p>
+  <p>顧客は受け身の受領者ではありません。選ぶ、質問する、待つ、味わう、会話する、比較する、意味づけるという形で体験に参加します。店が用意した資源と、顧客の目的・状態・参加が交わることでCustomer Valueが成立します。これが、第6章で詳しく扱うValue Co-creationの前提です。</p>
+
+  <h3>3. 五つの問いでレストランを読む</h3>
+  <p>以下は新しい独立メソッドではなく、レストランというシステムを観察するための基礎質問です。後の章で学ぶ理論と実装技術の入口になります。</p>
+  <div class="flow">
+    <div>約束<small>何を期待させるか</small></div>
+    <div>資源<small>何を用意するか</small></div>
+    <div>相互作用<small>誰がどう関わるか</small></div>
+    <div>価値の証拠<small>何が変化したか</small></div>
+    <div>学習<small>次に何を更新するか</small></div>
+  </div>
+  <div class="grid">
+    <div class="card"><b>約束｜Promise</b>ブランド、価格、予約情報、外観、メニューは、お客様に何を期待させているか。<div class="question">約束と実際の体験は一致しているか。</div></div>
+    <div class="card"><b>資源｜Resources</b>料理、人、空間、情報、時間、技術、仕組みをどう準備しているか。<div class="question">価値をつくる資源が、必要な瞬間に使えるか。</div></div>
+    <div class="card"><b>相互作用｜Interaction</b>スタッフ間、厨房とホール、店と顧客の間で何が起きているか。<div class="question">関わり方が顧客の目的を助けているか。</div></div>
+    <div class="card"><b>価値の証拠｜Evidence</b>表情、言葉、選択、滞在、再来店、紹介などにどんな変化が現れたか。<div class="question">提供者の自己評価ではなく、何が確認できるか。</div></div>
+    <div class="card"><b>学習｜Learning</b>成功・失敗を個人の経験で終わらせず、基準や仕組みへ戻しているか。<div class="question">次の人、次の卓、次の営業で再現できるか。</div></div>
+  </div>
+
+  <h3>4. ServiceとHospitalityの位置</h3>
+  <p><strong>Service</strong>は、顧客との約束を再現可能な仕組みと行動で実現する価値提供です。<strong>Hospitality</strong>は、相手の状況・感情・目的を読み、その約束を損なわずに行動を調整する判断です。レストランはこの両方が機能する舞台であり、どちらか一方では安定と個別性を両立できません。</p>
+  <div class="callout"><strong>基準は自由を奪うものではない。</strong><br>守るべき最低状態が明確だからこそ、スタッフは顧客に応じた判断へ力を使えます。基準がない個別対応はばらつきになり、判断のない標準化は機械的になります。</div>
+
+  <h3>5. 三者に持続可能な価値が必要</h3>
+  <p>顧客だけが満足しても、スタッフが疲弊し、事業が赤字なら継続できません。効率と利益だけを追い、顧客の意味や人の成長を失っても、長期的な価値は弱まります。レストランの判断は、Customer・People・Businessの三者にどのような価値と負担を生むかで検討します。</p>
+  <div class="grid3">
+    <div class="card"><b>Customer</b>目的が満たされ、時間・費用・心理負担に見合う意味を受け取れる。</div>
+    <div class="card"><b>People</b>役割が理解でき、判断力が育ち、無理なく誇りを持って働ける。</div>
+    <div class="card"><b>Business</b>品質が再現され、再来店・紹介・生産性・利益へ持続的につながる。</div>
+  </div>
+
+  <h3>6. レストランは学習する</h3>
+  <p>生きたレストランは、毎日の営業から学びます。クレームだけが学習材料ではありません。迷った瞬間、説明が伝わらなかった場面、待ち時間が苦痛にならなかった理由、スタッフ同士の連携が自然に進んだ条件にも、設計を更新する証拠があります。</p>
+  <p>現場の経験を「その人だからできた」で終わらせず、観察事実、判断理由、行動、結果に分けて共有します。その知識を基準、マニュアル、研修、配置、会議、指標へ反映すると、個人の経験が組織能力へ変わります。</p>
+
+  <h3>7. この章の結論</h3>
+  <div class="quote">レストランとは、料理を提供する場所ではない。人と資源が協働し、顧客と価値をつくり、その経験から組織自身も進化する場である。</div>
+  <p>この見方を持つと、問題を「接客が悪い」「厨房が遅い」「客層が違う」という単独要因で片づけなくなります。どの約束が、どの資源・相互作用で途切れ、誰の価値にどの影響を与えたのかを読めるようになります。Restaurant Service Architectの出発点は、目の前の出来事を個人の資質ではなく、関係と構造として捉えることです。</p>
+</section>
+
+<section id="c1-practice">
+  <span class="tag">FIELD PRACTICE</span><h2>現場で一場面を読み解く</h2>
+  <p>固有店舗の正解を当てる演習ではありません。どの業態にもある「入店から着席まで」「最初の注文」「料理提供」「会計」など、一つの短い場面を選びます。</p>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><b>事実を分ける</b>見たこと・聞いたこと・時間・順序を書く。「感じが悪い」などの評価語は使わない。</div>
+    <div class="card"><div class="num">02</div><b>顧客の目的を仮説化</b>急いでいる、確認したい、安心したい、会話を続けたいなど複数仮説を持つ。</div>
+    <div class="card"><div class="num">03</div><b>接続を読む</b>約束、資源、相互作用のどこが価値を支え、どこが途切れたかを示す。</div>
+    <div class="card"><div class="num">04</div><b>小さく再設計</b>人を責めず、言葉・順序・配置・情報・基準のどれを変えるか決める。</div>
+    <div class="card"><div class="num">05</div><b>証拠を決める</b>顧客反応、時間、ミス、再質問、スタッフの迷いなど、変化を確認する。</div>
+    <div class="card"><div class="num">06</div><b>次の二人へ渡す</b>問い・証拠・改善案だけを3分で共有し、相手に別場面で試してもらう。</div>
+  </div>
+  <div class="callout alert"><strong>避ける指導：</strong>「もっと気を利かせる」「笑顔を増やす」「お客様目線になる」で終える。<br><strong>求める指導：</strong>どの事実から何を読み、何を変え、何で結果を確かめるのかを言語化する。</div>
+</section>
+
+<section id="c1-levels">
+  <span class="tag">LEVEL DEVELOPMENT</span><h2>新人から管理者までの到達証拠</h2>
+  <div class="ladder">
+    <div class="rung"><b>L1｜新人：場面を事実で説明できる</b>料理・空間・人・時間のうち、顧客体験に関わった要素を3つ以上挙げる。評価語と観察事実を分ける。</div>
+    <div class="rung"><b>L2｜自立スタッフ：価値の成立条件を説明できる</b>顧客の目的を複数仮説で捉え、Serviceの基準とHospitalityの調整を区別して行動理由を話す。</div>
+    <div class="rung"><b>L3｜指導者：一場面を再設計し、他者へ教えられる</b>人の注意力だけに依存せず、言葉・順序・配置・情報・基準の改善案をつくり、結果を観察する。</div>
+    <div class="rung"><b>L4｜店長・管理者：店舗システムを更新できる</b>Customer・People・Businessへの影響を検討し、複数場面の共通原因を基準・教育・会議・指標へ反映する。</div>
+  </div>
+</section>
+
+<section id="c1-training">
+  <span class="tag">TRAINING MODULE</span><h2>60分研修｜レストランを構造で見る</h2>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–5分</span><br><strong>個人定義</strong><br>「レストランとは何か」を25字以内で書く。正解は示さない。</div></div>
+    <div class="step"><div><span class="time">5–15分</span><br><strong>定義の比較</strong><br>料理・場所・接客・顧客・経営・学習のどこを含み、何が抜けているかを比較する。</div></div>
+    <div class="step"><div><span class="time">15–25分</span><br><strong>本文理解</strong><br>公式定義と五つの問いを読み、Service・Hospitality・Value・Experienceを区別する。</div></div>
+    <div class="step"><div><span class="time">25–40分</span><br><strong>一場面診断</strong><br>直近の営業から一場面を選び、事実→目的仮説→接続の断点→価値の証拠を記入する。</div></div>
+    <div class="step"><div><span class="time">40–50分</span><br><strong>再設計</strong><br>人を責めない改善案を一つ選び、Customer・People・Businessへの影響を確認する。</div></div>
+    <div class="step"><div><span class="time">50–57分</span><br><strong>相互レビュー</strong><br>相手は答えを教えず、「その判断の事実は何か」「別の解釈はあるか」を質問する。</div></div>
+    <div class="step"><div><span class="time">57–60分</span><br><strong>現場移行</strong><br>試す営業、観察者、確認する証拠、共有する二人を決める。</div></div>
+  </div>
+  <div class="callout"><strong>研修の完了条件：</strong>理解度テストではなく、検証可能な一場面の再設計案が完成し、実施担当と観察証拠が決まっていること。</div>
+</section>
+
+<section id="c1-sheet">
+  <span class="tag">WORKSHEET</span><h2>Restaurant Meaning Map</h2>
+  <div class="sheet">
+    <div class="field"><label>1｜対象場面</label><div class="line"><span class="hint">開始と終了が分かる短い場面を一つ選ぶ。</span></div></div>
+    <div class="field"><label>2｜観察した事実</label><div class="line"><span class="hint">誰が／何を／いつ／どの順序で。評価語を使わない。</span></div></div>
+    <div class="field"><label>3｜顧客の目的・状態の仮説</label><div class="line"><span class="hint">仮説A・仮説B。決めつけず、追加で確認すべきことも書く。</span></div></div>
+    <div class="field"><label>4｜店が示した約束</label><div class="line"><span class="hint">価格、予約情報、メニュー、ブランド、言葉から何を期待させていたか。</span></div></div>
+    <div class="field"><label>5｜使われた資源と相互作用</label><div class="line"><span class="hint">料理、人、空間、情報、時間、技術。誰と誰の連携が影響したか。</span></div></div>
+    <div class="field"><label>6｜価値が成立／不成立した証拠</label><div class="line"><span class="hint">顧客の言葉、表情、選択、時間、再質問、行動変化など。</span></div></div>
+    <div class="field"><label>7｜構造上の断点</label><div class="line"><span class="hint">約束・資源・相互作用・証拠・学習のどこが切れたか。</span></div></div>
+    <div class="field"><label>8｜一つだけ変えること</label><div class="line"><span class="hint">言葉、順序、配置、情報、基準、支援方法から選ぶ。</span></div></div>
+    <div class="field"><label>9｜三者への影響</label><div class="line"><span class="hint">Customer／People／Businessに生じる価値と負担。</span></div></div>
+    <div class="field"><label>10｜検証と共有</label><div class="line"><span class="hint">いつ試すか／誰が観察するか／何を証拠にするか／誰に渡すか。</span></div></div>
+  </div>
+</section>
+
+<section id="c1-assessment">
+  <span class="tag">ASSESSMENT</span><h2>章修了の評価基準</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
+    <tbody>
+      <tr><td class="key">観察</td><td>印象や評価語が中心。</td><td>事実を一部記録できる。</td><td>順序・時間・反応を事実で記録。</td><td>他者も検証できる観察条件を設計。</td></tr>
+      <tr><td class="key">解釈</td><td>原因を人の性格に置く。</td><td>顧客目的を一つ推測。</td><td>複数仮説と接続の断点を説明。</td><td>部門・時間・仕組みを横断して共通原因を特定。</td></tr>
+      <tr><td class="key">再設計</td><td>精神論または大きすぎる案。</td><td>行動案はあるが根拠が弱い。</td><td>小さく試せる案と理由がある。</td><td>基準・教育・配置・指標へ反映できる。</td></tr>
+      <tr><td class="key">価値均衡</td><td>顧客満足だけで判断。</td><td>二者への影響を説明。</td><td>三者の価値と負担を検討。</td><td>短期と長期の持続性まで判断。</td></tr>
+      <tr><td class="key">展開</td><td>本人だけで完結。</td><td>結果を報告できる。</td><td>問い・証拠・改善案を一人へ共有。</td><td>二人以上が別場面で再現し、結果から更新。</td></tr>
+    </tbody>
+  </table></div>
+  <h3>役割別の修了条件</h3>
+  <ul class="check">
+    <li><strong>L1：</strong>観察が2以上。他の評価軸は理解段階でよい。</li>
+    <li><strong>L2：</strong>観察・解釈・価値均衡が3以上。</li>
+    <li><strong>L3：</strong>再設計・展開を含む全軸が3以上。</li>
+    <li><strong>L4：</strong>全軸3以上かつ、設計・展開のいずれかが4。</li>
+  </ul>
+</section>
+
+<section id="c1-guide">
+  <span class="tag">FACILITATOR GUIDE</span><h2>指導者ガイド</h2>
+  <div class="grid">
+    <div class="card"><b>最初に正解を示さない</b>受講者の定義を残してから公式定義と比較する。違いを自分で発見させる。</div>
+    <div class="card"><b>事実へ戻す</b>「態度が悪い」「意識が低い」が出たら、見た動作・聞いた言葉・時間へ戻す。</div>
+    <div class="card"><b>顧客を決めつけない</b>目的仮説は最低二つ出し、何を確認すれば判別できるかを問う。</div>
+    <div class="card"><b>個人責任で終えない</b>本人の努力に加え、情報・順序・配置・道具・基準・教育の支援条件を探す。</div>
+    <div class="card"><b>案より証拠を問う</b>良さそうな改善案ではなく、実施後に何が変われば有効と言えるかを決める。</div>
+    <div class="card"><b>二人へ渡して完了</b>重点育成人財が、同じ問いを次の二人へ使い、別場面の改善を支援する。</div>
+  </div>
+  <h3>指導者が使う五つの質問</h3>
+  <ol>
+    <li>その判断の根拠になった観察事実は何ですか。</li>
+    <li>顧客の目的には、ほかにどんな可能性がありますか。</li>
+    <li>誰かの注意力ではなく、構造として変えられるものは何ですか。</li>
+    <li>Customer・People・Businessの誰に、どんな価値と負担が生じますか。</li>
+    <li>結果を何で確かめ、次の誰へ渡しますか。</li>
+  </ol>
+  <div class="callout"><strong>展開ルール：</strong>指導者1名が2名を育成し、その2名が各2名へ同じ問いを渡す。内容のコピーではなく、観察と再設計の思考手順を増殖させる。</div>
+</section>
+
+<section>
+  <span class="tag">LEARNING PATH</span><h2>第2章と全8巻への接続</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>接続先</th><th>第1章で得た問い</th><th>次に深める内容</th></tr></thead>
+    <tbody>
+      <tr><td class="level">第2章</td><td>顧客は何を目的に、このシステムへ参加するのか。</td><td>「人は何を食べに来るのか」—機能・感情・社会・自己の目的。</td></tr>
+      <tr><td class="level">II Experience</td><td>複数接点をどのようにつなぐか。</td><td>ジャーニー、五感、空間、動線、時間、Blueprint。</td></tr>
+      <tr><td class="level">III Psychology</td><td>顧客は状況をどう知覚・解釈するか。</td><td>第一印象、信頼、認知、感情、記憶、意思決定。</td></tr>
+      <tr><td class="level">IV Development</td><td>判断できる人をどう育てるか。</td><td>学習、対話、フィードバック、指導、チーム。</td></tr>
+      <tr><td class="level">V Management</td><td>三者の価値をどう持続させるか。</td><td>収益、品質、役割、指標、会議、組織運営。</td></tr>
+      <tr><td class="level">VI RSA</td><td>断片を一つの設計構造へどう統合するか。</td><td>7 Layers、OIDIE、Value Triangle、Service Quality Loop。</td></tr>
+      <tr><td class="level">VII Implementation</td><td>設計を日常行動へどう移すか。</td><td>実装、観察、修正、定着、複数人への展開。</td></tr>
+      <tr><td class="level">VIII Future</td><td>変化しても価値を生む原則は何か。</td><td>技術・社会・働き方の変化と、人間中心の再設計。</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>次の本文制作順：</strong>第2章「人は何を食べに来るのか」。第1章のシステム定義を受け、顧客目的を機能・感情・社会・自己の四層から読み、観察できる行動証拠へ落とす。</div>
+</section>
+
+<nav aria-label="章移動"><a href="#toc">章一覧</a><a href="#chapter-2">第2章へ →</a></nav>
+<div class="footer">Restaurant Service Architect — The Complete Framework｜Chapter 01 Complete Module</div>
+</article>
+<article id="chapter-2" class="chapter-module">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 04</div>
+  <div class="chapter">CHAPTER 02</div>
+  <h1>人は何を食べに来るのか<span>Reading the Guest’s Desired Change</span></h1>
+  <p class="lead">注文された料理の先にある「この時間を通して、どうなりたいか」を読み、決めつけずに確かめ、サービスを調整する。</p>
+  <div class="definition"><strong>公式定義：</strong>顧客目的とは、ある状況の中で食事の時間を利用し、機能・感情・関係・意味のいずれかを現在より望ましい状態へ変えようとする意図である。</div>
+  <div class="chips"><span class="chip">I PHILOSOPHY</span><span class="chip">L1–L4</span><span class="chip">55 MIN TRAINING</span><span class="chip">PURPOSE CANVAS</span><span class="chip">FIELD CALIBRATION</span></div>
+</header>
+
+<nav aria-label="章内ナビゲーション">
+  <a href="#toc">章一覧</a><a href="#chapter-1">← 前章</a><a href="#chapter-3">次章 →</a><a href="#c2-priority">今週の一手</a><a href="#c2-audit">整合性</a><a href="#c2-text">教本本文</a><a href="#c2-practice">現場演習</a><a href="#c2-levels">役割別</a><a href="#c2-training">研修</a><a href="#c2-sheet">シート</a><a href="#c2-assessment">評価</a><a href="#c2-guide">指導者</a>
+</nav>
+
+<section id="c2-priority">
+  <span class="tag">WEEKLY PRIORITY</span><h2>今週の最重要な次の一手</h2>
+  <div class="quote">「何を注文したか」から、「この時間でどうなりたいか」へ視点を移す。</div>
+  <p class="intro">第1章でレストランを価値が共に生まれるシステムと定義しました。次に必要なのは、そのシステムへ参加する顧客が何を実現しようとしているかを読む力です。顧客目的を扱わずに体験設計へ進むと、店側の演出やマニュアルが先行し、相手にとっての価値とずれます。</p>
+  <div class="grid3">
+    <div class="card"><div class="num">01</div><b>顧客理解の起点</b>属性ではなく、その日の状況と望む変化から理解する。</div>
+    <div class="card"><div class="num">02</div><b>体験設計の基準</b>速さ、情報量、距離、参加度を目的に合わせて調整する。</div>
+    <div class="card"><div class="num">03</div><b>判断教育の基準</b>正解行動を暗記せず、事実・仮説・確認・調整を説明できるようにする。</div>
+  </div>
+  <div class="callout"><strong>過去成果との非重複：</strong>第1章はレストラン全体の構造を定義しました。第2章は、その中で顧客が実現したい変化をどう読み、サービス判断へ翻訳するかに限定します。</div>
+</section>
+
+<section id="c2-audit">
+  <span class="tag">CONSISTENCY AUDIT</span><h2>章間・用語・学習導線の修正</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>論点</th><th>混同しやすい状態</th><th>公式整理</th><th>接続章</th></tr></thead>
+    <tbody>
+      <tr><td class="key">目的／ニーズ</td><td>欲しいものをすべてニーズと呼ぶ。</td><td>目的＝望む変化。ニーズ＝その実現に重要な条件。</td><td>2・19・22</td></tr>
+      <tr><td class="key">好み／依頼</td><td>注文や依頼を最終目的とみなす。</td><td>好み＝選択傾向。依頼＝表明された具体行動。目的はその背後にある。</td><td>2・24・34</td></tr>
+      <tr><td class="key">観察／解釈</td><td>服装・年齢・国籍から目的を決めつける。</td><td>観察事実と目的仮説を分け、複数仮説を短い確認で更新する。</td><td>19・20・24・49</td></tr>
+      <tr><td class="key">目的／体験</td><td>店がつくりたい体験を先に決める。</td><td>目的が設計条件、Experienceは複数接点を通した主観的過程。</td><td>7・10〜18</td></tr>
+      <tr><td class="key">目的／価値</td><td>目的を推測しただけで価値提供とみなす。</td><td>Customer Valueは、顧客の反応・選択・言葉・行動変化で確認する。</td><td>6・37・50</td></tr>
+      <tr><td class="key">個別対応／基準</td><td>個別対応をスタッフのセンスに任せる。</td><td>守るStandardを固定し、時間・情報・距離・参加度をJudgmentで調整する。</td><td>4・29・48・53</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="c2-text">
+  <span class="tag">TEXTBOOK MANUSCRIPT</span><h2>第2章｜人は何を食べに来るのか</h2>
+  <h3>1. 料理名は目的の答えではない</h3>
+  <p>顧客は料理を注文します。しかし、料理だけを食べに来ているとは限りません。同じ一皿でも、短い休息、家族との再会、仕事上の対話、自分への報酬、文化への好奇心など、果たしたい目的は異なります。</p>
+  <p>「何を注文したか」は観察できる事実です。「なぜそれを選び、この時間を使うのか」は仮説です。サービスの質は、注文を正しく運ぶことに加え、顧客が望む変化を妨げず、必要な資源を使いやすい形で差し出せるかによって変わります。</p>
+
+  <h3>2. 四つの言葉を区別する</h3>
+  <div class="grid">
+    <div class="card"><b>目的｜Purpose</b>この食事時間を通して実現したい変化。「緊張せずに話し合いたい」など。</div>
+    <div class="card"><b>ニーズ｜Need</b>目的達成に重要な条件。「会話を遮られない」「時間が読める」など。</div>
+    <div class="card"><b>好み｜Preference</b>複数選択肢の中で好む傾向。「窓側」「説明は短め」など。</div>
+    <div class="card"><b>依頼｜Request</b>顧客が表明した具体的な要望。「30分で出たい」「料理を分けてほしい」など。</div>
+  </div>
+  <div class="callout"><strong>重要：</strong>依頼は尊重する。ただし、実行不可能・安全性・公平性・他者への影響がある場合は、背後の目的を確認し、別の実現方法を提案する。</div>
+
+  <h3>3. 顧客目的を読む四つのレンズ</h3>
+  <p>四つは顧客を分類するラベルではありません。一つの食事に複数が重なり、時間の中で優先順位も変わります。</p>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><b>機能｜Functional</b>空腹を満たす、栄養を取る、時間内に終える、選択の失敗を避ける。<div class="question">何を確実・簡潔・便利にしたいか。</div></div>
+    <div class="card"><div class="num">02</div><b>感情｜Emotional</b>安心する、気分転換する、祝う、驚く、自分を労う。<div class="question">どの感情から、どの感情へ移りたいか。</div></div>
+    <div class="card"><div class="num">03</div><b>関係｜Relational</b>会話を深める、もてなす、仲直りする、所属を感じる。<div class="question">誰との関係を、どの状態にしたいか。</div></div>
+    <div class="card"><div class="num">04</div><b>意味｜Meaning</b>文化に触れる、自分らしさを表す、記憶を重ねる、価値観を確認する。<div class="question">この食事を、どんな物語として持ち帰りたいか。</div></div>
+  </div>
+
+  <h3>4. 目的は状況で変わる</h3>
+  <p>常連だから会話を望む、若いから速さを重視する、外国人だから詳しい説明が必要、といった推測は危険です。同じ人でも、同行者、時間、健康状態、予算、訪問理由、過去経験によって目的は変わります。</p>
+  <div class="flow">
+    <div>観察<small>確認できた事実</small></div>
+    <div>複数仮説<small>少なくとも二つ</small></div>
+    <div>短い確認<small>負担なく尋ねる</small></div>
+    <div>調整<small>量・速度・距離</small></div>
+    <div>再観察<small>反応で更新</small></div>
+  </div>
+  <p>判断の目的は相手の内面を当てることではありません。誤解の可能性を残しながら、より適切な行動を選び、反応から仮説を更新することです。</p>
+
+  <h3>5. 目的を確かめる質問</h3>
+  <div class="grid3">
+    <div class="card"><b>時間</b>「本日は何時頃までのご予定でしょうか」</div>
+    <div class="card"><b>情報</b>「お料理の説明は、詳しく伺うのと要点だけではどちらがよろしいですか」</div>
+    <div class="card"><b>選択</b>「今日は定番を安心して楽しむ方向と、新しい味を試す方向のどちらが近いですか」</div>
+    <div class="card"><b>関係</b>「お話のお邪魔にならないタイミングでお声がけしてよろしいでしょうか」</div>
+    <div class="card"><b>参加</b>「こちらでお取り分けするのと、皆さまで楽しんでいただくのはどちらがよろしいですか」</div>
+    <div class="card"><b>回復</b>「いま一番整えたいのは、お時間とお料理のどちらでしょうか」</div>
+  </div>
+  <p class="small">質問文を暗記することが目的ではない。選択しやすく、答える負担が小さく、行動調整に使える質問にする。</p>
+
+  <h3>6. 目的を五つの調整へ翻訳する</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>調整軸</th><th>読むこと</th><th>調整例</th><th>守る基準</th></tr></thead>
+    <tbody>
+      <tr><td class="key">時間</td><td>急ぎ、余白、会話の流れ</td><td>提供間隔、先読み、会計準備</td><td>安全・品質・約束時間</td></tr>
+      <tr><td class="key">情報</td><td>知識、関心、不安、選択負荷</td><td>説明の長さ、順序、比較軸</td><td>正確性・アレルギー確認</td></tr>
+      <tr><td class="key">距離</td><td>会話、集中、援助の必要度</td><td>訪卓頻度、視線、声量</td><td>必要時に支援可能な状態</td></tr>
+      <tr><td class="key">参加</td><td>自分で選びたい／任せたい</td><td>選択肢、取り分け、提案の幅</td><td>尊重・公平・衛生</td></tr>
+      <tr><td class="key">回復</td><td>何が失われ、何を戻したいか</td><td>説明、代替、順序変更、謝意</td><td>事実確認・権限・再発防止</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>7. 価値は結果の証拠で確かめる</h3>
+  <p>「喜んでいたと思う」は証拠として弱い表現です。質問が減った、会話が再開した、選択が速くなった、予定時刻に退店できた、同行者へ料理を説明した、次回の利用場面を口にしたなど、確認できる変化を記録します。</p>
+  <div class="quote">顧客理解とは、心を読んだつもりになることではない。行動可能な仮説を持ち、相手の反応から更新し続けることである。</div>
+
+  <h3>8. この章の結論</h3>
+  <p>人は料理を食べに来ます。同時に、料理と食事時間を使って何かを前へ進めに来ます。サービス担当者の役割は、目的を勝手に決めることでも、すべてを叶えることでもありません。事実を観察し、可能性を考え、必要な範囲で確かめ、店の約束を守りながら行動を調整することです。</p>
+</section>
+
+<section id="c2-practice">
+  <span class="tag">FIELD PRACTICE</span><h2>一卓・三仮説トレーニング</h2>
+  <p>一つの卓を選び、顧客の内面ではなく、確認できた事実から目的仮説を三つつくります。正解当てではなく、決めつけを減らし、確認と調整の選択肢を増やす演習です。</p>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><b>事実を三つ記録</b>発言、時間、選択、視線、同行者とのやり取り。属性評価は書かない。</div>
+    <div class="card"><div class="num">02</div><b>目的仮説を三つ</b>機能・感情・関係・意味から、異なる可能性を出す。</div>
+    <div class="card"><div class="num">03</div><b>確認方法を一つ</b>質問、選択肢の提示、時間確認、反応観察から最も負担の少ない方法を選ぶ。</div>
+    <div class="card"><div class="num">04</div><b>調整を一つ実施</b>時間・情報・距離・参加・回復のどれを変えるか決める。</div>
+    <div class="card"><div class="num">05</div><b>結果の証拠</b>行動前後で何が変わったかを観察する。</div>
+    <div class="card"><div class="num">06</div><b>別解レビュー</b>他者が別の仮説を提示し、次回の観察点を増やす。</div>
+  </div>
+  <div class="callout alert"><strong>禁止する短絡：</strong>年齢、性別、国籍、服装、役職、支払金額だけで目的や好みを決める。<br><strong>求める姿勢：</strong>仮説は暫定。相手の反応と新しい事実により、いつでも更新する。</div>
+</section>
+
+<section id="c2-levels">
+  <span class="tag">LEVEL DEVELOPMENT</span><h2>役割別の到達証拠</h2>
+  <div class="ladder">
+    <div class="rung"><b>L1｜新人：依頼と目的を区別する</b>顧客の言葉を正確に受け取り、観察事実を二つ以上記録する。目的を断定しない。</div>
+    <div class="rung"><b>L2｜自立スタッフ：複数仮説から行動を調整する</b>目的仮説を二つ以上持ち、短い確認後に時間・情報・距離・参加度を変える。</div>
+    <div class="rung"><b>L3｜指導者：判断過程を言語化し、校正する</b>事実→仮説→確認→調整→証拠をレビューし、決めつけや過剰対応を修正する。</div>
+    <div class="rung"><b>L4｜店長・管理者：目的データを体験設計へ反映する</b>複数場面の傾向を集め、メニュー、説明、配置、予約情報、基準、教育を更新する。</div>
+  </div>
+</section>
+
+<section id="c2-training">
+  <span class="tag">TRAINING MODULE</span><h2>55分研修｜注文の先にある目的を読む</h2>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–5分</span><br><strong>問いを立てる</strong><br>自分が最近レストランを利用した目的を、料理名を使わずに書く。</div></div>
+    <div class="step"><div><span class="time">5–13分</span><br><strong>用語を分ける</strong><br>Purpose・Need・Preference・Requestを短い例で分類する。</div></div>
+    <div class="step"><div><span class="time">13–23分</span><br><strong>四つのレンズ</strong><br>一つの利用場面に、機能・感情・関係・意味の目的を重ねる。</div></div>
+    <div class="step"><div><span class="time">23–35分</span><br><strong>三仮説演習</strong><br>共通場面から事実を拾い、異なる仮説と確認方法をつくる。</div></div>
+    <div class="step"><div><span class="time">35–45分</span><br><strong>サービス調整</strong><br>時間・情報・距離・参加・回復の一つを選び、守る基準も決める。</div></div>
+    <div class="step"><div><span class="time">45–52分</span><br><strong>相互校正</strong><br>相手の推測に対して、事実の不足、別仮説、確認負担を指摘する。</div></div>
+    <div class="step"><div><span class="time">52–55分</span><br><strong>現場移行</strong><br>次の営業で観察する一卓、記録担当、共有する二人を決める。</div></div>
+  </div>
+  <div class="callout"><strong>完了条件：</strong>目的を言い当てたことではない。観察事実と仮説を分け、確認後に行動を調整し、その結果を証拠で説明できること。</div>
+</section>
+
+<section id="c2-sheet">
+  <span class="tag">WORKSHEET</span><h2>Guest Purpose Canvas</h2>
+  <div class="sheet">
+    <div class="field"><label>1｜場面と時間</label><div class="line"><span class="hint">どの接点を、いつからいつまで観察するか。</span></div></div>
+    <div class="field"><label>2｜顧客の言葉・依頼</label><div class="line"><span class="hint">解釈を加えず、できるだけ正確に記録。</span></div></div>
+    <div class="field"><label>3｜その他の観察事実</label><div class="line"><span class="hint">時間、選択、行動、同行者とのやり取り。</span></div></div>
+    <div class="field"><label>4｜目的仮説A</label><div class="line"><span class="hint">機能・感情・関係・意味のどれか。根拠となる事実。</span></div></div>
+    <div class="field"><label>5｜目的仮説B・C</label><div class="line"><span class="hint">Aと異なる可能性を最低一つ。</span></div></div>
+    <div class="field"><label>6｜確認方法</label><div class="line"><span class="hint">短い質問、選択肢、反応観察。顧客負担を小さく。</span></div></div>
+    <div class="field"><label>7｜優先する目的・ニーズ</label><div class="line"><span class="hint">確認後に優先順位を更新。確信度も記入。</span></div></div>
+    <div class="field"><label>8｜サービス調整</label><div class="line"><span class="hint">時間・情報・距離・参加・回復の何を変えるか。</span></div></div>
+    <div class="field"><label>9｜守るStandard</label><div class="line"><span class="hint">安全、品質、正確性、公平性、ブランドの約束。</span></div></div>
+    <div class="field"><label>10｜結果の証拠と次回更新</label><div class="line"><span class="hint">何が変わったか。仮説は支持／棄却／保留のどれか。次に何を見るか。</span></div></div>
+  </div>
+</section>
+
+<section id="c2-assessment">
+  <span class="tag">ASSESSMENT</span><h2>章修了の評価基準</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
+    <tbody>
+      <tr><td class="key">事実分離</td><td>推測を事実として扱う。</td><td>言葉と行動を一部記録。</td><td>事実・解釈・未知を分ける。</td><td>チームの観察基準を校正。</td></tr>
+      <tr><td class="key">仮説形成</td><td>属性で一つに決める。</td><td>一つの目的を推測。</td><td>異なる複数仮説を持つ。</td><td>仮説の偏りを発見し修正。</td></tr>
+      <tr><td class="key">確認</td><td>確認せず行動。</td><td>質問するが負担が大きい。</td><td>短い質問・選択肢で確認。</td><td>接点別の確認方法を設計。</td></tr>
+      <tr><td class="key">調整</td><td>全員へ同じ対応。</td><td>目的と行動の接続が弱い。</td><td>目的に沿って五軸を調整。</td><td>基準と裁量範囲を更新。</td></tr>
+      <tr><td class="key">検証・展開</td><td>感想で終了。</td><td>結果を報告。</td><td>反応証拠から仮説を更新。</td><td>二人以上が別場面で再現。</td></tr>
+    </tbody>
+  </table></div>
+  <h3>役割別の修了条件</h3>
+  <ul class="check">
+    <li><strong>L1：</strong>事実分離が2以上。目的を断定しない。</li>
+    <li><strong>L2：</strong>事実分離・仮説形成・確認・調整が3以上。</li>
+    <li><strong>L3：</strong>全軸3以上。別スタッフの判断を一件校正する。</li>
+    <li><strong>L4：</strong>全軸3以上かつ、調整または検証・展開が4。</li>
+  </ul>
+</section>
+
+<section id="c2-guide">
+  <span class="tag">FACILITATOR GUIDE</span><h2>指導者ガイド</h2>
+  <div class="grid">
+    <div class="card"><b>目的を当てる競争にしない</b>確信より、複数仮説と更新可能性を評価する。</div>
+    <div class="card"><b>属性推測を止める</b>「そう思った根拠は、今見えた事実か、過去の一般化か」と問う。</div>
+    <div class="card"><b>質問の負担を評価する</b>スタッフの知りたいことではなく、顧客が答えやすい形になっているか確認する。</div>
+    <div class="card"><b>過剰対応を防ぐ</b>目的に合っていても、Customer・People・Businessの負担が持続可能かを見る。</div>
+    <div class="card"><b>行動と証拠を一対にする</b>調整ごとに「何が変われば有効か」を先に決める。</div>
+    <div class="card"><b>判断手順を渡す</b>答えではなく、事実→仮説→確認→調整→再観察を次の二人へ教える。</div>
+  </div>
+  <h3>校正ミーティングの五問</h3>
+  <ol>
+    <li>確認できた事実は何ですか。</li>
+    <li>別の目的仮説を二つ挙げるとしたら何ですか。</li>
+    <li>顧客に負担をかけず、何を確認できますか。</li>
+    <li>どの調整軸を変え、何を変えずに守りますか。</li>
+    <li>どの反応を見て、次の判断を更新しますか。</li>
+  </ol>
+  <div class="callout"><strong>バイラル展開：</strong>L3以上の一人が二人のPurpose Canvasを校正する。校正を受けた二人は、次の営業で各一人を支援する。正解表を配るのではなく、判断手順と証拠の見方を増やす。</div>
+</section>
+
+<section>
+  <span class="tag">LEARNING PATH</span><h2>第3章と全8巻への接続</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>接続先</th><th>第2章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
+    <tbody>
+      <tr><td class="level">第3章</td><td>読んだ目的へ、店は何を約束し再現するのか。</td><td>Serviceの定義、約束、Standard、再現性。</td></tr>
+      <tr><td class="level">第4章</td><td>同じ約束を相手に応じてどう調整するか。</td><td>ServiceとHospitality、判断と裁量。</td></tr>
+      <tr><td class="level">第6章</td><td>顧客の参加で価値はどう成立するか。</td><td>Value Co-creationと資源統合。</td></tr>
+      <tr><td class="level">II</td><td>目的を接点全体でどう支えるか。</td><td>ジャーニー、時間、五感、Blueprint。</td></tr>
+      <tr><td class="level">III</td><td>人は情報と状況をどう知覚するか。</td><td>第一印象、信頼、認知、感情、記憶。</td></tr>
+      <tr><td class="level">IV</td><td>決めつけずに判断できる人をどう育てるか。</td><td>対話、フィードバック、リフレクション。</td></tr>
+      <tr><td class="level">V–VII</td><td>目的理解を仕組みとしてどう残すか。</td><td>予約情報、基準、教育、会議、指標、実装・定着。</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>次の本文制作：</strong>第3章「サービスとは何か」。顧客目的に対して店が約束する価値を、再現可能な仕組みと行動へ変える構造を定義する。</div>
+</section>
+
+<nav aria-label="章移動"><a href="#chapter-1">← 第1章へ</a><a href="#toc">章一覧</a><a href="#chapter-3">第3章へ →</a></nav>
+<div class="footer">Restaurant Service Architect — The Complete Framework｜Chapter 02 Complete Module</div>
+</article>
+<article id="chapter-3" class="chapter-module">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 05</div>
+  <div class="chapter">CHAPTER 03</div>
+  <h1>サービスとは何か<span>Promise Made Reproducible</span></h1>
+  <p class="lead">理念や善意を、誰が担当しても確認できる約束・基準・行動・証拠へ変える。</p>
+  <div class="definition"><strong>公式定義：</strong>Serviceとは、顧客との約束を、再現可能な仕組みと行動を通じて実現する価値提供である。</div>
+  <div class="chips"><span class="chip">I PHILOSOPHY</span><span class="chip">L1–L4</span><span class="chip">60 MIN TRAINING</span><span class="chip">PROMISE SHEET</span><span class="chip">FIELD CALIBRATION</span></div>
+</header>
+
+<nav aria-label="章内ナビゲーション">
+  <a href="#toc">章一覧</a><a href="#chapter-2">← 前章</a><a href="#c3-priority">今週の一手</a><a href="#c3-audit">整合性</a><a href="#c3-text">教本本文</a><a href="#c3-practice">現場演習</a><a href="#c3-levels">役割別</a><a href="#c3-training">研修</a><a href="#c3-sheet">シート</a><a href="#c3-assessment">評価</a><a href="#c3-guide">指導者</a>
+</nav>
+
+<section id="c3-priority">
+  <span class="tag">WEEKLY PRIORITY</span><h2>今週の最重要な次の一手</h2>
+  <div class="quote">Serviceを「感じの良さ」から「約束を再現する組織能力」へ定義し直す。</div>
+  <p class="intro">第1章でレストランを価値生成システムと定義し、第2章で顧客が望む変化を読む手順を整えました。次に必要なのは、その目的に対して店が何を約束し、誰が担当してもどう実現するかを明確にすることです。ここが曖昧なままHospitalityや体験設計へ進むと、個人技と過剰対応に依存します。</p>
+  <div class="grid3">
+    <div class="card"><div class="num">01</div><b>約束を固定</b>理念やブランドが、顧客にどの状態を約束するのかを一文にする。</div>
+    <div class="card"><div class="num">02</div><b>証拠へ翻訳</b>約束が実現したかを、行動・時間・状態・顧客反応で確認できるようにする。</div>
+    <div class="card"><div class="num">03</div><b>組織能力へ変換</b>基準、役割、支援、観察、改善をつなぎ、個人の善意から切り離す。</div>
+  </div>
+  <div class="callout"><strong>過去成果との非重複：</strong>第1章はレストラン全体、第2章は顧客目的を扱いました。第3章は、店側の価値提供を再現可能にするServiceの構造に限定します。</div>
+</section>
+
+<section id="c3-audit">
+  <span class="tag">CONSISTENCY AUDIT</span><h2>章間・用語・実装導線の修正</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>論点</th><th>混在していた意味</th><th>今回の公式整理</th><th>深化する章</th></tr></thead>
+    <tbody>
+      <tr><td class="key">Service／Hospitality</td><td>どちらも親切・良い接客として扱う。</td><td>Service＝約束を再現する価値提供。Hospitality＝相手に応じて調整する他者中心の判断。</td><td>3・4・52</td></tr>
+      <tr><td class="key">Service／Experience</td><td>提供行動と顧客体験を同一視する。</td><td>Serviceは提供側の構造と行動。Experienceは接点を通じた顧客の主観的過程。</td><td>3・7・10</td></tr>
+      <tr><td class="key">Service／Operation</td><td>作業手順が回ればサービスと考える。</td><td>Operationは資源を動かす工程。Serviceは顧客価値を実現する目的を持つ。</td><td>3・28・48</td></tr>
+      <tr><td class="key">Standard／Manual</td><td>基準と手順書を同じものとして扱う。</td><td>Standard＝守る最低状態。Manual＝基準を実行する支援文書。</td><td>3・29・53</td></tr>
+      <tr><td class="key">Promise／Philosophy</td><td>理念を掲げれば顧客との約束になる。</td><td>Philosophyは判断の根。Promiseは顧客が接点で受け取れる状態への翻訳。</td><td>1・3・46・47</td></tr>
+      <tr><td class="key">Quality／Compliance</td><td>手順遵守率だけでサービス品質を測る。</td><td>Service Qualityは、約束の再現性と状況に応じた適切な調整の両方で見る。</td><td>18・53・55</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="c3-text">
+  <span class="tag">TEXTBOOK MANUSCRIPT</span><h2>第3章｜サービスとは何か</h2>
+
+  <h3>1. Serviceは人柄の別名ではない</h3>
+  <p>優しい人、気が利く人、経験の長い人がいることは大切です。しかし、その人が休めば品質が落ち、忙しければ約束が失われる状態を、組織のServiceとは呼べません。Serviceは個人の性格ではなく、顧客との約束を実現するために、資源・役割・基準・行動が組み合わされた価値提供です。</p>
+  <p>笑顔、言葉遣い、料理提供はServiceを構成する行動ですが、それ自体が目的ではありません。何の価値を、誰に、どの状態で届けるための行動なのかが分かって初めて意味を持ちます。</p>
+
+  <h3>2. 約束は顧客が確認できる状態で表す</h3>
+  <p>「心を込める」「最高のおもてなし」「お客様第一」は方向性としては理解できますが、実施の有無を確認できません。約束は、顧客が接点で受け取る状態へ翻訳します。</p>
+  <div class="grid">
+    <div class="card"><b>抽象語のまま</b>「安心していただく」<div class="question">誰が見ても、何ができていれば安心と言えるか。</div></div>
+    <div class="card"><b>状態へ翻訳</b>「初めての利用でも、注文前に流れ・所要時間・選択肢が分かる」</div>
+    <div class="card"><b>抽象語のまま</b>「丁寧に提供する」<div class="question">丁寧さは動作、情報、時間のどこに現れるか。</div></div>
+    <div class="card"><b>状態へ翻訳</b>「料理名と重要情報が聞き取れる環境で示され、食事を中断させない」</div>
+  </div>
+  <div class="callout"><strong>良いService Promiseの条件：</strong>顧客に意味があり、スタッフが影響でき、第三者が観察でき、繁忙時にも守る優先順位が明確である。</div>
+
+  <h3>3. 理念から証拠までを一本につなぐ</h3>
+  <div class="flow">
+    <div>Philosophy<small>何を大切にするか</small></div>
+    <div>Promise<small>何を約束するか</small></div>
+    <div>Standard<small>最低状態は何か</small></div>
+    <div>Behavior<small>誰が何をするか</small></div>
+    <div>Evidence<small>何で確かめるか</small></div>
+  </div>
+  <p>つながりが切れると、理念は標語になり、基準は理由のない規則になります。逆に、行動だけを増やしても顧客価値との関係が見えなければ、忙しさと負担が増えます。Restaurant Service Architectは、各段階の論理がつながっているかを確認します。</p>
+
+  <h3>4. Standard・Manual・Judgmentを分ける</h3>
+  <div class="grid3">
+    <div class="card"><div class="num">01</div><b>Standard｜基準</b>顧客との約束を守るため、誰が見ても実施の有無と状態を確認できる最低条件。</div>
+    <div class="card"><div class="num">02</div><b>Manual｜実行支援</b>基準を安定して実行するための手順、判断条件、注意点、支援情報。</div>
+    <div class="card"><div class="num">03</div><b>Judgment｜判断</b>観察した事実を原則と目的に照らし、状況に最も適した行動を選ぶこと。</div>
+  </div>
+  <p>基準は全員を同じ動きに縛るものではありません。守るべき最低状態を固定し、その上で相手の目的や状況に合わせて調整します。何を変えてよく、何を変えてはいけないかが分かると、裁量が安全に機能します。</p>
+
+  <h3>5. Serviceは五つの要素で再現される</h3>
+  <p>以下は独立した新メソッドではなく、約束が個人技に戻っていないかを点検する実務質問です。</p>
+  <div class="grid">
+    <div class="card"><b>資源｜Resources</b>必要な人、情報、料理、設備、時間が使える状態か。<div class="question">行動したくても、材料が足りない状態になっていないか。</div></div>
+    <div class="card"><b>役割｜Roles</b>誰が開始し、誰が支援し、誰が例外判断するか。<div class="question">善意の人が拾う仕事になっていないか。</div></div>
+    <div class="card"><b>基準｜Standards</b>どの状態を最低限守るのか。<div class="question">観察できる言葉になっているか。</div></div>
+    <div class="card"><b>支援｜Support</b>手順、道具、練習、情報、権限があるか。<div class="question">できない人への注意だけで終えていないか。</div></div>
+    <div class="card"><b>学習｜Learning</b>結果を観察し、基準や支援を更新するか。<div class="question">成功と失敗が個人の記憶だけに残っていないか。</div></div>
+  </div>
+
+  <h3>6. Operationとの違い</h3>
+  <p>Operationは、人・物・情報・時間を動かす工程です。Serviceは、その工程を通じて顧客との約束を実現する価値提供です。同じ工程でも、目的との接続が違えばServiceの意味は変わります。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>工程</th><th>作業としての見方</th><th>Serviceとしての問い</th><th>観察証拠</th></tr></thead>
+    <tbody>
+      <tr><td class="key">予約確認</td><td>項目を入力する。</td><td>来店前の不確実性を何まで減らすか。</td><td>再確認、誤解、到着時の迷い。</td></tr>
+      <tr><td class="key">案内</td><td>席まで連れて行く。</td><td>場への移行を、安心かつ自然にできるか。</td><td>立ち止まり、視線、荷物、着席までの流れ。</td></tr>
+      <tr><td class="key">説明</td><td>決めた文章を話す。</td><td>顧客が選択・理解・期待形成できる情報か。</td><td>再質問、選択時間、聞き返し、反応。</td></tr>
+      <tr><td class="key">会計</td><td>金額を処理する。</td><td>食事の終わりを、正確さと余韻の両方で整えるか。</td><td>待ち時間、訂正、退店時の言葉・行動。</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>7. Experienceとの違い</h3>
+  <p>店はServiceを設計し、行動できます。一方、Experienceは顧客が複数接点を通して知覚・感情・意味づけを変化させる主観的な過程です。店が「感動を提供した」と断定することはできません。店は感動の可能性を高める資源と相互作用を整え、顧客反応から学びます。</p>
+
+  <h3>8. Service Qualityは二つの力で見る</h3>
+  <div class="grid">
+    <div class="card"><b>再現性｜Reliability</b>担当者や時間帯が変わっても、顧客との最低限の約束が守られる。</div>
+    <div class="card"><b>適応性｜Adaptability</b>約束を損なわず、顧客目的と状況に応じて量・速度・距離・情報を調整できる。</div>
+  </div>
+  <p>再現性だけでは機械的になり、適応性だけではばらつきます。第4章では、この関係をServiceとHospitalityとして深めます。</p>
+
+  <h3>9. 回復もServiceの一部</h3>
+  <p>ミスをゼロにする努力は必要ですが、予期しないことは起こります。問題発生時に事実を確認し、失われた価値を特定し、権限の範囲で回復し、再発防止へ戻すまでがServiceです。謝罪の上手さだけでなく、情報共有と仕組みの更新まで含みます。</p>
+
+  <h3>10. この章の結論</h3>
+  <div class="quote">Serviceとは、良い人が頑張ることではない。顧客との約束を、組織が繰り返し実現できる状態をつくることである。</div>
+  <p>現場の判断力を育てるには、答えとなる動作を増やすだけでは足りません。どの約束を守るための行動か、何を基準として固定し、何を状況に応じて調整し、結果を何で確かめるのかを考えられるようにします。</p>
+</section>
+
+<section id="c3-practice">
+  <span class="tag">FIELD PRACTICE</span><h2>一つの約束・三つの証拠</h2>
+  <p>抽象的な理念を一つ選び、実際の接点で守れるService Promiseへ翻訳します。模範文の暗記ではなく、約束と行動の論理を自分で組み立てる演習です。</p>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><b>理念語を一つ選ぶ</b>安心、誠実、楽しさ、つながりなど。自店名や固有事例に依存しない。</div>
+    <div class="card"><div class="num">02</div><b>顧客状態へ翻訳</b>顧客が何を理解し、選び、感じ、行動できる状態かを書く。</div>
+    <div class="card"><div class="num">03</div><b>守る基準を一つ</b>行動・時間・状態のいずれかで、実施の有無が分かる形にする。</div>
+    <div class="card"><div class="num">04</div><b>三つの証拠</b>スタッフ行動、サービス状態、顧客反応から各一つ決める。</div>
+    <div class="card"><div class="num">05</div><b>例外条件を考える</b>繁忙、遅延、欠員、顧客目的の違いで、何を調整し何を守るか。</div>
+    <div class="card"><div class="num">06</div><b>次の二人で検証</b>同じ約束を別の接点へ翻訳し、証拠の取り方を比較する。</div>
+  </div>
+  <div class="callout alert"><strong>避ける表現：</strong>「心を込める」「丁寧にする」「臨機応変にする」だけで完了する。<br><strong>求める表現：</strong>顧客状態・観察可能な基準・担当役割・結果の証拠を一つの線でつなぐ。</div>
+</section>
+
+<section id="c3-levels">
+  <span class="tag">LEVEL DEVELOPMENT</span><h2>新人から管理者までの到達証拠</h2>
+  <div class="ladder">
+    <div class="rung"><b>L1｜新人：行動の目的を説明できる</b>担当する基本行動について、どの約束を守るためか、何ができていれば完了かを説明する。</div>
+    <div class="rung"><b>L2｜自立スタッフ：基準を守りながら調整できる</b>Standardと変更可能部分を区別し、顧客目的に合わせて速度・情報・距離を調整する。</div>
+    <div class="rung"><b>L3｜指導者：約束から練習と観察を設計できる</b>抽象語を顧客状態・基準・行動・証拠へ翻訳し、他者の実践を事実でフィードバックする。</div>
+    <div class="rung"><b>L4｜店長・管理者：Service Systemを更新できる</b>複数場面の断点を資源・役割・基準・支援・学習から診断し、運営と教育へ反映する。</div>
+  </div>
+</section>
+
+<section id="c3-training">
+  <span class="tag">TRAINING MODULE</span><h2>60分研修｜理念をServiceへ翻訳する</h2>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–6分</span><br><strong>個人定義</strong><br>Serviceとは何かを一文で書き、親切・所作・作業・価値提供のどこを含むか確認する。</div></div>
+    <div class="step"><div><span class="time">6–15分</span><br><strong>用語の境界</strong><br>Service・Hospitality・Experience・Operationを短い場面で分類する。</div></div>
+    <div class="step"><div><span class="time">15–25分</span><br><strong>約束を状態へ翻訳</strong><br>理念語一つを、顧客が接点で受け取れる状態に書き換える。</div></div>
+    <div class="step"><div><span class="time">25–37分</span><br><strong>基準と行動</strong><br>守るStandard、担当者、必要資源、支援方法を決める。</div></div>
+    <div class="step"><div><span class="time">37–47分</span><br><strong>三つの証拠</strong><br>行動・状態・顧客反応の証拠を設定し、観察可能かを相互確認する。</div></div>
+    <div class="step"><div><span class="time">47–55分</span><br><strong>例外校正</strong><br>繁忙・遅延・顧客目的の違いを加え、変える部分と守る部分を再設計する。</div></div>
+    <div class="step"><div><span class="time">55–60分</span><br><strong>現場移行</strong><br>試す接点、実施者、観察者、共有する二人を決める。</div></div>
+  </div>
+  <div class="callout"><strong>完了条件：</strong>理念語を理解したことではなく、顧客状態・Standard・行動・証拠・例外判断が接続した一枚を完成させる。</div>
+</section>
+
+<section id="c3-sheet">
+  <span class="tag">WORKSHEET</span><h2>Service Promise Translation Sheet</h2>
+  <div class="sheet">
+    <div class="field"><label>1｜起点となる理念・ブランド原則</label><div class="line"><span class="hint">この場面で大切にする判断の根。</span></div></div>
+    <div class="field"><label>2｜対象となる顧客目的</label><div class="line"><span class="hint">第2章の観察事実と確認から得た目的・ニーズ。</span></div></div>
+    <div class="field"><label>3｜Service Promise</label><div class="line"><span class="hint">顧客が何を理解・選択・実行できる状態にするか。</span></div></div>
+    <div class="field"><label>4｜守るStandard</label><div class="line"><span class="hint">行動、時間、状態。第三者が実施の有無を確認できる言葉。</span></div></div>
+    <div class="field"><label>5｜役割</label><div class="line"><span class="hint">開始者、支援者、例外判断者。責任の空白を残さない。</span></div></div>
+    <div class="field"><label>6｜必要資源</label><div class="line"><span class="hint">人、情報、料理、道具、時間、権限。</span></div></div>
+    <div class="field"><label>7｜Manual・練習・支援</label><div class="line"><span class="hint">基準を安定して実行するために何を用意するか。</span></div></div>
+    <div class="field"><label>8｜変更可能部分と例外条件</label><div class="line"><span class="hint">顧客目的や繁忙で変えてよいこと／変えてはいけないこと。</span></div></div>
+    <div class="field"><label>9｜三つの証拠</label><div class="line"><span class="hint">スタッフ行動／サービス状態／顧客反応を各一つ。</span></div></div>
+    <div class="field"><label>10｜Reviewと更新</label><div class="line"><span class="hint">いつ、誰が、何を見て、基準・支援・配置のどれを更新するか。</span></div></div>
+  </div>
+</section>
+
+<section id="c3-assessment">
+  <span class="tag">ASSESSMENT</span><h2>章修了の評価基準</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
+    <tbody>
+      <tr><td class="key">約束の明確さ</td><td>抽象語のみ。</td><td>顧客状態を書くが曖昧。</td><td>意味があり観察可能な状態。</td><td>複数接点で一貫した約束を設計。</td></tr>
+      <tr><td class="key">基準化</td><td>人の意識に依存。</td><td>行動案はあるが完了状態が不明。</td><td>最低状態・役割・資源が明確。</td><td>繁忙・例外を含む支援構造を設計。</td></tr>
+      <tr><td class="key">判断</td><td>基準を無視または機械的適用。</td><td>調整するが理由が弱い。</td><td>守る部分と変える部分を説明。</td><td>裁量範囲と判断条件を校正。</td></tr>
+      <tr><td class="key">証拠</td><td>印象で評価。</td><td>行動だけを確認。</td><td>行動・状態・顧客反応を確認。</td><td>証拠から基準・支援を更新。</td></tr>
+      <tr><td class="key">展開</td><td>本人だけで完結。</td><td>説明はできる。</td><td>一人へ実践を支援。</td><td>二人以上が別接点で再現し校正。</td></tr>
+    </tbody>
+  </table></div>
+  <h3>役割別の修了条件</h3>
+  <ul class="check">
+    <li><strong>L1：</strong>約束の明確さ・基準化が2以上。担当行動の理由と完了状態を説明できる。</li>
+    <li><strong>L2：</strong>約束・基準化・判断・証拠が3以上。</li>
+    <li><strong>L3：</strong>全軸3以上。他者一名のPromise Sheetを校正する。</li>
+    <li><strong>L4：</strong>全軸3以上かつ、基準化・証拠・展開のいずれかが4。</li>
+  </ul>
+</section>
+
+<section id="c3-guide">
+  <span class="tag">FACILITATOR GUIDE</span><h2>指導者ガイド</h2>
+  <div class="grid">
+    <div class="card"><b>抽象語を否定しない</b>理念語を出発点として尊重し、「顧客にはどんな状態として現れるか」と翻訳を促す。</div>
+    <div class="card"><b>動作だけを正解にしない</b>同じ動作でも、守る約束と顧客目的が違えば意味が変わることを比較する。</div>
+    <div class="card"><b>基準と手順を分ける</b>守る状態と、実現方法の選択肢を別欄に書かせる。</div>
+    <div class="card"><b>できない理由を構造で見る</b>本人の意識だけでなく、資源・役割・情報・練習・権限を確認する。</div>
+    <div class="card"><b>顧客反応まで追う</b>実施率が高くても、顧客の理解・選択・安心につながったかを見る。</div>
+    <div class="card"><b>答えでなく翻訳手順を渡す</b>理念→約束→基準→行動→証拠のつなぎ方を次の二人へ教える。</div>
+  </div>
+  <h3>校正に使う五つの質問</h3>
+  <ol>
+    <li>このServiceは、顧客のどんな目的と店のどんな約束をつないでいますか。</li>
+    <li>第三者が実施の有無を確認できる最低状態は何ですか。</li>
+    <li>実行できないとき、本人以外の構造要因は何ですか。</li>
+    <li>状況によって変えてよい部分と、守る部分はどこですか。</li>
+    <li>結果をどの証拠で確かめ、次の誰へ渡しますか。</li>
+  </ol>
+  <div class="callout"><strong>バイラル展開：</strong>重点指導者は一つの正解文を配布せず、二人に別接点のPromise Sheetを作らせる。共通の約束が異なる行動へ翻訳される過程を比較し、判断基準を組織へ残す。</div>
+</section>
+
+<section>
+  <span class="tag">LEARNING PATH</span><h2>第4章と全8巻への接続</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>接続先</th><th>第3章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
+    <tbody>
+      <tr><td class="level">第4章</td><td>再現すべき約束を、相手に応じてどう調整するか。</td><td>ServiceとHospitality、基準と裁量、他者中心の判断。</td></tr>
+      <tr><td class="level">第6章</td><td>店の資源と顧客参加から、価値はどう成立するか。</td><td>SDL、Value Co-creation、資源統合。</td></tr>
+      <tr><td class="level">II</td><td>約束を複数接点でどう一貫させるか。</td><td>ジャーニー、五感、時間、Blueprint。</td></tr>
+      <tr><td class="level">III</td><td>顧客はServiceをどう知覚・解釈するか。</td><td>第一印象、信頼、認知、感情、記憶。</td></tr>
+      <tr><td class="level">IV</td><td>基準と判断を実践できる人をどう育てるか。</td><td>練習、フィードバック、リフレクション、チーム学習。</td></tr>
+      <tr><td class="level">V</td><td>Serviceを経営成果と持続性へどうつなぐか。</td><td>品質、役割、会議、KPI、収益、生産性。</td></tr>
+      <tr><td class="level">VI–VII</td><td>約束の断点をどう診断し、定着させるか。</td><td>RSA構造診断、Quality Loop、Implementation、Embedding。</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>次の本文制作：</strong>第4章「ServiceとHospitality」。再現すべき約束と、相手に応じて調整する判断を対立させず、一つの品質構造として統合する。</div>
+</section>
+
+<nav aria-label="章移動"><a href="#chapter-2">← 第2章へ</a><a href="#toc">章一覧</a></nav>
+<div class="footer">Restaurant Service Architect — The Complete Framework｜Chapter 03 Complete Module</div>
+</article>
+<article id="chapter-4" class="chapter-module">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 06</div>
+  <div class="chapter">CHAPTER 04</div>
+  <h1>ServiceとHospitality<span>Reliability with Human Adaptation</span></h1>
+  <p class="lead">全員で守る約束と、一人ひとりに合わせる判断を対立させず、再現性と適応性を同時に育てる。</p>
+  <div class="definition"><strong>公式定義：</strong>Hospitalityとは、顧客の状況と目的を読み、Service Promiseを損なわない範囲で、提供の方法・量・速度・距離・順序を他者中心に調整する判断と行為である。</div>
+  <div class="chips"><span class="chip">I PHILOSOPHY</span><span class="chip">L1–L4</span><span class="chip">60 MIN TRAINING</span><span class="chip">ADJUSTMENT SHEET</span><span class="chip">JUDGMENT CALIBRATION</span></div>
+</header>
+
+<nav aria-label="章内ナビゲーション">
+  <a href="#c4-priority">今週の一手</a><a href="#c4-audit">整合性</a><a href="#c4-text">教本本文</a><a href="#c4-practice">現場演習</a><a href="#c4-levels">役割別</a><a href="#c4-training">研修</a><a href="#c4-sheet">シート</a><a href="#c4-assessment">評価</a><a href="#c4-guide">指導者</a>
+</nav>
+
+<section id="c4-priority">
+  <span class="tag">WEEKLY PRIORITY</span><h2>今週の最重要な次の一手</h2>
+  <div class="quote">「全員同じ」と「人によって変える」の境界を、現場が説明できる判断基準にする。</div>
+  <p class="intro">第3章でServiceを、顧客との約束を再現する組織能力と定義しました。しかし基準だけでは、目的も状況も異なる顧客に機械的な対応を生みます。逆に、Hospitalityを自由な親切と捉えると、過剰対応、担当者差、無断値引き、プライバシー侵害が起こります。第4章では、何を固定し、何を調整し、どこで承認を得るかを明確にします。</p>
+  <div class="grid3">
+    <div class="card"><div class="num">01</div><b>基準を土台にする</b>HospitalityはServiceの代わりではなく、約束を相手に届く形へ調整する働き。</div>
+    <div class="card"><div class="num">02</div><b>裁量に境界を置く</b>安全・倫理・公平・ブランド・資源・権限を越えない。</div>
+    <div class="card"><div class="num">03</div><b>判断を共有可能にする</b>結果だけでなく、観察事実・仮説・選択理由・顧客反応を残す。</div>
+  </div>
+  <div class="callout"><strong>過去成果との非重複：</strong>第2章は顧客目的の読み方、第3章はService Promiseの再現構造でした。本章は、その約束を個別状況へ適応させる裁量設計と判断校正に限定します。</div>
+</section>
+
+<section id="c4-audit">
+  <span class="tag">CONSISTENCY AUDIT</span><h2>章間・用語・対象者レベルの修正</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>論点</th><th>不整合</th><th>今回の修正</th><th>接続先</th></tr></thead>
+    <tbody>
+      <tr><td class="key">Service／Hospitality</td><td>両方を親切・良い接客として混同。</td><td>Service＝約束の再現。Hospitality＝約束を相手に届く形へ調整する判断。</td><td>3・4・52</td></tr>
+      <tr><td class="key">Standard／Discretion</td><td>基準か裁量かの二者択一。</td><td>Standardが守る範囲を示し、Discretionは変更可能域で働く。</td><td>4・29・53</td></tr>
+      <tr><td class="key">Equality／Fairness</td><td>全員に同じ行動をすることを公平と誤認。</td><td>共通の約束と評価原則を守り、必要に応じて提供方法を変える。</td><td>4・25・43</td></tr>
+      <tr><td class="key">Personalization／Privacy</td><td>個別化のためなら情報収集や推測を許容。</td><td>必要最小限の情報、確認可能な仮説、記録目的とアクセス範囲を守る。</td><td>4・11・22</td></tr>
+      <tr><td class="key">Delight／Recovery</td><td>驚かせる演出と、失われた価値の回復を混在。</td><td>回復を先に行い、サプライズは相手の目的と受容性がある場合だけ。</td><td>4・8・21</td></tr>
+      <tr><td class="key">新人／管理者</td><td>新人にも経営判断と同じ裁量を要求。</td><td>L1は観察と確認、L2は許可範囲の調整、L3は校正、L4は裁量構造の設計。</td><td>IV・V・VII</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="c4-text">
+  <span class="tag">TEXTBOOK MANUSCRIPT</span><h2>第4章｜ServiceとHospitality</h2>
+
+  <h3>1. 二つは対立しない</h3>
+  <p>Serviceは、顧客との約束を安定して実現する土台です。Hospitalityは、その土台の上で、同じ約束を異なる相手へ届かせる調整です。Serviceだけでは画一的になり、Hospitalityだけでは品質が個人技になります。高いサービス品質は、再現性と適応性が同時に働く状態です。</p>
+  <div class="grid">
+    <div class="card"><b>Service｜再現性</b>何を約束し、誰が担当しても守る最低状態は何か。</div>
+    <div class="card"><b>Hospitality｜適応性</b>その約束がこの相手に届くため、何をどう調整するか。</div>
+  </div>
+
+  <h3>2. Hospitalityは性格ではなく判断能力</h3>
+  <p>温かい人柄や会話の上手さは助けになりますが、Hospitalityそのものではありません。重要なのは、観察事実から相手の状況を読み、決めつけずに確認し、約束を損なわない選択肢を選び、反応から修正できることです。無口で控えめな接客が、ある顧客には最もHospitalityになる場合もあります。</p>
+  <div class="callout"><strong>判断の質：</strong>善意の強さではなく、相手への適合、境界の遵守、結果の確認、学習への共有で評価する。</div>
+
+  <h3>3. 何を固定し、何を変えるか</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>固定するもの</th><th>調整できるもの</th><th>調整の例</th></tr></thead>
+    <tbody>
+      <tr><td class="key">安全・法令・倫理</td><td>説明の順序、表現、確認回数</td><td>情報量を減らしても、アレルギー確認は省略しない。</td></tr>
+      <tr><td class="key">Service Promise</td><td>速度、距離、会話量</td><td>安心という約束を、詳しい説明または静かな見守りで実現する。</td></tr>
+      <tr><td class="key">正確性・尊厳</td><td>選択肢の見せ方、支援の量</td><td>本人の選択を奪わず、必要な補助だけを提案する。</td></tr>
+      <tr><td class="key">権限・記録原則</td><td>担当者、タイミング、連携方法</td><td>権限を越える場合は、待たせ方を説明して責任者へ接続する。</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>4. 調整する五つのレバー</h3>
+  <div class="grid">
+    <div class="card"><b>量｜Amount</b>説明、提案、会話、支援をどこまで行うか。</div>
+    <div class="card"><b>速度｜Pace</b>急ぐ、待つ、間を取る、先回りする。</div>
+    <div class="card"><b>距離｜Distance</b>関与の頻度、視線、滞在、心理的な近さ。</div>
+    <div class="card"><b>順序｜Sequence</b>何を先に伝え、何を後に回すか。</div>
+    <div class="card"><b>方法｜Method</b>口頭、指差し、選択肢、実物、同席者への確認。</div>
+  </div>
+  <p>レバーは相手を操作するためではなく、理解・選択・安心・参加を支えるために使います。調整前に目的を推測し、可能なら短く確認します。</p>
+
+  <h3>5. OIDIEでHospitalityを設計する</h3>
+  <div class="flow">
+    <div>Observe<small>事実を見る</small></div>
+    <div>Interpret<small>仮説を複数持つ</small></div>
+    <div>Design<small>安全な調整を選ぶ</small></div>
+    <div>Implement<small>小さく実行する</small></div>
+    <div>Evaluate<small>反応から更新</small></div>
+  </div>
+  <p>第2章で使った観察と仮説を、本章では具体的な調整判断へつなげます。最初から大きな特別対応をせず、戻せる小さな調整から始めます。反応が違えば、元に戻すか別の選択肢へ変えます。</p>
+
+  <h3>6. 六つの境界が裁量を安全にする</h3>
+  <div class="grid3">
+    <div class="card"><b>Safety</b>食品・身体・情報・設備の安全を損なわない。</div>
+    <div class="card"><b>Ethics</b>尊厳、同意、差別禁止、誠実さを守る。</div>
+    <div class="card"><b>Promise</b>店が約束する価値と品質を薄めない。</div>
+    <div class="card"><b>Fairness</b>説明可能な原則で判断し、恣意的な優遇にしない。</div>
+    <div class="card"><b>Resources</b>他の顧客、仲間、厨房、時間への影響を見積もる。</div>
+    <div class="card"><b>Authority</b>自分で決める範囲と、承認・報告が必要な範囲を守る。</div>
+  </div>
+  <div class="callout alert"><strong>停止条件：</strong>安全・倫理・正確性に疑問がある、費用や約束変更を伴う、他の顧客への影響が大きい、本人の同意が確認できない場合は、独断で進めず責任者へ接続する。</div>
+
+  <h3>7. 公平は「全員同じ」ではない</h3>
+  <p>同じ料理、同じ価格、同じ基準を守ることと、全員に同じ情報量・会話量・速度で接することは別です。公平とは、相手の目的と必要性に照らし、説明できる共通原則で資源を配分することです。好みや印象で一部の顧客だけを特別扱いすることはHospitalityではありません。</p>
+
+  <h3>8. 個別化は推測と記録を慎重に扱う</h3>
+  <p>年齢、国籍、服装、肩書だけで好みや能力を決めつけません。観察事実と本人の言葉を分け、仮説は確認できる形にします。記録する場合は、次回の価値提供に必要な情報だけを残し、センシティブな推測や私的評価を書きません。</p>
+
+  <h3>9. Hospitalityを評価するとき</h3>
+  <p>結果が喜ばれたかだけでなく、判断の過程を見ます。偶然喜ばれた過剰対応は再現できず、組織に損失を残すことがあります。観察事実、選択理由、境界確認、顧客反応、次回への学習が説明できれば、結果が完全でなくても改善可能です。</p>
+
+  <h3>10. この章の結論</h3>
+  <div class="quote">Serviceは約束を守る力。Hospitalityは、その約束を「この人」に届く形へ変える力。</div>
+  <p>優れた現場は、マニュアルを捨てて自由になるのではありません。守る基準を明確にし、調整できる範囲と停止条件を共有し、判断の理由をチームで校正します。これにより、個人のセンスが組織の学習へ変わります。</p>
+</section>
+
+<section id="c4-practice">
+  <span class="tag">FIELD PRACTICE</span><h2>一つの基準・三つの調整</h2>
+  <p>同じService Promiseを守りながら、異なる状況へ提供方法を変える演習です。正解行動を当てるのではなく、固定部分と調整部分を説明できることを目指します。</p>
+  <div class="grid">
+    <div class="card"><div class="num">01</div><b>約束を一つ選ぶ</b>第3章のPromise Sheetから、顧客が受け取る状態を一つ選ぶ。</div>
+    <div class="card"><div class="num">02</div><b>固定部分を書く</b>安全・正確性・尊厳・最低基準・権限を明確にする。</div>
+    <div class="card"><div class="num">03</div><b>三つの状況を作る</b>時間、理解度、会話意欲、同席関係など一条件だけ変える。</div>
+    <div class="card"><div class="num">04</div><b>調整レバーを選ぶ</b>量・速度・距離・順序・方法から一つか二つを変える。</div>
+    <div class="card"><div class="num">05</div><b>反応証拠を決める</b>理解、選択、表情、質問、行動変化のどれで確かめるか。</div>
+    <div class="card"><div class="num">06</div><b>二人で校正する</b>別のスタッフが境界・公平性・資源影響を問い直す。</div>
+  </div>
+</section>
+
+<section id="c4-levels">
+  <span class="tag">LEVEL DEVELOPMENT</span><h2>新人から管理者までの到達証拠</h2>
+  <div class="ladder">
+    <div class="rung"><b>L1｜新人：観察と確認ができる</b>事実と推測を分け、独断の特別対応をせず、選択肢を短く確認して必要時に責任者へつなぐ。</div>
+    <div class="rung"><b>L2｜自立スタッフ：許可範囲で調整できる</b>固定基準を守り、量・速度・距離・順序・方法を変え、顧客反応から修正する。</div>
+    <div class="rung"><b>L3｜指導者：判断を校正できる</b>正解行動を押し付けず、事実・仮説・境界・選択理由・結果を問い、他者の判断精度を高める。</div>
+    <div class="rung"><b>L4｜店長・管理者：裁量構造を設計できる</b>固定基準、変更可能域、停止条件、承認経路、記録、振り返りを一つの運用として整える。</div>
+  </div>
+</section>
+
+<section id="c4-training">
+  <span class="tag">TRAINING MODULE</span><h2>60分研修｜基準と裁量を同時に育てる</h2>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–7分</span><br><strong>境界認識</strong><br>ServiceとHospitalityを各一文で書き、親切・特別対応・価値提供との違いを確認する。</div></div>
+    <div class="step"><div><span class="time">7–15分</span><br><strong>固定と調整</strong><br>一場面を、安全・約束・最低基準・変更可能部分に分ける。</div></div>
+    <div class="step"><div><span class="time">15–25分</span><br><strong>OIDIE判断</strong><br>観察事実、複数仮説、短い確認、安全な小調整、反応証拠を記入する。</div></div>
+    <div class="step"><div><span class="time">25–37分</span><br><strong>三状況演習</strong><br>同じ約束に対し、異なる顧客状況を想定して三つの調整案をつくる。</div></div>
+    <div class="step"><div><span class="time">37–47分</span><br><strong>境界テスト</strong><br>安全・倫理・約束・公平・資源・権限の六項目で各案を点検する。</div></div>
+    <div class="step"><div><span class="time">47–55分</span><br><strong>ロールプレイ</strong><br>一度実行し、相手役の反応に合わせて調整をやり直す。</div></div>
+    <div class="step"><div><span class="time">55–60分</span><br><strong>現場移行</strong><br>試す接点、観察者、停止条件、共有する二人を決める。</div></div>
+  </div>
+  <div class="callout"><strong>完了条件：</strong>気の利いた対応案ではなく、固定基準・観察事実・調整理由・境界・反応証拠が一枚で説明できる。</div>
+</section>
+
+<section id="c4-sheet">
+  <span class="tag">WORKSHEET</span><h2>Service–Hospitality Adjustment Sheet</h2>
+  <div class="sheet">
+    <div class="field"><label>1｜場面とService Promise</label><div class="line"><span class="hint">どの接点で、顧客がどの状態になることを約束しているか。</span></div></div>
+    <div class="field"><label>2｜観察した事実</label><div class="line"><span class="hint">言葉、選択、動作、時間、視線。属性による決めつけを書かない。</span></div></div>
+    <div class="field"><label>3｜複数の解釈と確認質問</label><div class="line"><span class="hint">考えられる目的を二つ以上。短く確認できる問い。</span></div></div>
+    <div class="field"><label>4｜固定する基準</label><div class="line"><span class="hint">安全、正確性、尊厳、最低状態、権限。</span></div></div>
+    <div class="field"><label>5｜調整するレバー</label><div class="line"><span class="hint">量／速度／距離／順序／方法。何を、なぜ変えるか。</span></div></div>
+    <div class="field"><label>6｜六つの境界確認</label><div class="line"><span class="hint">Safety／Ethics／Promise／Fairness／Resources／Authority。</span></div></div>
+    <div class="field"><label>7｜実行する小さな調整</label><div class="line"><span class="hint">必要なら戻せる、最小の一手から始める。</span></div></div>
+    <div class="field"><label>8｜顧客反応と再調整</label><div class="line"><span class="hint">何が変化したか。続ける、戻す、別案へ変える。</span></div></div>
+    <div class="field"><label>9｜共有・記録・承認</label><div class="line"><span class="hint">誰へ共有するか。必要な事実だけを、どこまで残すか。</span></div></div>
+  </div>
+</section>
+
+<section id="c4-assessment">
+  <span class="tag">ASSESSMENT</span><h2>章修了の評価基準</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
+    <tbody>
+      <tr><td class="key">観察</td><td>属性・印象で決める。</td><td>事実を挙げるが推測と混在。</td><td>事実と仮説を分けて確認。</td><td>他者の観察バイアスを校正。</td></tr>
+      <tr><td class="key">基準理解</td><td>基準を無視または絶対視。</td><td>固定と変更の区別が曖昧。</td><td>守る基準と裁量域を説明。</td><td>停止条件と承認経路を設計。</td></tr>
+      <tr><td class="key">調整</td><td>好意や慣習で特別対応。</td><td>調整するが目的が不明。</td><td>目的に合わせ小さく調整。</td><td>複数接点の調整を設計。</td></tr>
+      <tr><td class="key">境界</td><td>安全・公平・権限を見ない。</td><td>指摘されれば確認。</td><td>六境界を自ら点検。</td><td>資源配分と例外ルールを更新。</td></tr>
+      <tr><td class="key">学習・展開</td><td>結果を個人の経験で終える。</td><td>感想を共有。</td><td>理由と証拠を一人へ共有。</td><td>二人以上の判断を校正・定着。</td></tr>
+    </tbody>
+  </table></div>
+  <h3>役割別の修了条件</h3>
+  <ul class="check">
+    <li><strong>L1：</strong>観察・基準理解が2以上。停止条件を説明できる。</li>
+    <li><strong>L2：</strong>観察・基準理解・調整・境界が3以上。</li>
+    <li><strong>L3：</strong>全軸3以上。他者一名の判断を質問で校正する。</li>
+    <li><strong>L4：</strong>全軸3以上かつ、基準理解・境界・展開のいずれかが4。</li>
+  </ul>
+</section>
+
+<section id="c4-guide">
+  <span class="tag">FACILITATOR GUIDE</span><h2>指導者ガイド</h2>
+  <div class="grid">
+    <div class="card"><b>「もっと気を利かせて」で終えない</b>どの事実から、どの目的を読み、何を変えるのかまで分解する。</div>
+    <div class="card"><b>成功例を模範動作にしない</b>同じ行動を再現させず、判断理由と適用条件を取り出す。</div>
+    <div class="card"><b>失敗を善意で免責しない</b>相手への影響、境界、確認不足を事実で振り返る。</div>
+    <div class="card"><b>新人へ過大な裁量を渡さない</b>自分で決める範囲、確認する範囲、責任者へ渡す条件を示す。</div>
+    <div class="card"><b>公平性を対話する</b>特別対応の理由が他の顧客や仲間へ説明できるかを問う。</div>
+    <div class="card"><b>小さく試して反応を見る</b>大きな演出より、戻せる調整と再観察を習慣にする。</div>
+  </div>
+  <h3>判断校正の六つの質問</h3>
+  <ol>
+    <li>観察した事実と、あなたの解釈はどこから分かれますか。</li>
+    <li>守るべきService Promiseと最低基準は何ですか。</li>
+    <li>量・速度・距離・順序・方法の何を変えますか。</li>
+    <li>安全・倫理・公平・資源・権限のどこに注意が必要ですか。</li>
+    <li>顧客のどんな反応で、続行・修正・停止を決めますか。</li>
+    <li>この判断から、次の二人へ何を渡しますか。</li>
+  </ol>
+  <div class="callout"><strong>バイラル展開：</strong>重点指導者は一人へ答えを教えた後に終えない。受講者が次の二人へ同じ校正質問を使い、三つの異なる場面を比較する。共有するのは特別対応の一覧ではなく、判断の物差しである。</div>
+</section>
+
+<section>
+  <span class="tag">LEARNING PATH</span><h2>次章と全8巻への接続</h2>
+  <div class="scroll"><table>
+    <thead><tr><th>接続先</th><th>第4章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
+    <tbody>
+      <tr><td class="level">第5章</td><td>高品質なServiceとHospitalityは何を基準に評価されるか。</td><td>ミシュランサービス思想、卓越性、一貫性、個性。</td></tr>
+      <tr><td class="level">第6章</td><td>調整は顧客の参加とどう価値を共創するか。</td><td>SDL、Value Co-creation、資源統合。</td></tr>
+      <tr><td class="level">II</td><td>個別判断を接点全体でどう一貫させるか。</td><td>ジャーニー、五感、時間、Blueprint。</td></tr>
+      <tr><td class="level">III</td><td>観察と解釈にどんな心理的偏りが起こるか。</td><td>認知、感情、信頼、記憶、意思決定。</td></tr>
+      <tr><td class="level">IV</td><td>裁量と内省をどう育成するか。</td><td>対話、フィードバック、コーチング、チーム学習。</td></tr>
+      <tr><td class="level">V</td><td>裁量を品質・生産性・公平性とどう両立するか。</td><td>役割、権限、KPI、会議、リスク管理。</td></tr>
+      <tr><td class="level">VI–VII</td><td>個人判断を組織能力としてどう診断・定着するか。</td><td>RSA構造診断、Quality Loop、Implementation、Embedding。</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout"><strong>次の本文制作：</strong>第5章「ミシュランサービス思想」。特定の型を模倣せず、卓越したレストランに共通する評価原則を、日常の観察・育成・品質管理へ翻訳する。</div>
+</section>
+
+<div class="footer">Restaurant Service Architect — The Complete Framework｜Chapter 04 Complete Module</div>
+</article>
+<a class="backtop" href="#toc">章一覧へ戻る</a>
+</main></body></html>
