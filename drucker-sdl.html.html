@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SDL × Drucker × Restaurant Service Architecture｜統合研究資料 2026</title>
+<style>
+:root{--ink:#252238;--muted:#6e6979;--teal:#155e66;--purple:#674d7c;--gold:#b88a48;--paper:#f7f4ef;--line:#ddd7ce;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#edf3f2,#f5eff6 50%,#f7f4ef);color:var(--ink);font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;line-height:1.9}.page{max-width:1050px;margin:auto;background:rgba(255,255,255,.96);box-shadow:0 24px 70px rgba(40,34,58,.12)}
+header{padding:76px 8% 66px;color:#fff;background:linear-gradient(135deg,#104e57,#5c4072);position:relative;overflow:hidden}header:after{content:"";position:absolute;width:390px;height:390px;right:-150px;top:-180px;border:1px solid rgba(255,255,255,.18);border-radius:50%}.eyebrow{font:700 .72rem Arial,sans-serif;letter-spacing:.18em;color:#e9d5b5}.rule{width:50px;height:2px;background:#cfaa6d;margin:20px 0}h1{margin:0;font-size:clamp(2rem,5vw,3.9rem);font-weight:500;line-height:1.25}.lead{max-width:760px;color:rgba(255,255,255,.86);font-size:1.08rem;margin:24px 0 0}
+main{padding:58px 8% 78px}section{margin-bottom:66px}.num{font:700 .72rem Arial,sans-serif;letter-spacing:.16em;color:var(--gold)}h2{font-size:clamp(1.5rem,3vw,2.15rem);font-weight:500;line-height:1.45;margin:8px 0 23px}h3{font-size:1.14rem;color:var(--teal);margin:0 0 10px}p{margin:.65em 0}.summary{padding:30px;border-left:4px solid var(--gold);background:#faf8f4;font-size:1.07rem}.quote{padding:34px;text-align:center;color:#fff;background:linear-gradient(135deg,var(--teal),var(--purple));font-size:1.28rem;line-height:1.8;margin:30px 0}
+.triad{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.layer{padding:28px 23px;border:1px solid var(--line);background:#fff;position:relative}.layer:before{content:attr(data-no);display:block;font:700 .7rem Arial,sans-serif;color:var(--gold);letter-spacing:.13em;margin-bottom:13px}.layer:nth-child(1){border-top:4px solid var(--gold)}.layer:nth-child(2){border-top:4px solid var(--teal)}.layer:nth-child(3){border-top:4px solid var(--purple)}.layer b{font-size:1.17rem;display:block;margin-bottom:8px}.layer span{font-size:.9rem;color:var(--muted)}
+.matrix{width:100%;border-collapse:collapse;font-size:.94rem}.matrix th,.matrix td{border-bottom:1px solid var(--line);padding:16px 14px;text-align:left;vertical-align:top}.matrix th{background:#f1eef3;color:var(--purple);font-family:Arial,"Hiragino Kaku Gothic ProN",sans-serif;font-size:.78rem;letter-spacing:.04em}.matrix td:first-child{color:var(--teal);font-weight:700;width:24%}
+.five{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.item{padding:20px 14px;background:#f3f0f5;border-top:3px solid var(--purple);min-height:185px}.item small{color:var(--gold);font:700 .67rem Arial,sans-serif}.item b{display:block;margin:7px 0;color:var(--purple)}.item span{font-size:.87rem;color:var(--muted)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}.card{padding:24px;border:1px solid var(--line);background:#fff}.check{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px}.check div{padding:13px 0;border-bottom:1px solid var(--line)}.check div:before{content:"◇";color:var(--gold);margin-right:10px}.note{font-size:.88rem;color:var(--muted);padding-top:18px;border-top:1px solid var(--line)}footer{padding:30px 8%;background:#242238;color:#cbc7d3;font:12px Arial,sans-serif;letter-spacing:.06em}
+@media(max-width:790px){header{padding:55px 7% 48px}main{padding:42px 7% 58px}.triad,.five,.cards,.check{grid-template-columns:1fr}.item{min-height:0}.matrix{display:block;overflow-x:auto;white-space:normal}section{margin-bottom:48px}.quote{font-size:1.12rem;padding:28px 19px}}
+@media print{body{background:#fff}.page{box-shadow:none}.layer,.card,.item{break-inside:avoid}}
+</style></head>
+<body><article class="page">
+<header><div class="eyebrow">INTEGRATED RESEARCH / FIELD IMPLEMENTATION 2026</div><div class="rule"></div><h1>SDL × Drucker ×<br>Restaurant Service Architecture</h1><p class="lead">価値共創からサービス・エコシステムへ。使命と成果を定め、理念を現場の所作・育成・評価へ変換する統合研究資料。</p></header>
+<main>
+<section><div class="num">EXECUTIVE SUMMARY</div><h2>価値共創の理論を、経営と現場へつなぐ</h2><div class="summary">近年のSDLは、企業と顧客の一対一の価値共創から、人・組織・制度・テクノロジーが相互作用するサービス・エコシステムへと発展している。SDLは「価値がどのように生まれるか」を説明し、ドラッカーは「その価値を生み続ける組織をどう経営するか」を示す。Restaurant Service Architectureは、その二つをサービス基準・人材育成・評価・店舗運営へ翻訳し、現場で再現可能にする。</div></section>
+
+<section><div class="num">PART I / SDL LATEST INSIGHTS</div><h2>SDLにおける3つの進展</h2><div class="triad">
+<div class="layer" data-no="DEVELOPMENT 1"><b>SDL × SYSTEMS THINKING</b><h3>個別接客から全体構造へ</h3><span>価値共創を一回の接客ではなく、理念・採用・教育・評価・厨房連携・顧客接点が相互依存する仕組みとして捉える。</span></div>
+<div class="layer" data-no="DEVELOPMENT 2"><b>COOPERATION &amp; COMPETITION</b><h3>共創と対立の調整</h3><span>予算、人材、時間、KPIをめぐる対立を前提とし、共通価値へ向けて調整する制度と意思決定ルールを設計する。</span></div>
+<div class="layer" data-no="DEVELOPMENT 3"><b>AI AS A RESOURCE</b><h3>AIは共創資源</h3><span>AIを価値の主体ではなく、スタッフと顧客の観察・判断・関係構築を支援する資源として位置づける。</span></div>
+</div></section>
+
+<section><div class="num">SERVICE ECOSYSTEM</div><h2>レストランは「価値共創の生態系」である</h2><div class="summary">価値をつくるのはホールスタッフだけではない。顧客、料理人、店長・PM、本部、生産者、取引先、予約・口コミ媒体、AI、そして理念・ルール・評価制度が影響し合う。良いサービスとは、個人の才能だけでなく、この関係全体が機能した結果である。</div><div class="quote">AIがロイヤリティをつくるのではない。<br>人と顧客が価値を共創するために、AIを使う。</div></section>
+
+<section><div class="num">SDL / FIVE-STAGE IMPLEMENTATION</div><h2>SDL現場実装モデル｜5段階</h2><div class="five">
+<div class="item"><small>STEP 1</small><b>価値提案</b><span>店はどのような体験機会と約束を提示するのか。</span></div>
+<div class="item"><small>STEP 2</small><b>資源統合</b><span>料理・空間・人・情報・技術をどう組み合わせるか。</span></div>
+<div class="item"><small>STEP 3</small><b>価値共創</b><span>スタッフと顧客が、その場でどんな体験をつくるか。</span></div>
+<div class="item"><small>STEP 4</small><b>制度設計</b><span>理念・ルール・教育・評価が共創を支えているか。</span></div>
+<div class="item"><small>STEP 5</small><b>生態系管理</b><span>本部・店舗・取引先・媒体・口コミ・AIが連動しているか。</span></div>
+</div></section>
+
+<section><div class="num">PART II / INTEGRATED MODEL</div><h2>ドラッカー × SDL × RSA｜三層モデル</h2><div class="triad">
+<div class="layer" data-no="LAYER 1"><b>DRUCKER</b><h3>目的と経営</h3><span>使命、顧客、顧客価値、成果、実行計画を明確にし、組織の力を成果へ向ける。</span></div>
+<div class="layer" data-no="LAYER 2"><b>SERVICE-DOMINANT LOGIC</b><h3>価値共創の構造</h3><span>人・顧客・料理・空間・情報・技術が資源を統合し、利用場面の中で価値を成立させる。</span></div>
+<div class="layer" data-no="LAYER 3"><b>RESTAURANT SERVICE ARCHITECTURE</b><h3>現場への実装</h3><span>思想を言葉、仕組み、サービス基準、育成、評価へ変換し、店舗で再現する。</span></div>
+</div><div class="quote">ドラッカーが「どこへ向かうか」を定め、<br>SDLが「価値が生まれる構造」を示し、<br>RSAが「現場でどう実現するか」を設計する。</div></section>
+
+<section><div class="num">02 / SHARED PRINCIPLES</div><h2>共通する5つの思想</h2><table class="matrix"><thead><tr><th>SDL</th><th>ドラッカー</th><th>レストランでの意味</th></tr></thead><tbody>
+<tr><td>価値は体験の中で決まる</td><td>顧客から出発する</td><td>店側の自己評価ではなく、再来店・推薦・記憶に残る体験で判断する。</td></tr>
+<tr><td>企業は価値を一方的に提供できない</td><td>顧客が価値と考えるものを問う</td><td>高級食材や丁寧な接客だけで、満足を決めつけない。</td></tr>
+<tr><td>知識と能力が重要な資源</td><td>人の強みを成果へつなげる</td><td>スタッフの感性・判断力・関係構築力を育てる。</td></tr>
+<tr><td>多様な主体が資源を統合する</td><td>共通の目的で組織を機能させる</td><td>厨房・ホール・店長・本部を顧客価値でつなぐ。</td></tr>
+<tr><td>制度が共創を方向づける</td><td>マネジメントが使命を成果に変える</td><td>理念をルール・教育・評価・日々の意思決定へ落とす。</td></tr>
+</tbody></table></section>
+
+<section><div class="num">03 / MANAGEMENT QUESTIONS</div><h2>抽象思想を実務へ変える5つの問い</h2><div class="five">
+<div class="item"><small>QUESTION 1</small><b>使命</b><span>私たちは何のために存在し、どのような時間・関係・記憶を生むのか。</span></div>
+<div class="item"><small>QUESTION 2</small><b>顧客</b><span>誰の、どのような利用目的と状況に応えるのか。</span></div>
+<div class="item"><small>QUESTION 3</small><b>顧客価値</b><span>顧客は何を価値と考え、何を不安・負担と感じるのか。</span></div>
+<div class="item"><small>QUESTION 4</small><b>成果</b><span>売上に加え、再来店・推薦・人材成長・再現性をどう測るか。</span></div>
+<div class="item"><small>QUESTION 5</small><b>実行</b><span>誰が、いつ、どの基準で行動し、学びを改善へつなぐのか。</span></div>
+</div></section>
+
+<section><div class="num">04 / LEADERSHIP</div><h2>店長・PMは「価値共創の環境設計者」</h2><div class="cards">
+<div class="card"><h3>従来の管理</h3><p>シフトを埋める／指示を出す／ミスを減らす／数字を管理する／現場の穴を自分で埋める。</p></div>
+<div class="card"><h3>これからのマネジメント</h3><p>理念を翻訳する／強みを生かす／厨房とホールをつなぐ／顧客反応から学習する／店舗の知を他店へ展開する。</p></div>
+</div><div class="summary" style="margin-top:18px">店長・PMの仕事は、人・料理・情報・時間・技術を顧客価値へ向けて統合し、スタッフが判断力を発揮できる環境をつくることである。</div></section>
+
+<section><div class="num">05 / FIELD CHECK</div><h2>現場実装チェック</h2><div class="check">
+<div>理念がスタッフの日常語になっている</div><div>対象顧客と利用目的が共有されている</div>
+<div>サービス基準に「なぜ」が書かれている</div><div>厨房とホールが顧客価値で会話している</div>
+<div>スタッフの強みが役割に生かされている</div><div>顧客の反応が改善行動につながっている</div>
+<div>売上以外の成果指標が設定されている</div><div>店長が自分で抱えず、仕組みを育てている</div>
+<div>AIが人の観察と判断を支援している</div><div>店舗の学びが他店でも再現されている</div>
+</div></section>
+
+<section><div class="num">06 / DEFINITION</div><h2>Restaurant Service Architectの定義</h2><div class="quote">経営の使命と顧客価値を明確にし、<br>人・料理・空間・仕組み・技術の間に価値共創が起きる構造を設計する。<br>その思想を育成・評価・店舗運営へ翻訳し、<br>サービスが育ち続ける組織をつくる。</div></section>
+
+<section><div class="num">REFERENCES</div><h2>主要参考文献・思想的基盤</h2><div class="note"><p>Peter F. Drucker, <em>The Practice of Management</em>; <em>Management: Tasks, Responsibilities, Practices</em>; <em>The Five Most Important Questions You Will Ever Ask About Your Organization</em>.</p><p>Stephen L. Vargo &amp; Robert F. Lusch, “Evolving to a New Dominant Logic for Marketing” (2004); “Institutions and Axioms: An Extension and Update of Service-Dominant Logic” (2016).</p><p>Elina Jaakkola et al. (2024), “Advancing Service-Dominant Logic with Systems Thinking,” <em>Journal of Business Research</em>, 177, 114592. <a href="https://doi.org/10.1016/j.jbusres.2024.114592">DOI</a></p><p>Angeline Nariswari &amp; Stephen L. Vargo (2024), “Service-Dominant Logic: Theoretical Foundations and Directions,” in <em>Humanism in Marketing</em>. <a href="https://doi.org/10.1007/978-3-031-67155-5_8">DOI</a></p><p>本資料は各思想を逐語的に同一視するものではなく、レストラン経営とサービス人材育成のための実務的統合モデルとして構成した。</p></div></section>
+</main><footer>AKIRA ITOZAWA｜RESTAURANT SERVICE ARCHITECT｜PETIT PLAISIR JAPON</footer>
+</article></body></html>
