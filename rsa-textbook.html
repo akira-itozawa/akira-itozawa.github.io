@@ -2,7 +2,13 @@
 <html lang="ja"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>RSA教本｜第1章–第5章 完全統合版</title>
+<meta name="description" content="RSA教本 第1〜6章。理念・顧客目的・サービス・品質・SDL価値共創を、研修と現場実装シートで学ぶ統合版。">
+<meta property="og:title" content="RSA教本｜第1章〜第6章">
+<meta property="og:description" content="第1章から読み進め、新人から店長・管理者まで現場を設計し直す力を育てる。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://akira-itozawa.github.io/rsa-textbook.html">
+<title>RSA教本｜第1章–第6章 完全統合版</title>
 <style>
 
 :root{--night:#071417;--deep:#112a2c;--teal:#0f766e;--teal2:#dff5ef;--paper:#fbfcf8;--ink:#1f2a2d;--muted:#687579;--gold:#b58a45;--gold2:#dcc28d;--line:#cbd9d6;--warm:#f7f1e7;--red:#8a4e45;--white:#fff}
@@ -22,12 +28,29 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
 @media print{body{background:#fff}.shell{max-width:none;padding:0}.hero,section{margin:0;border-radius:0;box-shadow:none}.hero{page-break-after:always}nav{display:none}section{page-break-before:always}.card,.step,.rung,tr{break-inside:avoid}.line{min-height:44px}.footer{color:#555}}
 
 .master-cover{padding:46px 24px;border-radius:20px;background:linear-gradient(145deg,#071417,#153f3a);color:#fff}.master-cover h1{margin:14px 0 6px;font:clamp(38px,10vw,62px)/1.05 Georgia,serif}.master-cover h1 span{display:block;margin-top:11px;color:#d5bd8a;font:17px/1.5 Georgia,serif}.master-cover p{color:#d9e8e5}.master-map{margin:14px 0;padding:21px;border-radius:17px;background:#f8fbfa}.master-map h2{margin-top:0}.master-links{display:grid;gap:9px}.master-links a{display:block;padding:14px 16px;border-radius:12px;background:#176d65;color:#fff;text-decoration:none;font-weight:900}.chapter-module{display:block;scroll-margin-top:66px}.chapter-module+.chapter-module{margin-top:42px;padding-top:42px;border-top:2px solid #b78944}.backtop{display:block;margin:16px 0;padding:12px;border-radius:11px;background:#dcefe9;color:#174d48;text-align:center;text-decoration:none;font-weight:900}@media print{.master-map{page-break-after:always}.chapter-module+.chapter-module{border:0}}
+
+/* Reading and input refinements — 2026-10-21 */
+html{scroll-padding-top:65px}h1,h2,h3,p,a,td,th{overflow-wrap:anywhere}
+textarea{display:block;width:100%;min-height:88px;padding:12px;border:1px solid #8aa69f;border-radius:9px;background:#fff;color:#1f2a2d;font:inherit;font-size:16px;line-height:1.7;resize:vertical}
+textarea:focus,[contenteditable]:focus{outline:3px solid #b58a45;outline-offset:2px}
+section a{color:#105d57;text-underline-offset:3px}
+.reading-start{display:inline-block;padding:12px 18px;border-radius:12px;background:#dcefe9;color:#123f3b;text-decoration:none;font-weight:800}
+@media(max-width:600px){
+ .scroll{width:100%;margin-left:0;overflow:visible}table{min-width:0!important;font-size:15px;border:0;border-radius:0;background:transparent}
+ table,tbody,tr,td{display:block;width:100%}thead{display:none}
+ tbody tr{margin:14px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+ tbody td{border:0;padding:8px 2px}tbody td+td{border-top:1px solid #e1e9e6}
+ td[data-label]:before{content:attr(data-label);display:block;margin-bottom:4px;color:#105d57;font-size:12px;font-weight:900}
+ .hero h1{font-size:35px;line-height:1.24}.hero h1 span{font-size:18px;line-height:1.5}.chapter{font-size:20px}
+ .level{white-space:normal}nav a{font-size:13px;min-height:42px;padding:8px 12px}.hint,.small{font-size:13px}
+}
+@media print{textarea{height:auto;min-height:110px;overflow:visible;border-color:#7c8f8b}[contenteditable]{min-height:40px}.reading-start{display:none}}
 </style></head><body>
 <main class="shell">
 <header id="top" class="master-cover">
   <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — THE COMPLETE FRAMEWORK</div>
-  <h1>RSA教本<span>Philosophy｜第1章–第5章 完全統合版</span></h1>
-  <p>全内容を一つのファイルに収録。別ファイルへ移動せず、章一覧から直接読めます。</p>
+  <h1>RSA教本<span>Philosophy｜第1章–第6章 完全統合版</span></h1>
+  <p>全73章構成のうち、第1〜6章の深化本文・研修・実装シートを収録。2026年10月21日改訂。</p><a class="reading-start" href="#chapter-1">第1章から読む</a>
 </header>
 <section id="toc" class="master-map">
   <span class="tag">CONTENTS</span><h2>章一覧</h2>
@@ -37,6 +60,7 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
     <a href="#chapter-3">03｜サービスとは何か</a>
     <a href="#chapter-4">04｜ServiceとHospitality</a>
     <a href="#chapter-5">05｜ミシュランサービス思想</a>
+    <a href="#chapter-6">06｜SDL｜価値共創</a>
   </div>
 </section>
 <article id="chapter-1" class="chapter-module">
@@ -70,12 +94,12 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>論点</th><th>現状の不整合</th><th>今回の修正</th><th>次章・巻への接続</th></tr></thead>
     <tbody>
-      <tr><td class="key">章の守備範囲</td><td>第1章でService・Hospitality・SDLまで説明すると、第3・4・6章と重複する。</td><td>第1章は「レストランというシステム」の定義に限定。各概念は位置づけだけ示す。</td><td>第2章で顧客目的、第3章でService、第4章でHospitality、第6章で価値共創を深化。</td></tr>
-      <tr><td class="key">ValueとExperience</td><td>体験が良ければ価値がある、と同一視しやすい。</td><td>Experienceは主観的な過程、Valueは利用場面で受け取る意味・便益として区別。</td><td>第7〜18章の体験設計を、第37章以降の経営成果へ接続。</td></tr>
-      <tr><td class="key">対象者レベル</td><td>新人にも管理者にも同じ「レストラン観」を求めると評価できない。</td><td>L1は場面を説明、L2は関係を解釈、L3は改善を設計、L4は経営構造を更新。</td><td>全73章の役割別到達証拠へ展開。</td></tr>
-      <tr><td class="key">理念から実装</td><td>理念が抽象語のまま現場行動へ降りない。</td><td>約束→資源→相互作用→価値の証拠→学習の順で一場面を読み解く。</td><td>第18章Blueprint、第46〜55章RSA理論、第56〜64章現場実装へ接続。</td></tr>
-      <tr><td class="key">評価対象</td><td>「理解した」「共感した」で修了しやすい。</td><td>観察事実・解釈理由・再設計案・検証指標を成果物として残す。</td><td>Human Skill Mapは人の能力、Architect Scorecardは設計成果を評価。</td></tr>
-      <tr><td class="key">再現性</td><td>優秀者の気づきが本人だけに留まる。</td><td>一場面の学びを、問い・証拠・改善案の3点で次の2人へ共有する。</td><td>重点指導育成から全体へのバイラルな再現性を形成。</td></tr>
+      <tr><td class="key" data-label="論点">章の守備範囲</td><td data-label="現状の不整合">第1章でService・Hospitality・SDLまで説明すると、第3・4・6章と重複する。</td><td data-label="今回の修正">第1章は「レストランというシステム」の定義に限定。各概念は位置づけだけ示す。</td><td data-label="次章・巻への接続">第2章で顧客目的、第3章でService、第4章でHospitality、第6章で価値共創を深化。</td></tr>
+      <tr><td class="key" data-label="論点">ValueとExperience</td><td data-label="現状の不整合">体験が良ければ価値がある、と同一視しやすい。</td><td data-label="今回の修正">Experienceは主観的な過程、Valueは利用場面で受け取る意味・便益として区別。</td><td data-label="次章・巻への接続">第7〜18章の体験設計を、第37章以降の経営成果へ接続。</td></tr>
+      <tr><td class="key" data-label="論点">対象者レベル</td><td data-label="現状の不整合">新人にも管理者にも同じ「レストラン観」を求めると評価できない。</td><td data-label="今回の修正">L1は場面を説明、L2は関係を解釈、L3は改善を設計、L4は経営構造を更新。</td><td data-label="次章・巻への接続">全73章の役割別到達証拠へ展開。</td></tr>
+      <tr><td class="key" data-label="論点">理念から実装</td><td data-label="現状の不整合">理念が抽象語のまま現場行動へ降りない。</td><td data-label="今回の修正">約束→資源→相互作用→価値の証拠→学習の順で一場面を読み解く。</td><td data-label="次章・巻への接続">第18章Blueprint、第46〜55章RSA理論、第56〜64章現場実装へ接続。</td></tr>
+      <tr><td class="key" data-label="論点">評価対象</td><td data-label="現状の不整合">「理解した」「共感した」で修了しやすい。</td><td data-label="今回の修正">観察事実・解釈理由・再設計案・検証指標を成果物として残す。</td><td data-label="次章・巻への接続">Human Skill Mapは人の能力、Architect Scorecardは設計成果を評価。</td></tr>
+      <tr><td class="key" data-label="論点">再現性</td><td data-label="現状の不整合">優秀者の気づきが本人だけに留まる。</td><td data-label="今回の修正">一場面の学びを、問い・証拠・改善案の3点で次の2人へ共有する。</td><td data-label="次章・巻への接続">重点指導育成から全体へのバイラルな再現性を形成。</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -187,11 +211,11 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
     <tbody>
-      <tr><td class="key">観察</td><td>印象や評価語が中心。</td><td>事実を一部記録できる。</td><td>順序・時間・反応を事実で記録。</td><td>他者も検証できる観察条件を設計。</td></tr>
-      <tr><td class="key">解釈</td><td>原因を人の性格に置く。</td><td>顧客目的を一つ推測。</td><td>複数仮説と接続の断点を説明。</td><td>部門・時間・仕組みを横断して共通原因を特定。</td></tr>
-      <tr><td class="key">再設計</td><td>精神論または大きすぎる案。</td><td>行動案はあるが根拠が弱い。</td><td>小さく試せる案と理由がある。</td><td>基準・教育・配置・指標へ反映できる。</td></tr>
-      <tr><td class="key">価値均衡</td><td>顧客満足だけで判断。</td><td>二者への影響を説明。</td><td>三者の価値と負担を検討。</td><td>短期と長期の持続性まで判断。</td></tr>
-      <tr><td class="key">展開</td><td>本人だけで完結。</td><td>結果を報告できる。</td><td>問い・証拠・改善案を一人へ共有。</td><td>二人以上が別場面で再現し、結果から更新。</td></tr>
+      <tr><td class="key" data-label="評価軸">観察</td><td data-label="1｜未形成">印象や評価語が中心。</td><td data-label="2｜理解">事実を一部記録できる。</td><td data-label="3｜実践">順序・時間・反応を事実で記録。</td><td data-label="4｜設計・展開">他者も検証できる観察条件を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">解釈</td><td data-label="1｜未形成">原因を人の性格に置く。</td><td data-label="2｜理解">顧客目的を一つ推測。</td><td data-label="3｜実践">複数仮説と接続の断点を説明。</td><td data-label="4｜設計・展開">部門・時間・仕組みを横断して共通原因を特定。</td></tr>
+      <tr><td class="key" data-label="評価軸">再設計</td><td data-label="1｜未形成">精神論または大きすぎる案。</td><td data-label="2｜理解">行動案はあるが根拠が弱い。</td><td data-label="3｜実践">小さく試せる案と理由がある。</td><td data-label="4｜設計・展開">基準・教育・配置・指標へ反映できる。</td></tr>
+      <tr><td class="key" data-label="評価軸">価値均衡</td><td data-label="1｜未形成">顧客満足だけで判断。</td><td data-label="2｜理解">二者への影響を説明。</td><td data-label="3｜実践">三者の価値と負担を検討。</td><td data-label="4｜設計・展開">短期と長期の持続性まで判断。</td></tr>
+      <tr><td class="key" data-label="評価軸">展開</td><td data-label="1｜未形成">本人だけで完結。</td><td data-label="2｜理解">結果を報告できる。</td><td data-label="3｜実践">問い・証拠・改善案を一人へ共有。</td><td data-label="4｜設計・展開">二人以上が別場面で再現し、結果から更新。</td></tr>
     </tbody>
   </table></div>
   <h3>役割別の修了条件</h3>
@@ -229,14 +253,14 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>接続先</th><th>第1章で得た問い</th><th>次に深める内容</th></tr></thead>
     <tbody>
-      <tr><td class="level">第2章</td><td>顧客は何を目的に、このシステムへ参加するのか。</td><td>「人は何を食べに来るのか」—機能・感情・社会・自己の目的。</td></tr>
-      <tr><td class="level">II Experience</td><td>複数接点をどのようにつなぐか。</td><td>ジャーニー、五感、空間、動線、時間、Blueprint。</td></tr>
-      <tr><td class="level">III Psychology</td><td>顧客は状況をどう知覚・解釈するか。</td><td>第一印象、信頼、認知、感情、記憶、意思決定。</td></tr>
-      <tr><td class="level">IV Development</td><td>判断できる人をどう育てるか。</td><td>学習、対話、フィードバック、指導、チーム。</td></tr>
-      <tr><td class="level">V Management</td><td>三者の価値をどう持続させるか。</td><td>収益、品質、役割、指標、会議、組織運営。</td></tr>
-      <tr><td class="level">VI RSA</td><td>断片を一つの設計構造へどう統合するか。</td><td>7 Layers、OIDIE、Value Triangle、Service Quality Loop。</td></tr>
-      <tr><td class="level">VII Implementation</td><td>設計を日常行動へどう移すか。</td><td>実装、観察、修正、定着、複数人への展開。</td></tr>
-      <tr><td class="level">VIII Future</td><td>変化しても価値を生む原則は何か。</td><td>技術・社会・働き方の変化と、人間中心の再設計。</td></tr>
+      <tr><td class="level" data-label="接続先">第2章</td><td data-label="第1章で得た問い">顧客は何を目的に、このシステムへ参加するのか。</td><td data-label="次に深める内容">「人は何を食べに来るのか」—機能・感情・社会・自己の目的。</td></tr>
+      <tr><td class="level" data-label="接続先">II Experience</td><td data-label="第1章で得た問い">複数接点をどのようにつなぐか。</td><td data-label="次に深める内容">ジャーニー、五感、空間、動線、時間、Blueprint。</td></tr>
+      <tr><td class="level" data-label="接続先">III Psychology</td><td data-label="第1章で得た問い">顧客は状況をどう知覚・解釈するか。</td><td data-label="次に深める内容">第一印象、信頼、認知、感情、記憶、意思決定。</td></tr>
+      <tr><td class="level" data-label="接続先">IV Development</td><td data-label="第1章で得た問い">判断できる人をどう育てるか。</td><td data-label="次に深める内容">学習、対話、フィードバック、指導、チーム。</td></tr>
+      <tr><td class="level" data-label="接続先">V Management</td><td data-label="第1章で得た問い">三者の価値をどう持続させるか。</td><td data-label="次に深める内容">収益、品質、役割、指標、会議、組織運営。</td></tr>
+      <tr><td class="level" data-label="接続先">VI RSA</td><td data-label="第1章で得た問い">断片を一つの設計構造へどう統合するか。</td><td data-label="次に深める内容">7 Layers、OIDIE、Value Triangle、Service Quality Loop。</td></tr>
+      <tr><td class="level" data-label="接続先">VII Implementation</td><td data-label="第1章で得た問い">設計を日常行動へどう移すか。</td><td data-label="次に深める内容">実装、観察、修正、定着、複数人への展開。</td></tr>
+      <tr><td class="level" data-label="接続先">VIII Future</td><td data-label="第1章で得た問い">変化しても価値を生む原則は何か。</td><td data-label="次に深める内容">技術・社会・働き方の変化と、人間中心の再設計。</td></tr>
     </tbody>
   </table></div>
   <div class="callout"><strong>次の本文制作順：</strong>第2章「人は何を食べに来るのか」。第1章のシステム定義を受け、顧客目的を機能・感情・社会・自己の四層から読み、観察できる行動証拠へ落とす。</div>
@@ -276,12 +300,12 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>論点</th><th>混同しやすい状態</th><th>公式整理</th><th>接続章</th></tr></thead>
     <tbody>
-      <tr><td class="key">目的／ニーズ</td><td>欲しいものをすべてニーズと呼ぶ。</td><td>目的＝望む変化。ニーズ＝その実現に重要な条件。</td><td>2・19・22</td></tr>
-      <tr><td class="key">好み／依頼</td><td>注文や依頼を最終目的とみなす。</td><td>好み＝選択傾向。依頼＝表明された具体行動。目的はその背後にある。</td><td>2・24・34</td></tr>
-      <tr><td class="key">観察／解釈</td><td>服装・年齢・国籍から目的を決めつける。</td><td>観察事実と目的仮説を分け、複数仮説を短い確認で更新する。</td><td>19・20・24・49</td></tr>
-      <tr><td class="key">目的／体験</td><td>店がつくりたい体験を先に決める。</td><td>目的が設計条件、Experienceは複数接点を通した主観的過程。</td><td>7・10〜18</td></tr>
-      <tr><td class="key">目的／価値</td><td>目的を推測しただけで価値提供とみなす。</td><td>Customer Valueは、顧客の反応・選択・言葉・行動変化で確認する。</td><td>6・37・50</td></tr>
-      <tr><td class="key">個別対応／基準</td><td>個別対応をスタッフのセンスに任せる。</td><td>守るStandardを固定し、時間・情報・距離・参加度をJudgmentで調整する。</td><td>4・29・48・53</td></tr>
+      <tr><td class="key" data-label="論点">目的／ニーズ</td><td data-label="混同しやすい状態">欲しいものをすべてニーズと呼ぶ。</td><td data-label="公式整理">目的＝望む変化。ニーズ＝その実現に重要な条件。</td><td data-label="接続章">2・19・22</td></tr>
+      <tr><td class="key" data-label="論点">好み／依頼</td><td data-label="混同しやすい状態">注文や依頼を最終目的とみなす。</td><td data-label="公式整理">好み＝選択傾向。依頼＝表明された具体行動。目的はその背後にある。</td><td data-label="接続章">2・24・34</td></tr>
+      <tr><td class="key" data-label="論点">観察／解釈</td><td data-label="混同しやすい状態">服装・年齢・国籍から目的を決めつける。</td><td data-label="公式整理">観察事実と目的仮説を分け、複数仮説を短い確認で更新する。</td><td data-label="接続章">19・20・24・49</td></tr>
+      <tr><td class="key" data-label="論点">目的／体験</td><td data-label="混同しやすい状態">店がつくりたい体験を先に決める。</td><td data-label="公式整理">目的が設計条件、Experienceは複数接点を通した主観的過程。</td><td data-label="接続章">7・10〜18</td></tr>
+      <tr><td class="key" data-label="論点">目的／価値</td><td data-label="混同しやすい状態">目的を推測しただけで価値提供とみなす。</td><td data-label="公式整理">Customer Valueは、顧客の反応・選択・言葉・行動変化で確認する。</td><td data-label="接続章">6・37・50</td></tr>
+      <tr><td class="key" data-label="論点">個別対応／基準</td><td data-label="混同しやすい状態">個別対応をスタッフのセンスに任せる。</td><td data-label="公式整理">守るStandardを固定し、時間・情報・距離・参加度をJudgmentで調整する。</td><td data-label="接続章">4・29・48・53</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -336,11 +360,11 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>調整軸</th><th>読むこと</th><th>調整例</th><th>守る基準</th></tr></thead>
     <tbody>
-      <tr><td class="key">時間</td><td>急ぎ、余白、会話の流れ</td><td>提供間隔、先読み、会計準備</td><td>安全・品質・約束時間</td></tr>
-      <tr><td class="key">情報</td><td>知識、関心、不安、選択負荷</td><td>説明の長さ、順序、比較軸</td><td>正確性・アレルギー確認</td></tr>
-      <tr><td class="key">距離</td><td>会話、集中、援助の必要度</td><td>訪卓頻度、視線、声量</td><td>必要時に支援可能な状態</td></tr>
-      <tr><td class="key">参加</td><td>自分で選びたい／任せたい</td><td>選択肢、取り分け、提案の幅</td><td>尊重・公平・衛生</td></tr>
-      <tr><td class="key">回復</td><td>何が失われ、何を戻したいか</td><td>説明、代替、順序変更、謝意</td><td>事実確認・権限・再発防止</td></tr>
+      <tr><td class="key" data-label="調整軸">時間</td><td data-label="読むこと">急ぎ、余白、会話の流れ</td><td data-label="調整例">提供間隔、先読み、会計準備</td><td data-label="守る基準">安全・品質・約束時間</td></tr>
+      <tr><td class="key" data-label="調整軸">情報</td><td data-label="読むこと">知識、関心、不安、選択負荷</td><td data-label="調整例">説明の長さ、順序、比較軸</td><td data-label="守る基準">正確性・アレルギー確認</td></tr>
+      <tr><td class="key" data-label="調整軸">距離</td><td data-label="読むこと">会話、集中、援助の必要度</td><td data-label="調整例">訪卓頻度、視線、声量</td><td data-label="守る基準">必要時に支援可能な状態</td></tr>
+      <tr><td class="key" data-label="調整軸">参加</td><td data-label="読むこと">自分で選びたい／任せたい</td><td data-label="調整例">選択肢、取り分け、提案の幅</td><td data-label="守る基準">尊重・公平・衛生</td></tr>
+      <tr><td class="key" data-label="調整軸">回復</td><td data-label="読むこと">何が失われ、何を戻したいか</td><td data-label="調整例">説明、代替、順序変更、謝意</td><td data-label="守る基準">事実確認・権限・再発防止</td></tr>
     </tbody>
   </table></div>
 
@@ -411,11 +435,11 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
     <tbody>
-      <tr><td class="key">事実分離</td><td>推測を事実として扱う。</td><td>言葉と行動を一部記録。</td><td>事実・解釈・未知を分ける。</td><td>チームの観察基準を校正。</td></tr>
-      <tr><td class="key">仮説形成</td><td>属性で一つに決める。</td><td>一つの目的を推測。</td><td>異なる複数仮説を持つ。</td><td>仮説の偏りを発見し修正。</td></tr>
-      <tr><td class="key">確認</td><td>確認せず行動。</td><td>質問するが負担が大きい。</td><td>短い質問・選択肢で確認。</td><td>接点別の確認方法を設計。</td></tr>
-      <tr><td class="key">調整</td><td>全員へ同じ対応。</td><td>目的と行動の接続が弱い。</td><td>目的に沿って五軸を調整。</td><td>基準と裁量範囲を更新。</td></tr>
-      <tr><td class="key">検証・展開</td><td>感想で終了。</td><td>結果を報告。</td><td>反応証拠から仮説を更新。</td><td>二人以上が別場面で再現。</td></tr>
+      <tr><td class="key" data-label="評価軸">事実分離</td><td data-label="1｜未形成">推測を事実として扱う。</td><td data-label="2｜理解">言葉と行動を一部記録。</td><td data-label="3｜実践">事実・解釈・未知を分ける。</td><td data-label="4｜設計・展開">チームの観察基準を校正。</td></tr>
+      <tr><td class="key" data-label="評価軸">仮説形成</td><td data-label="1｜未形成">属性で一つに決める。</td><td data-label="2｜理解">一つの目的を推測。</td><td data-label="3｜実践">異なる複数仮説を持つ。</td><td data-label="4｜設計・展開">仮説の偏りを発見し修正。</td></tr>
+      <tr><td class="key" data-label="評価軸">確認</td><td data-label="1｜未形成">確認せず行動。</td><td data-label="2｜理解">質問するが負担が大きい。</td><td data-label="3｜実践">短い質問・選択肢で確認。</td><td data-label="4｜設計・展開">接点別の確認方法を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">調整</td><td data-label="1｜未形成">全員へ同じ対応。</td><td data-label="2｜理解">目的と行動の接続が弱い。</td><td data-label="3｜実践">目的に沿って五軸を調整。</td><td data-label="4｜設計・展開">基準と裁量範囲を更新。</td></tr>
+      <tr><td class="key" data-label="評価軸">検証・展開</td><td data-label="1｜未形成">感想で終了。</td><td data-label="2｜理解">結果を報告。</td><td data-label="3｜実践">反応証拠から仮説を更新。</td><td data-label="4｜設計・展開">二人以上が別場面で再現。</td></tr>
     </tbody>
   </table></div>
   <h3>役割別の修了条件</h3>
@@ -453,13 +477,13 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>接続先</th><th>第2章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
     <tbody>
-      <tr><td class="level">第3章</td><td>読んだ目的へ、店は何を約束し再現するのか。</td><td>Serviceの定義、約束、Standard、再現性。</td></tr>
-      <tr><td class="level">第4章</td><td>同じ約束を相手に応じてどう調整するか。</td><td>ServiceとHospitality、判断と裁量。</td></tr>
-      <tr><td class="level">第6章</td><td>顧客の参加で価値はどう成立するか。</td><td>Value Co-creationと資源統合。</td></tr>
-      <tr><td class="level">II</td><td>目的を接点全体でどう支えるか。</td><td>ジャーニー、時間、五感、Blueprint。</td></tr>
-      <tr><td class="level">III</td><td>人は情報と状況をどう知覚するか。</td><td>第一印象、信頼、認知、感情、記憶。</td></tr>
-      <tr><td class="level">IV</td><td>決めつけずに判断できる人をどう育てるか。</td><td>対話、フィードバック、リフレクション。</td></tr>
-      <tr><td class="level">V–VII</td><td>目的理解を仕組みとしてどう残すか。</td><td>予約情報、基準、教育、会議、指標、実装・定着。</td></tr>
+      <tr><td class="level" data-label="接続先">第3章</td><td data-label="第2章から持ち越す問い">読んだ目的へ、店は何を約束し再現するのか。</td><td data-label="次に深める内容">Serviceの定義、約束、Standard、再現性。</td></tr>
+      <tr><td class="level" data-label="接続先">第4章</td><td data-label="第2章から持ち越す問い">同じ約束を相手に応じてどう調整するか。</td><td data-label="次に深める内容">ServiceとHospitality、判断と裁量。</td></tr>
+      <tr><td class="level" data-label="接続先">第6章</td><td data-label="第2章から持ち越す問い">顧客の参加で価値はどう成立するか。</td><td data-label="次に深める内容">Value Co-creationと資源統合。</td></tr>
+      <tr><td class="level" data-label="接続先">II</td><td data-label="第2章から持ち越す問い">目的を接点全体でどう支えるか。</td><td data-label="次に深める内容">ジャーニー、時間、五感、Blueprint。</td></tr>
+      <tr><td class="level" data-label="接続先">III</td><td data-label="第2章から持ち越す問い">人は情報と状況をどう知覚するか。</td><td data-label="次に深める内容">第一印象、信頼、認知、感情、記憶。</td></tr>
+      <tr><td class="level" data-label="接続先">IV</td><td data-label="第2章から持ち越す問い">決めつけずに判断できる人をどう育てるか。</td><td data-label="次に深める内容">対話、フィードバック、リフレクション。</td></tr>
+      <tr><td class="level" data-label="接続先">V–VII</td><td data-label="第2章から持ち越す問い">目的理解を仕組みとしてどう残すか。</td><td data-label="次に深める内容">予約情報、基準、教育、会議、指標、実装・定着。</td></tr>
     </tbody>
   </table></div>
   <div class="callout"><strong>次の本文制作：</strong>第3章「サービスとは何か」。顧客目的に対して店が約束する価値を、再現可能な仕組みと行動へ変える構造を定義する。</div>
@@ -499,12 +523,12 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>論点</th><th>混在していた意味</th><th>今回の公式整理</th><th>深化する章</th></tr></thead>
     <tbody>
-      <tr><td class="key">Service／Hospitality</td><td>どちらも親切・良い接客として扱う。</td><td>Service＝約束を再現する価値提供。Hospitality＝相手に応じて調整する他者中心の判断。</td><td>3・4・52</td></tr>
-      <tr><td class="key">Service／Experience</td><td>提供行動と顧客体験を同一視する。</td><td>Serviceは提供側の構造と行動。Experienceは接点を通じた顧客の主観的過程。</td><td>3・7・10</td></tr>
-      <tr><td class="key">Service／Operation</td><td>作業手順が回ればサービスと考える。</td><td>Operationは資源を動かす工程。Serviceは顧客価値を実現する目的を持つ。</td><td>3・28・48</td></tr>
-      <tr><td class="key">Standard／Manual</td><td>基準と手順書を同じものとして扱う。</td><td>Standard＝守る最低状態。Manual＝基準を実行する支援文書。</td><td>3・29・53</td></tr>
-      <tr><td class="key">Promise／Philosophy</td><td>理念を掲げれば顧客との約束になる。</td><td>Philosophyは判断の根。Promiseは顧客が接点で受け取れる状態への翻訳。</td><td>1・3・46・47</td></tr>
-      <tr><td class="key">Quality／Compliance</td><td>手順遵守率だけでサービス品質を測る。</td><td>Service Qualityは、約束の再現性と状況に応じた適切な調整の両方で見る。</td><td>18・53・55</td></tr>
+      <tr><td class="key" data-label="論点">Service／Hospitality</td><td data-label="混在していた意味">どちらも親切・良い接客として扱う。</td><td data-label="今回の公式整理">Service＝約束を再現する価値提供。Hospitality＝相手に応じて調整する他者中心の判断。</td><td data-label="深化する章">3・4・52</td></tr>
+      <tr><td class="key" data-label="論点">Service／Experience</td><td data-label="混在していた意味">提供行動と顧客体験を同一視する。</td><td data-label="今回の公式整理">Serviceは提供側の構造と行動。Experienceは接点を通じた顧客の主観的過程。</td><td data-label="深化する章">3・7・10</td></tr>
+      <tr><td class="key" data-label="論点">Service／Operation</td><td data-label="混在していた意味">作業手順が回ればサービスと考える。</td><td data-label="今回の公式整理">Operationは資源を動かす工程。Serviceは顧客価値を実現する目的を持つ。</td><td data-label="深化する章">3・28・48</td></tr>
+      <tr><td class="key" data-label="論点">Standard／Manual</td><td data-label="混在していた意味">基準と手順書を同じものとして扱う。</td><td data-label="今回の公式整理">Standard＝守る最低状態。Manual＝基準を実行する支援文書。</td><td data-label="深化する章">3・29・53</td></tr>
+      <tr><td class="key" data-label="論点">Promise／Philosophy</td><td data-label="混在していた意味">理念を掲げれば顧客との約束になる。</td><td data-label="今回の公式整理">Philosophyは判断の根。Promiseは顧客が接点で受け取れる状態への翻訳。</td><td data-label="深化する章">1・3・46・47</td></tr>
+      <tr><td class="key" data-label="論点">Quality／Compliance</td><td data-label="混在していた意味">手順遵守率だけでサービス品質を測る。</td><td data-label="今回の公式整理">Service Qualityは、約束の再現性と状況に応じた適切な調整の両方で見る。</td><td data-label="深化する章">18・53・55</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -559,10 +583,10 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>工程</th><th>作業としての見方</th><th>Serviceとしての問い</th><th>観察証拠</th></tr></thead>
     <tbody>
-      <tr><td class="key">予約確認</td><td>項目を入力する。</td><td>来店前の不確実性を何まで減らすか。</td><td>再確認、誤解、到着時の迷い。</td></tr>
-      <tr><td class="key">案内</td><td>席まで連れて行く。</td><td>場への移行を、安心かつ自然にできるか。</td><td>立ち止まり、視線、荷物、着席までの流れ。</td></tr>
-      <tr><td class="key">説明</td><td>決めた文章を話す。</td><td>顧客が選択・理解・期待形成できる情報か。</td><td>再質問、選択時間、聞き返し、反応。</td></tr>
-      <tr><td class="key">会計</td><td>金額を処理する。</td><td>食事の終わりを、正確さと余韻の両方で整えるか。</td><td>待ち時間、訂正、退店時の言葉・行動。</td></tr>
+      <tr><td class="key" data-label="工程">予約確認</td><td data-label="作業としての見方">項目を入力する。</td><td data-label="Serviceとしての問い">来店前の不確実性を何まで減らすか。</td><td data-label="観察証拠">再確認、誤解、到着時の迷い。</td></tr>
+      <tr><td class="key" data-label="工程">案内</td><td data-label="作業としての見方">席まで連れて行く。</td><td data-label="Serviceとしての問い">場への移行を、安心かつ自然にできるか。</td><td data-label="観察証拠">立ち止まり、視線、荷物、着席までの流れ。</td></tr>
+      <tr><td class="key" data-label="工程">説明</td><td data-label="作業としての見方">決めた文章を話す。</td><td data-label="Serviceとしての問い">顧客が選択・理解・期待形成できる情報か。</td><td data-label="観察証拠">再質問、選択時間、聞き返し、反応。</td></tr>
+      <tr><td class="key" data-label="工程">会計</td><td data-label="作業としての見方">金額を処理する。</td><td data-label="Serviceとしての問い">食事の終わりを、正確さと余韻の両方で整えるか。</td><td data-label="観察証拠">待ち時間、訂正、退店時の言葉・行動。</td></tr>
     </tbody>
   </table></div>
 
@@ -643,11 +667,11 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
     <tbody>
-      <tr><td class="key">約束の明確さ</td><td>抽象語のみ。</td><td>顧客状態を書くが曖昧。</td><td>意味があり観察可能な状態。</td><td>複数接点で一貫した約束を設計。</td></tr>
-      <tr><td class="key">基準化</td><td>人の意識に依存。</td><td>行動案はあるが完了状態が不明。</td><td>最低状態・役割・資源が明確。</td><td>繁忙・例外を含む支援構造を設計。</td></tr>
-      <tr><td class="key">判断</td><td>基準を無視または機械的適用。</td><td>調整するが理由が弱い。</td><td>守る部分と変える部分を説明。</td><td>裁量範囲と判断条件を校正。</td></tr>
-      <tr><td class="key">証拠</td><td>印象で評価。</td><td>行動だけを確認。</td><td>行動・状態・顧客反応を確認。</td><td>証拠から基準・支援を更新。</td></tr>
-      <tr><td class="key">展開</td><td>本人だけで完結。</td><td>説明はできる。</td><td>一人へ実践を支援。</td><td>二人以上が別接点で再現し校正。</td></tr>
+      <tr><td class="key" data-label="評価軸">約束の明確さ</td><td data-label="1｜未形成">抽象語のみ。</td><td data-label="2｜理解">顧客状態を書くが曖昧。</td><td data-label="3｜実践">意味があり観察可能な状態。</td><td data-label="4｜設計・展開">複数接点で一貫した約束を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">基準化</td><td data-label="1｜未形成">人の意識に依存。</td><td data-label="2｜理解">行動案はあるが完了状態が不明。</td><td data-label="3｜実践">最低状態・役割・資源が明確。</td><td data-label="4｜設計・展開">繁忙・例外を含む支援構造を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">判断</td><td data-label="1｜未形成">基準を無視または機械的適用。</td><td data-label="2｜理解">調整するが理由が弱い。</td><td data-label="3｜実践">守る部分と変える部分を説明。</td><td data-label="4｜設計・展開">裁量範囲と判断条件を校正。</td></tr>
+      <tr><td class="key" data-label="評価軸">証拠</td><td data-label="1｜未形成">印象で評価。</td><td data-label="2｜理解">行動だけを確認。</td><td data-label="3｜実践">行動・状態・顧客反応を確認。</td><td data-label="4｜設計・展開">証拠から基準・支援を更新。</td></tr>
+      <tr><td class="key" data-label="評価軸">展開</td><td data-label="1｜未形成">本人だけで完結。</td><td data-label="2｜理解">説明はできる。</td><td data-label="3｜実践">一人へ実践を支援。</td><td data-label="4｜設計・展開">二人以上が別接点で再現し校正。</td></tr>
     </tbody>
   </table></div>
   <h3>役割別の修了条件</h3>
@@ -685,13 +709,13 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>接続先</th><th>第3章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
     <tbody>
-      <tr><td class="level">第4章</td><td>再現すべき約束を、相手に応じてどう調整するか。</td><td>ServiceとHospitality、基準と裁量、他者中心の判断。</td></tr>
-      <tr><td class="level">第6章</td><td>店の資源と顧客参加から、価値はどう成立するか。</td><td>SDL、Value Co-creation、資源統合。</td></tr>
-      <tr><td class="level">II</td><td>約束を複数接点でどう一貫させるか。</td><td>ジャーニー、五感、時間、Blueprint。</td></tr>
-      <tr><td class="level">III</td><td>顧客はServiceをどう知覚・解釈するか。</td><td>第一印象、信頼、認知、感情、記憶。</td></tr>
-      <tr><td class="level">IV</td><td>基準と判断を実践できる人をどう育てるか。</td><td>練習、フィードバック、リフレクション、チーム学習。</td></tr>
-      <tr><td class="level">V</td><td>Serviceを経営成果と持続性へどうつなぐか。</td><td>品質、役割、会議、KPI、収益、生産性。</td></tr>
-      <tr><td class="level">VI–VII</td><td>約束の断点をどう診断し、定着させるか。</td><td>RSA構造診断、Quality Loop、Implementation、Embedding。</td></tr>
+      <tr><td class="level" data-label="接続先">第4章</td><td data-label="第3章から持ち越す問い">再現すべき約束を、相手に応じてどう調整するか。</td><td data-label="次に深める内容">ServiceとHospitality、基準と裁量、他者中心の判断。</td></tr>
+      <tr><td class="level" data-label="接続先">第6章</td><td data-label="第3章から持ち越す問い">店の資源と顧客参加から、価値はどう成立するか。</td><td data-label="次に深める内容">SDL、Value Co-creation、資源統合。</td></tr>
+      <tr><td class="level" data-label="接続先">II</td><td data-label="第3章から持ち越す問い">約束を複数接点でどう一貫させるか。</td><td data-label="次に深める内容">ジャーニー、五感、時間、Blueprint。</td></tr>
+      <tr><td class="level" data-label="接続先">III</td><td data-label="第3章から持ち越す問い">顧客はServiceをどう知覚・解釈するか。</td><td data-label="次に深める内容">第一印象、信頼、認知、感情、記憶。</td></tr>
+      <tr><td class="level" data-label="接続先">IV</td><td data-label="第3章から持ち越す問い">基準と判断を実践できる人をどう育てるか。</td><td data-label="次に深める内容">練習、フィードバック、リフレクション、チーム学習。</td></tr>
+      <tr><td class="level" data-label="接続先">V</td><td data-label="第3章から持ち越す問い">Serviceを経営成果と持続性へどうつなぐか。</td><td data-label="次に深める内容">品質、役割、会議、KPI、収益、生産性。</td></tr>
+      <tr><td class="level" data-label="接続先">VI–VII</td><td data-label="第3章から持ち越す問い">約束の断点をどう診断し、定着させるか。</td><td data-label="次に深める内容">RSA構造診断、Quality Loop、Implementation、Embedding。</td></tr>
     </tbody>
   </table></div>
   <div class="callout"><strong>次の本文制作：</strong>第4章「ServiceとHospitality」。再現すべき約束と、相手に応じて調整する判断を対立させず、一つの品質構造として統合する。</div>
@@ -731,12 +755,12 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>論点</th><th>不整合</th><th>今回の修正</th><th>接続先</th></tr></thead>
     <tbody>
-      <tr><td class="key">Service／Hospitality</td><td>両方を親切・良い接客として混同。</td><td>Service＝約束の再現。Hospitality＝約束を相手に届く形へ調整する判断。</td><td>3・4・52</td></tr>
-      <tr><td class="key">Standard／Discretion</td><td>基準か裁量かの二者択一。</td><td>Standardが守る範囲を示し、Discretionは変更可能域で働く。</td><td>4・29・53</td></tr>
-      <tr><td class="key">Equality／Fairness</td><td>全員に同じ行動をすることを公平と誤認。</td><td>共通の約束と評価原則を守り、必要に応じて提供方法を変える。</td><td>4・25・43</td></tr>
-      <tr><td class="key">Personalization／Privacy</td><td>個別化のためなら情報収集や推測を許容。</td><td>必要最小限の情報、確認可能な仮説、記録目的とアクセス範囲を守る。</td><td>4・11・22</td></tr>
-      <tr><td class="key">Delight／Recovery</td><td>驚かせる演出と、失われた価値の回復を混在。</td><td>回復を先に行い、サプライズは相手の目的と受容性がある場合だけ。</td><td>4・8・21</td></tr>
-      <tr><td class="key">新人／管理者</td><td>新人にも経営判断と同じ裁量を要求。</td><td>L1は観察と確認、L2は許可範囲の調整、L3は校正、L4は裁量構造の設計。</td><td>IV・V・VII</td></tr>
+      <tr><td class="key" data-label="論点">Service／Hospitality</td><td data-label="不整合">両方を親切・良い接客として混同。</td><td data-label="今回の修正">Service＝約束の再現。Hospitality＝約束を相手に届く形へ調整する判断。</td><td data-label="接続先">3・4・52</td></tr>
+      <tr><td class="key" data-label="論点">Standard／Discretion</td><td data-label="不整合">基準か裁量かの二者択一。</td><td data-label="今回の修正">Standardが守る範囲を示し、Discretionは変更可能域で働く。</td><td data-label="接続先">4・29・53</td></tr>
+      <tr><td class="key" data-label="論点">Equality／Fairness</td><td data-label="不整合">全員に同じ行動をすることを公平と誤認。</td><td data-label="今回の修正">共通の約束と評価原則を守り、必要に応じて提供方法を変える。</td><td data-label="接続先">4・25・43</td></tr>
+      <tr><td class="key" data-label="論点">Personalization／Privacy</td><td data-label="不整合">個別化のためなら情報収集や推測を許容。</td><td data-label="今回の修正">必要最小限の情報、確認可能な仮説、記録目的とアクセス範囲を守る。</td><td data-label="接続先">4・11・22</td></tr>
+      <tr><td class="key" data-label="論点">Delight／Recovery</td><td data-label="不整合">驚かせる演出と、失われた価値の回復を混在。</td><td data-label="今回の修正">回復を先に行い、サプライズは相手の目的と受容性がある場合だけ。</td><td data-label="接続先">4・8・21</td></tr>
+      <tr><td class="key" data-label="論点">新人／管理者</td><td data-label="不整合">新人にも経営判断と同じ裁量を要求。</td><td data-label="今回の修正">L1は観察と確認、L2は許可範囲の調整、L3は校正、L4は裁量構造の設計。</td><td data-label="接続先">IV・V・VII</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -759,10 +783,10 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>固定するもの</th><th>調整できるもの</th><th>調整の例</th></tr></thead>
     <tbody>
-      <tr><td class="key">安全・法令・倫理</td><td>説明の順序、表現、確認回数</td><td>情報量を減らしても、アレルギー確認は省略しない。</td></tr>
-      <tr><td class="key">Service Promise</td><td>速度、距離、会話量</td><td>安心という約束を、詳しい説明または静かな見守りで実現する。</td></tr>
-      <tr><td class="key">正確性・尊厳</td><td>選択肢の見せ方、支援の量</td><td>本人の選択を奪わず、必要な補助だけを提案する。</td></tr>
-      <tr><td class="key">権限・記録原則</td><td>担当者、タイミング、連携方法</td><td>権限を越える場合は、待たせ方を説明して責任者へ接続する。</td></tr>
+      <tr><td class="key" data-label="固定するもの">安全・法令・倫理</td><td data-label="調整できるもの">説明の順序、表現、確認回数</td><td data-label="調整の例">情報量を減らしても、アレルギー確認は省略しない。</td></tr>
+      <tr><td class="key" data-label="固定するもの">Service Promise</td><td data-label="調整できるもの">速度、距離、会話量</td><td data-label="調整の例">安心という約束を、詳しい説明または静かな見守りで実現する。</td></tr>
+      <tr><td class="key" data-label="固定するもの">正確性・尊厳</td><td data-label="調整できるもの">選択肢の見せ方、支援の量</td><td data-label="調整の例">本人の選択を奪わず、必要な補助だけを提案する。</td></tr>
+      <tr><td class="key" data-label="固定するもの">権限・記録原則</td><td data-label="調整できるもの">担当者、タイミング、連携方法</td><td data-label="調整の例">権限を越える場合は、待たせ方を説明して責任者へ接続する。</td></tr>
     </tbody>
   </table></div>
 
@@ -782,7 +806,7 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
     <div>Interpret<small>仮説を複数持つ</small></div>
     <div>Design<small>安全な調整を選ぶ</small></div>
     <div>Implement<small>小さく実行する</small></div>
-    <div>Evaluate<small>反応から更新</small></div>
+    <div>Evolve<small>反応を評価し更新</small></div>
   </div>
   <p>第2章で使った観察と仮説を、本章では具体的な調整判断へつなげます。最初から大きな特別対応をせず、戻せる小さな調整から始めます。反応が違えば、元に戻すか別の選択肢へ変えます。</p>
 
@@ -868,11 +892,11 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
     <tbody>
-      <tr><td class="key">観察</td><td>属性・印象で決める。</td><td>事実を挙げるが推測と混在。</td><td>事実と仮説を分けて確認。</td><td>他者の観察バイアスを校正。</td></tr>
-      <tr><td class="key">基準理解</td><td>基準を無視または絶対視。</td><td>固定と変更の区別が曖昧。</td><td>守る基準と裁量域を説明。</td><td>停止条件と承認経路を設計。</td></tr>
-      <tr><td class="key">調整</td><td>好意や慣習で特別対応。</td><td>調整するが目的が不明。</td><td>目的に合わせ小さく調整。</td><td>複数接点の調整を設計。</td></tr>
-      <tr><td class="key">境界</td><td>安全・公平・権限を見ない。</td><td>指摘されれば確認。</td><td>六境界を自ら点検。</td><td>資源配分と例外ルールを更新。</td></tr>
-      <tr><td class="key">学習・展開</td><td>結果を個人の経験で終える。</td><td>感想を共有。</td><td>理由と証拠を一人へ共有。</td><td>二人以上の判断を校正・定着。</td></tr>
+      <tr><td class="key" data-label="評価軸">観察</td><td data-label="1｜未形成">属性・印象で決める。</td><td data-label="2｜理解">事実を挙げるが推測と混在。</td><td data-label="3｜実践">事実と仮説を分けて確認。</td><td data-label="4｜設計・展開">他者の観察バイアスを校正。</td></tr>
+      <tr><td class="key" data-label="評価軸">基準理解</td><td data-label="1｜未形成">基準を無視または絶対視。</td><td data-label="2｜理解">固定と変更の区別が曖昧。</td><td data-label="3｜実践">守る基準と裁量域を説明。</td><td data-label="4｜設計・展開">停止条件と承認経路を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">調整</td><td data-label="1｜未形成">好意や慣習で特別対応。</td><td data-label="2｜理解">調整するが目的が不明。</td><td data-label="3｜実践">目的に合わせ小さく調整。</td><td data-label="4｜設計・展開">複数接点の調整を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">境界</td><td data-label="1｜未形成">安全・公平・権限を見ない。</td><td data-label="2｜理解">指摘されれば確認。</td><td data-label="3｜実践">六境界を自ら点検。</td><td data-label="4｜設計・展開">資源配分と例外ルールを更新。</td></tr>
+      <tr><td class="key" data-label="評価軸">学習・展開</td><td data-label="1｜未形成">結果を個人の経験で終える。</td><td data-label="2｜理解">感想を共有。</td><td data-label="3｜実践">理由と証拠を一人へ共有。</td><td data-label="4｜設計・展開">二人以上の判断を校正・定着。</td></tr>
     </tbody>
   </table></div>
   <h3>役割別の修了条件</h3>
@@ -911,13 +935,13 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>接続先</th><th>第4章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
     <tbody>
-      <tr><td class="level">第5章</td><td>高品質なServiceとHospitalityは何を基準に評価されるか。</td><td>ミシュランサービス思想、卓越性、一貫性、個性。</td></tr>
-      <tr><td class="level">第6章</td><td>調整は顧客の参加とどう価値を共創するか。</td><td>SDL、Value Co-creation、資源統合。</td></tr>
-      <tr><td class="level">II</td><td>個別判断を接点全体でどう一貫させるか。</td><td>ジャーニー、五感、時間、Blueprint。</td></tr>
-      <tr><td class="level">III</td><td>観察と解釈にどんな心理的偏りが起こるか。</td><td>認知、感情、信頼、記憶、意思決定。</td></tr>
-      <tr><td class="level">IV</td><td>裁量と内省をどう育成するか。</td><td>対話、フィードバック、コーチング、チーム学習。</td></tr>
-      <tr><td class="level">V</td><td>裁量を品質・生産性・公平性とどう両立するか。</td><td>役割、権限、KPI、会議、リスク管理。</td></tr>
-      <tr><td class="level">VI–VII</td><td>個人判断を組織能力としてどう診断・定着するか。</td><td>RSA構造診断、Quality Loop、Implementation、Embedding。</td></tr>
+      <tr><td class="level" data-label="接続先">第5章</td><td data-label="第4章から持ち越す問い">高品質なServiceとHospitalityは何を基準に評価されるか。</td><td data-label="次に深める内容">ミシュランサービス思想、卓越性、一貫性、個性。</td></tr>
+      <tr><td class="level" data-label="接続先">第6章</td><td data-label="第4章から持ち越す問い">調整は顧客の参加とどう価値を共創するか。</td><td data-label="次に深める内容">SDL、Value Co-creation、資源統合。</td></tr>
+      <tr><td class="level" data-label="接続先">II</td><td data-label="第4章から持ち越す問い">個別判断を接点全体でどう一貫させるか。</td><td data-label="次に深める内容">ジャーニー、五感、時間、Blueprint。</td></tr>
+      <tr><td class="level" data-label="接続先">III</td><td data-label="第4章から持ち越す問い">観察と解釈にどんな心理的偏りが起こるか。</td><td data-label="次に深める内容">認知、感情、信頼、記憶、意思決定。</td></tr>
+      <tr><td class="level" data-label="接続先">IV</td><td data-label="第4章から持ち越す問い">裁量と内省をどう育成するか。</td><td data-label="次に深める内容">対話、フィードバック、コーチング、チーム学習。</td></tr>
+      <tr><td class="level" data-label="接続先">V</td><td data-label="第4章から持ち越す問い">裁量を品質・生産性・公平性とどう両立するか。</td><td data-label="次に深める内容">役割、権限、KPI、会議、リスク管理。</td></tr>
+      <tr><td class="level" data-label="接続先">VI–VII</td><td data-label="第4章から持ち越す問い">個人判断を組織能力としてどう診断・定着するか。</td><td data-label="次に深める内容">RSA構造診断、Quality Loop、Implementation、Embedding。</td></tr>
     </tbody>
   </table></div>
   <div class="callout"><strong>次の本文制作：</strong>第5章「ミシュランサービス思想」。特定の型を模倣せず、卓越したレストランに共通する評価原則を、日常の観察・育成・品質管理へ翻訳する。</div>
@@ -937,7 +961,7 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
 </header>
 
 <nav aria-label="章内ナビゲーション">
-  <a href="#toc">章一覧</a><a href="#chapter-4">← 前章</a><a href="#c5-priority">今週の一手</a><a href="#c5-audit">整合性</a><a href="#c5-text">教本本文</a><a href="#c5-practice">現場演習</a><a href="#c5-levels">役割別到達</a><a href="#c5-training">研修</a><a href="#c5-sheet">シート</a><a href="#c5-assessment">評価</a><a href="#c5-guide">指導者</a>
+  <a href="#toc">章一覧</a><a href="#chapter-4">← 前章</a><a href="#chapter-6">次章 →</a><a href="#c5-priority">今週の一手</a><a href="#c5-audit">整合性</a><a href="#c5-text">教本本文</a><a href="#c5-practice">現場演習</a><a href="#c5-levels">役割別到達</a><a href="#c5-training">研修</a><a href="#c5-sheet">シート</a><a href="#c5-assessment">評価</a><a href="#c5-guide">指導者</a>
 </nav>
 
 <section id="c5-priority">
@@ -957,13 +981,13 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>論点</th><th>不整合の危険</th><th>今回の修正</th><th>接続先</th></tr></thead>
     <tbody>
-      <tr><td class="key">公式性</td><td>「ミシュランサービス思想」が、星の公式サービス評価基準だと誤読される。</td><td>星は料理を評価すること、本章はRSA独自の編集・翻訳であることを冒頭に明記。</td><td>全73章の出典・独自概念表示ルール。</td></tr>
-      <tr><td class="key">卓越性</td><td>豪華さ、儀礼、過剰サービスと同一視される。</td><td>その店の約束に対する技術精度と文脈適合で定義。業態・価格帯を問わない。</td><td>第3章Service Promise、第37章以降の品質管理。</td></tr>
-      <tr><td class="key">一貫性</td><td>全顧客へ同じ会話量・速度・演出を行うことになる。</td><td>手段の同一ではなく、約束した結果状態の安定と定義。</td><td>第4章Hospitality、第18章Blueprint。</td></tr>
-      <tr><td class="key">個性</td><td>スタッフの好みや目立つ演出が評価される。</td><td>店の理念が、顧客に適切な形で一貫して表れることと定義。</td><td>第1章理念、第7章Experience Economy。</td></tr>
-      <tr><td class="key">評価対象</td><td>人柄、売上、顧客満足、店舗品質が一つの点数に混在する。</td><td>ECIは場面品質を評価。Human Skill Mapは人、Architect Scorecardは設計成果を評価。</td><td>IV Human Development、V Management、VI RSA理論。</td></tr>
-      <tr><td class="key">階層差</td><td>新人にも管理者にも「一流の接客」を求め、育成行動が不明になる。</td><td>L1は証拠認識、L2は安定実行、L3は校正、L4は品質システム設計と分ける。</td><td>全章共通の役割別到達証拠。</td></tr>
-      <tr><td class="key">学習導線</td><td>受賞店の事例模倣で終わり、自店へ転移できない。</td><td>一場面→証拠→差分→小改善→再観察→二人へ展開の循環へ変える。</td><td>VII Field Implementation、Embedding。</td></tr>
+      <tr><td class="key" data-label="論点">公式性</td><td data-label="不整合の危険">「ミシュランサービス思想」が、星の公式サービス評価基準だと誤読される。</td><td data-label="今回の修正">星は料理を評価すること、本章はRSA独自の編集・翻訳であることを冒頭に明記。</td><td data-label="接続先">全73章の出典・独自概念表示ルール。</td></tr>
+      <tr><td class="key" data-label="論点">卓越性</td><td data-label="不整合の危険">豪華さ、儀礼、過剰サービスと同一視される。</td><td data-label="今回の修正">その店の約束に対する技術精度と文脈適合で定義。業態・価格帯を問わない。</td><td data-label="接続先">第3章Service Promise、第37章以降の品質管理。</td></tr>
+      <tr><td class="key" data-label="論点">一貫性</td><td data-label="不整合の危険">全顧客へ同じ会話量・速度・演出を行うことになる。</td><td data-label="今回の修正">手段の同一ではなく、約束した結果状態の安定と定義。</td><td data-label="接続先">第4章Hospitality、第18章Blueprint。</td></tr>
+      <tr><td class="key" data-label="論点">個性</td><td data-label="不整合の危険">スタッフの好みや目立つ演出が評価される。</td><td data-label="今回の修正">店の理念が、顧客に適切な形で一貫して表れることと定義。</td><td data-label="接続先">第1章理念、第7章Experience Economy。</td></tr>
+      <tr><td class="key" data-label="論点">評価対象</td><td data-label="不整合の危険">人柄、売上、顧客満足、店舗品質が一つの点数に混在する。</td><td data-label="今回の修正">ECIは場面品質を評価。Human Skill Mapは人、Architect Scorecardは設計成果を評価。</td><td data-label="接続先">IV Human Development、V Management、VI RSA理論。</td></tr>
+      <tr><td class="key" data-label="論点">階層差</td><td data-label="不整合の危険">新人にも管理者にも「一流の接客」を求め、育成行動が不明になる。</td><td data-label="今回の修正">L1は証拠認識、L2は安定実行、L3は校正、L4は品質システム設計と分ける。</td><td data-label="接続先">全章共通の役割別到達証拠。</td></tr>
+      <tr><td class="key" data-label="論点">学習導線</td><td data-label="不整合の危険">受賞店の事例模倣で終わり、自店へ転移できない。</td><td data-label="今回の修正">一場面→証拠→差分→小改善→再観察→二人へ展開の循環へ変える。</td><td data-label="接続先">VII Field Implementation、Embedding。</td></tr>
     </tbody>
   </table></div>
 </section>
@@ -1005,9 +1029,9 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>レンズ</th><th>観察する問い</th><th>証拠の例</th><th>注意する誤判定</th></tr></thead>
     <tbody>
-      <tr><td class="key">Excellence</td><td>必要な技術が、顧客目的に適合して使われたか。</td><td>確認回数、誤り、待ち時間、理解の変化、やり直し。</td><td>所作の美しさだけで高評価にしない。</td></tr>
-      <tr><td class="key">Consistency</td><td>人・時間・状況が変わっても、約束した状態へ到達したか。</td><td>担当別差、時間帯差、引継ぎ、例外時の復旧。</td><td>同じ台詞・同じ速度を要求しない。</td></tr>
-      <tr><td class="key">Identity</td><td>選択の理由に、店の理念が表れているか。</td><td>言葉、順序、余白、断る基準、優先順位。</td><td>派手さや個人の人気と混同しない。</td></tr>
+      <tr><td class="key" data-label="レンズ">Excellence</td><td data-label="観察する問い">必要な技術が、顧客目的に適合して使われたか。</td><td data-label="証拠の例">確認回数、誤り、待ち時間、理解の変化、やり直し。</td><td data-label="注意する誤判定">所作の美しさだけで高評価にしない。</td></tr>
+      <tr><td class="key" data-label="レンズ">Consistency</td><td data-label="観察する問い">人・時間・状況が変わっても、約束した状態へ到達したか。</td><td data-label="証拠の例">担当別差、時間帯差、引継ぎ、例外時の復旧。</td><td data-label="注意する誤判定">同じ台詞・同じ速度を要求しない。</td></tr>
+      <tr><td class="key" data-label="レンズ">Identity</td><td data-label="観察する問い">選択の理由に、店の理念が表れているか。</td><td data-label="証拠の例">言葉、順序、余白、断る基準、優先順位。</td><td data-label="注意する誤判定">派手さや個人の人気と混同しない。</td></tr>
     </tbody>
   </table></div>
 
@@ -1017,7 +1041,7 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
     <div>Interpret<small>差の理由を考える</small></div>
     <div>Design<small>最小改善を選ぶ</small></div>
     <div>Implement<small>一場面で試す</small></div>
-    <div>Evaluate<small>結果を比較する</small></div>
+    <div>Evolve<small>結果を評価し更新</small></div>
   </div>
   <p>ECIは「何を見るか」、OIDIEは「どう更新するか」です。両者を混ぜて新しいメソッド名を増やしません。ECIで品質差を捉え、OIDIEで原因仮説と改善を回します。</p>
 
@@ -1090,11 +1114,11 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜理解</th><th>3｜実践</th><th>4｜設計・展開</th></tr></thead>
     <tbody>
-      <tr><td class="key">証拠観察</td><td>印象・称賛・不満だけ。</td><td>事実を書くが評価と混在。</td><td>事実・解釈・反応を分離。</td><td>他者の観察精度を校正。</td></tr>
-      <tr><td class="key">卓越性</td><td>豪華さや所作で判断。</td><td>技術精度を説明。</td><td>精度と文脈適合を両立。</td><td>重要技術と証拠を再設計。</td></tr>
-      <tr><td class="key">一貫性</td><td>全員同じ行動を要求。</td><td>結果状態を理解。</td><td>手段を調整し結果を安定。</td><td>担当・時間差の復旧を設計。</td></tr>
-      <tr><td class="key">個性</td><td>目立つ演出と混同。</td><td>理念との関係を説明。</td><td>選択に理念を反映。</td><td>複数接点のIdentityを統合。</td></tr>
-      <tr><td class="key">校正・展開</td><td>点数で人を評価。</td><td>点数差を話す。</td><td>差の原因から改善を検証。</td><td>二人以上へ校正方法を定着。</td></tr>
+      <tr><td class="key" data-label="評価軸">証拠観察</td><td data-label="1｜未形成">印象・称賛・不満だけ。</td><td data-label="2｜理解">事実を書くが評価と混在。</td><td data-label="3｜実践">事実・解釈・反応を分離。</td><td data-label="4｜設計・展開">他者の観察精度を校正。</td></tr>
+      <tr><td class="key" data-label="評価軸">卓越性</td><td data-label="1｜未形成">豪華さや所作で判断。</td><td data-label="2｜理解">技術精度を説明。</td><td data-label="3｜実践">精度と文脈適合を両立。</td><td data-label="4｜設計・展開">重要技術と証拠を再設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">一貫性</td><td data-label="1｜未形成">全員同じ行動を要求。</td><td data-label="2｜理解">結果状態を理解。</td><td data-label="3｜実践">手段を調整し結果を安定。</td><td data-label="4｜設計・展開">担当・時間差の復旧を設計。</td></tr>
+      <tr><td class="key" data-label="評価軸">個性</td><td data-label="1｜未形成">目立つ演出と混同。</td><td data-label="2｜理解">理念との関係を説明。</td><td data-label="3｜実践">選択に理念を反映。</td><td data-label="4｜設計・展開">複数接点のIdentityを統合。</td></tr>
+      <tr><td class="key" data-label="評価軸">校正・展開</td><td data-label="1｜未形成">点数で人を評価。</td><td data-label="2｜理解">点数差を話す。</td><td data-label="3｜実践">差の原因から改善を検証。</td><td data-label="4｜設計・展開">二人以上へ校正方法を定着。</td></tr>
     </tbody>
   </table></div>
   <h3>役割別の修了条件</h3>
@@ -1134,13 +1158,13 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
   <div class="scroll"><table>
     <thead><tr><th>接続先</th><th>本章から持ち越す問い</th><th>次に深める内容</th></tr></thead>
     <tbody>
-      <tr><td class="level">第6章</td><td>店が定義した品質は、顧客の参加でどう変化するか。</td><td>SDL、Value Co-creation、価値は利用文脈で成立する。</td></tr>
-      <tr><td class="level">II</td><td>ECIを単一接点から体験全体へどう接続するか。</td><td>Customer Journey、五感、時間、Blueprint。</td></tr>
-      <tr><td class="level">III</td><td>評価者と顧客の認知差をどう扱うか。</td><td>期待、感情、記憶、信頼、認知バイアス。</td></tr>
-      <tr><td class="level">IV</td><td>人を傷つけず品質差をどう校正するか。</td><td>フィードバック、対話、内省、チーム学習。</td></tr>
-      <tr><td class="level">V</td><td>品質を利益・生産性・安全とどう両立するか。</td><td>KPI、配置、会議、権限、Quality Management。</td></tr>
-      <tr><td class="level">VI</td><td>品質差を構造としてどう診断するか。</td><td>RSA Quality Loop、Architect Scorecard、設計判断。</td></tr>
-      <tr><td class="level">VII–VIII</td><td>校正文化をどう定着させ、未来条件へ更新するか。</td><td>実装・定着・技術活用・持続可能なサービス。</td></tr>
+      <tr><td class="level" data-label="接続先">第6章</td><td data-label="本章から持ち越す問い">店が定義した品質は、顧客の参加でどう変化するか。</td><td data-label="次に深める内容">SDL、Value Co-creation、価値は利用文脈で成立する。</td></tr>
+      <tr><td class="level" data-label="接続先">II</td><td data-label="本章から持ち越す問い">ECIを単一接点から体験全体へどう接続するか。</td><td data-label="次に深める内容">Customer Journey、五感、時間、Blueprint。</td></tr>
+      <tr><td class="level" data-label="接続先">III</td><td data-label="本章から持ち越す問い">評価者と顧客の認知差をどう扱うか。</td><td data-label="次に深める内容">期待、感情、記憶、信頼、認知バイアス。</td></tr>
+      <tr><td class="level" data-label="接続先">IV</td><td data-label="本章から持ち越す問い">人を傷つけず品質差をどう校正するか。</td><td data-label="次に深める内容">フィードバック、対話、内省、チーム学習。</td></tr>
+      <tr><td class="level" data-label="接続先">V</td><td data-label="本章から持ち越す問い">品質を利益・生産性・安全とどう両立するか。</td><td data-label="次に深める内容">KPI、配置、会議、権限、Quality Management。</td></tr>
+      <tr><td class="level" data-label="接続先">VI</td><td data-label="本章から持ち越す問い">品質差を構造としてどう診断するか。</td><td data-label="次に深める内容">RSA Quality Loop、Architect Scorecard、設計判断。</td></tr>
+      <tr><td class="level" data-label="接続先">VII–VIII</td><td data-label="本章から持ち越す問い">校正文化をどう定着させ、未来条件へ更新するか。</td><td data-label="次に深める内容">実装・定着・技術活用・持続可能なサービス。</td></tr>
     </tbody>
   </table></div>
   <div class="callout"><strong>次の本文制作：</strong>第6章「Service-Dominant Logic」。本章で定義した品質を店側の完成品とせず、顧客の参加・利用文脈・資源統合によって価値が成立する構造へ進む。</div>
@@ -1159,5 +1183,216 @@ section{width:100%;max-width:100%;margin:14px 0;padding:clamp(23px,5vw,46px);bor
 
 <div class="footer">Restaurant Service Architect — The Complete Framework｜Chapter 05 Complete Module</div>
 </article>
+<a class="backtop" href="#toc">章一覧へ戻る</a>
+<article id="chapter-6" class="chapter-module">
+<header class="hero">
+  <div class="eyebrow">RESTAURANT SERVICE ARCHITECT — WEEKLY DEVELOPMENT 08</div>
+  <div class="chapter">CHAPTER 06 · 2026.10.21</div>
+  <h1>SDL｜価値共創<span>資源が「使える」条件を設計する</span></h1>
+  <p class="lead">料理・情報・技術を用意しただけでは、望む価値が届いたとは言えない。誰が、どの文脈で、何を使えるようになるかまで設計する。</p>
+  <div class="definition"><strong>本章の到達点：</strong>一つの接点を「提供したもの」から「価値が成立する条件」へ読み替え、使えない原因を資源・接続・共通ルールから特定し、一週間で検証できる再設計を完成させる。</div>
+  <div class="chips"><span class="chip">I PHILOSOPHY</span><span class="chip">SDL / S-D LOGIC</span><span class="chip">70分研修</span><span class="chip">L1–L4</span><span class="chip">一週間の現場実験</span></div>
+</header>
+<nav aria-label="第6章ナビゲーション"><a href="#toc">章一覧</a><a href="#chapter-5">← 第5章</a><a href="#c6-priority">今週の一手</a><a href="#c6-audit">整合性</a><a href="#c6-text">本文</a><a href="#c6-training">研修</a><a href="#c6-example">記入例</a><a href="#c6-sheet">実装シート</a><a href="#c6-assessment">評価</a><a href="#c6-rollout">展開</a><a href="#c6-sources">出典</a></nav>
+
+<section id="c6-priority"><span class="tag">WEEKLY PRIORITY</span><h2>価値成立の断点を、一枚で特定できるようにする</h2>
+  <p>今週の最重要な次の一手は、<strong>第6章の本文と「価値成立条件シート」を一体で完成させること</strong>である。第5章で整えた品質の物差しは、店の仕事を観察するうえで役立つ。しかし、正確に説明した、約束どおり提供したという事実だけで、顧客が使いこなし、目的を果たしたと判断すると、価値提供を店側の達成だけで閉じてしまう。</p>
+  <p>第6章は、品質を顧客の利用文脈へつなぐ要となる。資源が存在しても、理解できない、選べない、必要時に取り出せない、担当間でつながらないと価値に結びつきにくい。そこで「何をもっと頑張るか」の前に、<strong>何がどこで使えなくなったか</strong>を問う。</p>
+  <div class="callout"><strong>今回固有の成果物：</strong>価値成立条件シート、共同生産の任意性を試す研修、資源接続の記入済み教材、一週間の比較記録、二人へ教え返す転移確認。第5章のECI採点や第4章の裁量調整シートは再制作せず、前提として参照する。</div>
+  <p class="small">確認した履歴：Learning Spine／Core Lexicon・Method Map／73章の実践・深化設計／第46章の方法論定義／第1〜5章の深化本文。今回の主題は研究紹介やドラッカーとの比較ではなく、第6章を使った現場設計能力の育成とする。</p>
+</section>
+
+<section id="c6-audit"><span class="tag">CONSISTENCY AUDIT</span><h2>本文で直す不整合と、次巻への編集指示</h2>
+  <p>「既存本文で確認できた表記」と「第6章を展開するときに防ぐ論理上の混同」を分けて扱う。全73章の完成本文を監査済みとは扱わない。</p>
+  <div class="scroll"><table><thead><tr><th>論点・確認箇所</th><th>問題</th><th>今回の修正</th><th>接続先</th></tr></thead><tbody>
+    <tr><td data-label="論点・確認箇所">OIDIEの正式表記<br>用語集・第49章／第4・5章</td><td data-label="問題">正式なEvolveに対し、第4・5章でEvaluate表記が混在している。</td><td data-label="今回の修正">統合版の2か所をEvolveへ修正。評価はEvolveの中で行い、基準・資源・運用の更新まで含める。</td><td data-label="接続先">VI・第49章／全巻の学習手順</td></tr>
+    <tr><td data-label="論点・確認箇所">Serviceの意味範囲<br>第3章とSDL</td><td data-label="問題">RSAの「約束を再現するサービス」と、SDLの広いservice概念が同一語のまま混ざる。</td><td data-label="今回の修正">RSA Serviceは運営定義、SDLのserviceは知識・技能を他者の便益へ適用する働きと併記する。</td><td data-label="接続先">I・第3〜6章／VI</td></tr>
+    <tr><td data-label="論点・確認箇所">Valueと品質<br>第5章→第6章</td><td data-label="問題">品質点が高いことを、価値成立の証明にすると店側評価だけで完結する。</td><td data-label="今回の修正">ECIは場面品質の手がかり。顧客の目的達成、本人の言葉、利用時の負担を別に記録する。</td><td data-label="接続先">II・第10・18章／V・第38章</td></tr>
+    <tr><td data-label="論点・確認箇所">共創と共同生産<br>73章概要の「参加」</td><td data-label="問題">参加を重視する説明だけでは、作業・会話・自己操作を増やせばよいと誤読される。</td><td data-label="今回の修正">共同生産は任意。会話や作業への参加が少なくても、利用・解釈を通じて価値が成立すると明記する。</td><td data-label="接続先">III／VIII・第66〜68章</td></tr>
+    <tr><td data-label="論点・確認箇所">資源統合と共通ルール</td><td data-label="問題">人・空間・情報の一覧だけでは、誰がつなぎ、何が行動を支えるかが欠ける。</td><td data-label="今回の修正">資源ごとに利用者・接続者・利用条件・責任者・引継ぎルールを置く。</td><td data-label="接続先">V・第42・45章／VII・第56・57章</td></tr>
+    <tr><td data-label="論点・確認箇所">対象者レベルと学習導線</td><td data-label="問題">全員に理論説明や全体設計を求めると、新人の課題が過大になる。</td><td data-label="今回の修正">L1は利用の障害を見つける、L2は接続する、L3は他者へ転移させる、L4は部門間の条件を設計する。</td><td data-label="接続先">IV・第28・29・33・35章</td></tr>
+    <tr><td data-label="論点・確認箇所">理念から実装・評価対象</td><td data-label="問題">「共創できる店」を理念に掲げても、責任や検証が決まらない。</td><td data-label="今回の修正">理念の判断原則→顧客目的→利用条件→担当→実験→証拠へ接続。人・場面・設計を別々に評価する。</td><td data-label="接続先">VI・第48・50・55章／VII・第64章</td></tr>
+  </tbody></table></div>
+  <div class="callout"><strong>用語運用：</strong>SDLとS-D logicは本章で同義の略称として扱う。「価値成立条件シート」はRSA独自の実装道具であり、SDLの公式理論名や新しい公理ではない。</div>
+</section>
+
+<section id="c6-text"><span class="tag">TEXTBOOK MANUSCRIPT</span><h2>第6章｜SDLを、現場の読み方へ変える</h2>
+  <h3>1．「提供できた」と「価値が成立した」の間</h3>
+  <p>料理を出した、情報を伝えた、席を用意した。これらは大切な仕事の完了である。しかし、お客様が望んでいたことは、料理を受け取ることだけとは限らない。落ち着いて話す、限られた時間に食事を終える、知らない料理を安心して選ぶといった目的がある。提供物の品質が高くても、その人の時間、理解、関係性と噛み合わなければ、目的は満たされにくい。</p>
+  <p>SDLは、価値を完成品に含まれた量としてだけ捉えず、関わる人々が資源を組み合わせ、受益者が自分の文脈で経験するものとして読む視点である。店は価値提案と実現条件に関わり続ける。「価値はお客様が決める」と言って責任を手放すことは、この教本の実装方針ではない。</p>
+
+  <h3>2．二つのserviceを橋渡しする</h3>
+  <p>第3章のRSAにおけるServiceは「顧客との約束を、再現可能な仕組みと行動を通じて実現する価値提供」という運営上の定義である。一方、SDLのserviceは、専門的な知識や技能を他者の便益のために適用する、より広い概念を指す。料理人の技術、予約情報の整理、説明の翻訳も、その視点で読むことができる。[1]</p>
+  <p>前者は現場の約束を整える言葉、後者は価値が成立する関係を説明する言葉である。用語を置き換えるのではなく、約束を守る仕事が誰のどの便益を支えているのかを問い直すことで両者を接続する。</p>
+
+  <h3>3．五つの公理を、店の問いへ翻訳する</h3>
+  <p>以下の左列はSDLの公理を要約したもの、右列はRSAによる飲食現場への応用である。右列を原著の記述として扱わない。[2]</p>
+  <div class="scroll"><table><thead><tr><th>SDLの公理・要約</th><th>RSAで行う問い</th><th>現場で残すもの</th></tr></thead><tbody>
+    <tr><td data-label="SDLの公理・要約">交換の基礎はservice</td><td data-label="RSAで行う問い">この料理・設備・情報は、誰のどの行為や便益を支えるか。</td><td data-label="現場で残すもの">提供物と便益の対応</td></tr>
+    <tr><td data-label="SDLの公理・要約">価値は受益者を含む複数の主体が共創する</td><td data-label="RSAで行う問い">顧客、同行者、厨房、ホール、外部提供者は何に関わるか。</td><td data-label="現場で残すもの">関係者と資源の接続</td></tr>
+    <tr><td data-label="SDLの公理・要約">社会・経済の主体は資源統合者である</td><td data-label="RSAで行う問い">持っている資源と、実際に使える資源はどこで違うか。</td><td data-label="現場で残すもの">利用条件と断点</td></tr>
+    <tr><td data-label="SDLの公理・要約">価値は受益者が固有の経験を通じて判断する</td><td data-label="RSAで行う問い">同じ提供でも、目的や状況で意味がどう変わるか。</td><td data-label="現場で残すもの">本人の言葉と文脈</td></tr>
+    <tr><td data-label="SDLの公理・要約">共創は人々が生む制度・制度的取り決めで調整される</td><td data-label="RSAで行う問い">共通の意味、慣行、権限、手順の何が連携を助け、妨げるか。</td><td data-label="現場で残すもの">改める共通ルール</td></tr>
+  </tbody></table></div>
+
+  <h3>4．共創と共同生産を分ける</h3>
+  <p>お客様が料理の仕上げや注文操作に関わることは、共同生産に当たる場合がある。しかし共同生産への関与は任意であり、価値共創と同義ではない。[1] 自分で操作せず担当者へ任せたい人も、料理を味わい、同行者と時間を過ごし、意味を受け取る過程にいる。</p>
+  <div class="callout"><strong>RSAでの設計原則：</strong>参加量を目標にしない。自分で進める、支援を受ける、任せるという関わり方を選べるようにする。静かに過ごすことも尊重する。選択肢を持つことと、全員に説明や作業を課すことを区別する。</div>
+  <p>従って「会話が増えた」「セルフ操作率が上がった」は、価値成立の十分な証拠ではない。顧客の目的を助け、負担が適切だったかまで確かめる。</p>
+
+  <h3>5．資源は、存在するだけでは機能しない</h3>
+  <p>料理の情報、席、時間、道具、在庫、スタッフの判断力。どれも資源になり得る。ただし資源の働きは状況に依存する。多言語の説明があっても見つからない、担当者は詳しくても持ち場を離れられない、厨房には最新情報があるがホールへ届かない。このとき問題は資源不足だけでなく、接続の失敗である。</p>
+  <div class="grid">
+    <div class="card"><b>物・設備・情報の素材</b>料理、席、メニュー、道具、端末など。どの瞬間に、誰が利用できるかを確認する。</div>
+    <div class="card"><b>働きかける能力</b>知識、技術、解釈、協働、確認する力。資源を適切に組み合わせられるかを確認する。</div>
+  </div>
+  <p>例えば情報量が多いことは、使いやすいことを意味しない。要約し、順序をつけ、本人が望む範囲で確認できるようにして初めて役立つ可能性が高まる。人を増やす前に、使える情報を正しい担当へ渡すだけで改善する場面もある。</p>
+
+  <h3>6．接点の外側まで読む</h3>
+  <p>目の前の担当者と顧客だけでは、その場面を説明しきれない。仕入先の情報、厨房の変更判断、予約の伝達、同席者の予定などが重なる。SDLの制度・エコシステムの視点は、価値成立を支える関係と共通の取り決めへ視野を広げる。[3]</p>
+  <p>本章では大きな組織図を描くことを目的にしない。対象場面が成立するために必要な範囲まで追う。「誰が情報を更新するか」「誰が変更を承認するか」「いつ引き継ぐか」を一つずつ明らかにする。共通ルールがない状態で、個人の気遣いだけに連携を委ねない。</p>
+
+  <h3>7．価値の証拠は、三層で確かめる</h3>
+  <div class="grid3">
+    <div class="card"><b>提供の証拠</b>情報を渡した、支援を提示した、担当へ引き継いだ。店が何をしたか。</div>
+    <div class="card"><b>利用の証拠</b>比較できた、選べた、必要な支援へアクセスできた。何が使えるようになったか。</div>
+    <div class="card"><b>受益の手がかり</b>本人が「迷わず決められた」と述べた、予定した時間に進めた。目的にどんな変化があったか。</div>
+  </div>
+  <p>表情だけで満足を断定せず、本人の言葉、行動、時間の記録を組み合わせる。確認を望まない人には問いを重ねない。「確認できず」を選べる記録にし、沈黙を成功として数えない。短期の反応から再来店や売上への因果効果も断定しない。</p>
+
+  <h3>8．理念を、利用条件へ翻訳する</h3>
+  <p>「相手を尊重する」という理念を本章で実装するなら、顧客が望む関わり方を選べること、分からないときに支援へ届くこと、断っても不利にならないことが具体的な条件になる。その条件を支える情報と担当、承認範囲、観察証拠を置く。</p>
+  <p><strong>理念の判断原則 → 顧客が望む状態 → 必要資源 → 使える条件 → 接続する役割・ルール → 証拠</strong>。この順で第48章Purpose to Actionへ渡す。理念が未整理なら、経営者の確認を得た暫定の判断原則として扱い、完成した全社理念と混同しない。</p>
+
+  <h3>9．OIDIEで、条件を一つだけ変える</h3>
+  <p>Observeで事実と未確認事項を分け、Interpretで複数の断点仮説を置く。Designでは不足資源を足す案と接続を直す案を比較し、Implementでは責任者を決めて小さく試す。Evolveでは結果を評価し、継続・修正・撤回を判断して運用へ戻す。評価票を埋めた時点で終えない。</p>
+  <p>本章の問いは「どの動作が正解か」ではなく、「この人がこの条件で目的を果たすために、何が使える必要があるか」である。違う場面に移ったら、条件を読み直す。</p>
+
+  <h3>10．重点指導を、条件を読める人の増加へつなぐ</h3>
+  <p>熟練者の対応を真似させるだけでは、想定外で再び止まる。重点指導者は、受講者が事実、断点、資源、ルール、証拠を説明できるまで支援する。次に受講者が別の二人へ問いを使い、異なる接点で使えることを確認する。</p>
+  <div class="quote">渡すのは「正解の接客」ではなく、<br>価値が成立する条件を見つけ、つなぎ直す力。</div>
+</section>
+
+<section id="c6-levels"><span class="tag">LEVEL DEVELOPMENT</span><h2>役割ごとに、同じ理論から違う仕事へ</h2>
+  <div class="ladder">
+    <div class="rung"><b>L1｜新人：利用の障害を見つけ、つなぐ</b>一場面で「用意されているもの」と「相手が使えていない理由」を分ける。独断で情報を変えず、確認・支援へつなぐ。提出物：事実2件、仮説1件、未確認1件。</div>
+    <div class="rung"><b>L2｜自立スタッフ：使える条件を整える</b>許可範囲で資源の渡し方・接続を変更し、相手が任せる選択も尊重する。提出物：条件シート1枚と実施3件の記録。</div>
+    <div class="rung"><b>L3｜指導者：原因仮説を問い直し、別場面へ移す</b>個人不足・資源不足・接続不全・ルール不明を区別し、受講者が別接点を自分で設計できるまで支援する。提出物：二人分の別接点シートと教え返し記録。</div>
+    <div class="rung"><b>L4｜店長・管理者：部門を越える条件を設計する</b>必要資源の準備、更新責任、権限、代替経路、負担配分を定める。提出物：承認した運用変更1件、比較記録、継続・撤回判断。</div>
+  </div>
+</section>
+
+<section id="c6-training"><span class="tag">TRAINING MODULE</span><h2>70分研修｜「用意したのに使えない」を再設計する</h2>
+  <p><strong>対象：</strong>4〜8名。新人と自立者、指導者、管理者が混ざるときも、提出課題は上の役割別に分ける。<strong>準備：</strong>次節の教材、条件シート、役割札、時計。実際の営業観察は研修後に行う。</p>
+  <div class="agenda">
+    <div class="step"><div><span class="time">0–8分｜目的を読み替える</span><br>「説明した」を「相手が何を選べるようになったか」へ書き換える。共創と共同生産の区別を確認する。成果：提供と利用の違いを一文で説明。</div></div>
+    <div class="step"><div><span class="time">8–18分｜事実と不明点</span><br>教材から観察事実、仮説、未確認を別々に抽出する。新人は事実の根拠を読む役を担当。成果：事実2件以上・仮説2案・未確認1件。</div></div>
+    <div class="step"><div><span class="time">18–30分｜資源と断点</span><br>顧客・担当者・厨房・情報担当の資源を置き、存在／到達／理解／利用のどこで止まるかを特定。成果：断点1件と責任者。</div></div>
+    <div class="step"><div><span class="time">30–45分｜参加を強制しない設計</span><br>一つの条件変更をつくり、「説明を聞きたい」と「任せたい」の両方で試す。役割札を交代し、相手の選択が変わった理由を記録。成果：資源接続案と代替経路。</div></div>
+    <div class="step"><div><span class="time">45–60分｜比較と反証</span><br>管理者は負担と更新責任を確認。他の参加者は「この案が役立たない条件」を一つ提示する。結果の証拠と停止条件を決める。成果：現場実験の計画。</div></div>
+    <div class="step"><div><span class="time">60–70分｜別場面へ教え返す</span><br>各自が会計・待ち時間など別の接点を選び、二分で説明。指導者は動作の模倣ではなく、断点の読み替えを評価。成果：別場面の小設計と実施担当・期日。</div></div>
+  </div>
+  <div class="callout"><strong>時間が取れない場合：</strong>朝礼で8分＋次の小ミーティングで22分＋別日に40分へ分割できる。途中成果を一枚のシートで引き継ぎ、最後の教え返しを省略しない。</div>
+</section>
+
+<section id="c6-example"><span class="tag">COMPLETED LEARNING MATERIAL</span><h2>記入済み教材｜初回注文の選択支援</h2>
+  <p class="small">以下は研修用の架空場面。数値・発言は教材設定であり、実店舗の調査結果や改善実績ではない。どの業態でも、料理名や価格帯を置換して使える。</p>
+  <div class="callout"><strong>提示する事実：</strong>顧客は「初めてなので違いが分からない。説明は短く」と述べた。担当者はメニュー順に全品を説明した。顧客は同じ二品を三度見比べ、「結局どちらがよいか」と再質問した。厨房は各品の違いを把握しているが、ホールには名称と原材料一覧しか共有されていない。担当者の推奨権限は未定義。</div>
+  <div class="scroll"><table><thead><tr><th>記入項目</th><th>完成例</th></tr></thead><tbody>
+    <tr><td data-label="記入項目">理念の判断原則</td><td data-label="完成例">相手の選択を尊重し、迷いを減らす。研修用の暫定原則。</td></tr>
+    <tr><td data-label="記入項目">顧客の目的・文脈</td><td data-label="完成例">初回利用。短い説明で違いを把握したい。残り時間や好みは未確認。</td></tr>
+    <tr><td data-label="記入項目">約束したい状態</td><td data-label="完成例">本人が望む支援量で選べる、または条件を伝えて担当者へ任せられる。</td></tr>
+    <tr><td data-label="記入項目">断点の仮説</td><td data-label="完成例">品数不足より、選択に必要な比較軸が届いていない可能性。別仮説：本人の好みや制約を確認していない。</td></tr>
+    <tr><td data-label="記入項目">存在する資源</td><td data-label="完成例">メニュー、厨房の味・量・調理差の知識、担当者の対話力、本人の好み。</td></tr>
+    <tr><td data-label="記入項目">使える条件</td><td data-label="完成例">厨房が確認した二品の違いを短く比較できる。顧客は比較を聞く・提案を受ける・自分で選ぶを選択できる。</td></tr>
+    <tr><td data-label="記入項目">一つの設計変更</td><td data-label="完成例">対象二品について「違いを一つ伝える→希望なら提案」の共通支援経路を用意。全品の追加説明は増やさない。</td></tr>
+    <tr><td data-label="記入項目">共通ルールと責任</td><td data-label="完成例">厨房責任者が比較情報を確認。営業責任者が当日の共有と提案範囲を承認。変更時は旧情報を取り下げる。安全に関わる質問は既存の確認経路へ渡す。</td></tr>
+    <tr><td data-label="記入項目">顧客への一言</td><td data-label="完成例">「違いを一つずつ短くご説明しましょうか。それとも、お好みを伺ってご提案しましょうか」。相手が自分で選ぶなら追加介入を控える。</td></tr>
+    <tr><td data-label="記入項目">記録する証拠</td><td data-label="完成例">利用：比較後の再質問件数。受益：本人の選びやすさの言葉。負担：注文までの時間と支援時間。確認できない項目は未確認と記す。</td></tr>
+    <tr><td data-label="記入項目">失敗・停止条件</td><td data-label="完成例">説明内容と厨房確認が一致しない、本人が支援を断っても続ける、確認責任が不明なら中断して責任者へ戻す。</td></tr>
+    <tr><td data-label="記入項目">Evolveの判断</td><td data-label="完成例">現時点は未実施。変更前3件・変更後3件を同程度の条件で比較し、条件が違えば結論を保留する。</td></tr>
+  </tbody></table></div>
+  <h3>指導者が変える教材条件</h3><p>二回目の実演では「本人は料理を選ぶこと自体を楽しみたい」とする。比較説明を必ず実施する案は修正が必要になる。模範台詞ではなく、本人が使いたい資源と関わり方を読み直せたかを観察する。</p>
+</section>
+
+<section id="c6-sheet"><span class="tag">FIELD WORKSHEET</span><h2>価値成立条件シート｜そのまま記入・印刷できる実装票</h2>
+  <p>一枚につき一接点。個人名や属性の推測は記さず、場面番号で管理する。入力欄は画面上で編集できる。<strong>入力は自動保存されないため、記入後は印刷・PDF保存またはメモへコピーする。</strong></p>
+  <div class="sheet">
+    <div class="field"><label for="vc1">1｜対象接点・担当者・観察日</label><textarea id="vc1" rows="2" placeholder="開始と終了／実施担当／観察担当／管理責任者"></textarea></div>
+    <div class="field"><label for="vc2">2｜理念の判断原則とService Promise</label><textarea id="vc2" rows="3" placeholder="大切にする原則→顧客が何を理解・選択・実行できる状態にするか"></textarea></div>
+    <div class="field"><label for="vc3">3｜顧客の目的・文脈・未確認</label><textarea id="vc3" rows="3" placeholder="本人の言葉／時間・理解・同席関係などの事実／まだ確かめていないこと"></textarea></div>
+    <div class="field"><label for="vc4">4｜存在する資源と、それを使う人</label><textarea id="vc4" rows="3" placeholder="料理・道具・情報・時間／知識・技能／顧客・同行者・厨房・ホール等の関係者"></textarea></div>
+    <div class="field"><label for="vc5">5｜使える条件と、止まっている場所</label><textarea id="vc5" rows="3" placeholder="存在／到達／理解／利用のどこか。資源不足・接続不全・ルール不明を分ける。別の原因仮説も一つ"></textarea></div>
+    <div class="field"><label for="vc6">6｜関わり方の選択と、変える一条件</label><textarea id="vc6" rows="3" placeholder="自分で進める／支援を受ける／任せる。本人が断った場合の経路。資源接続を何から何へ変えるか"></textarea></div>
+    <div class="field"><label for="vc7">7｜支えるルールと責任者</label><textarea id="vc7" rows="3" placeholder="準備・情報更新・権限・引継ぎ・欠員時の代替。承認者／開始日／撤回できる人"></textarea></div>
+    <div class="field"><label for="vc8">8｜証拠と負担・停止条件</label><textarea id="vc8" rows="3" placeholder="提供・利用・受益の三層。本人の言葉は任意確認。支援時間や他接点への影響。停止・エスカレーション条件"></textarea></div>
+    <div class="field"><label for="vc9">9｜変更前3件・変更後3件の比較</label><textarea id="vc9" rows="4" placeholder="各件：条件／支援方法／利用の事実／本人の反応・未確認／所要時間・負担。比較できない条件差も残す"></textarea></div>
+    <div class="field"><label for="vc10">10｜Evolveと次の二人</label><textarea id="vc10" rows="3" placeholder="継続・修正・撤回・保留と根拠／基準へ反映する人・日／教え返す二人と別の対象接点"></textarea></div>
+  </div>
+</section>
+
+<section id="c6-rollout"><span class="tag">ONE-WEEK IMPLEMENTATION</span><h2>一週間で、実験から教え返しまで</h2>
+  <div class="scroll"><table><thead><tr><th>時期</th><th>実施する仕事</th><th>担当</th><th>残す証拠</th></tr></thead><tbody>
+    <tr><td data-label="時期">1日目</td><td data-label="実施する仕事">接点と約束を選び、変更前を3件観察。改善を急がず、仮説を二つ置く。</td><td data-label="担当">指導者＋担当スタッフ</td><td data-label="残す証拠">匿名の観察3件、未確認事項</td></tr>
+    <tr><td data-label="時期">2日目</td><td data-label="実施する仕事">70分研修を実施。資源・ルールを確認し、一条件変更を承認する。</td><td data-label="担当">指導者＋管理者</td><td data-label="残す証拠">条件シート、承認者、停止条件</td></tr>
+    <tr><td data-label="時期">3〜4日目</td><td data-label="実施する仕事">同程度の条件で3件試す。実験のために必要な支援を控えることはしない。</td><td data-label="担当">自立スタッフ＋観察者</td><td data-label="残す証拠">変更後3件、本人の反応・負担</td></tr>
+    <tr><td data-label="時期">5日目</td><td data-label="実施する仕事">提供・利用・受益を分けて比較。条件差が大きければ保留にする。</td><td data-label="担当">管理者＋指導者</td><td data-label="残す証拠">継続／修正／撤回／保留の判断</td></tr>
+    <tr><td data-label="時期">6日目</td><td data-label="実施する仕事">受講者が次の二人へ教え返す。二人は異なる接点でシートを作る。</td><td data-label="担当">受講者＋次の二人</td><td data-label="残す証拠">別接点シート2枚、理解の差</td></tr>
+    <tr><td data-label="時期">7日目</td><td data-label="実施する仕事">5分の校正。良い動作のコピーで終わっていないか確認し、次の観察を決める。</td><td data-label="担当">管理者</td><td data-label="残す証拠">更新したルールと次回確認日</td></tr>
+  </tbody></table></div>
+  <p class="small">3件ずつの記録は、小さな改善仮説を選ぶための探索である。統計的な効果検証や定着の証明ではない。営業条件が揃わない日は日程を延ばし、2〜4週間後に異なる担当・時間帯で再確認する。</p>
+  <h3>比較記録欄</h3>
+  <div class="scroll"><table><thead><tr><th>場面</th><th>文脈・条件</th><th>利用できた事実</th><th>受益の手がかり／未確認</th><th>時間・他への負担</th></tr></thead><tbody>
+    <tr><td data-label="場面">変更前①</td><td contenteditable="true" data-label="文脈・条件">記入</td><td contenteditable="true" data-label="利用できた事実">記入</td><td contenteditable="true" data-label="受益の手がかり／未確認">記入</td><td contenteditable="true" data-label="時間・他への負担">記入</td></tr>
+    <tr><td data-label="場面">変更前②</td><td contenteditable="true" data-label="文脈・条件">記入</td><td contenteditable="true" data-label="利用できた事実">記入</td><td contenteditable="true" data-label="受益の手がかり／未確認">記入</td><td contenteditable="true" data-label="時間・他への負担">記入</td></tr>
+    <tr><td data-label="場面">変更前③</td><td contenteditable="true" data-label="文脈・条件">記入</td><td contenteditable="true" data-label="利用できた事実">記入</td><td contenteditable="true" data-label="受益の手がかり／未確認">記入</td><td contenteditable="true" data-label="時間・他への負担">記入</td></tr>
+    <tr><td data-label="場面">変更後①</td><td contenteditable="true" data-label="文脈・条件">記入</td><td contenteditable="true" data-label="利用できた事実">記入</td><td contenteditable="true" data-label="受益の手がかり／未確認">記入</td><td contenteditable="true" data-label="時間・他への負担">記入</td></tr>
+    <tr><td data-label="場面">変更後②</td><td contenteditable="true" data-label="文脈・条件">記入</td><td contenteditable="true" data-label="利用できた事実">記入</td><td contenteditable="true" data-label="受益の手がかり／未確認">記入</td><td contenteditable="true" data-label="時間・他への負担">記入</td></tr>
+    <tr><td data-label="場面">変更後③</td><td contenteditable="true" data-label="文脈・条件">記入</td><td contenteditable="true" data-label="利用できた事実">記入</td><td contenteditable="true" data-label="受益の手がかり／未確認">記入</td><td contenteditable="true" data-label="時間・他への負担">記入</td></tr>
+  </tbody></table></div>
+</section>
+
+<section id="c6-assessment"><span class="tag">ASSESSMENT</span><h2>学習を、成果物の証拠で判定する</h2>
+  <p>この表は学習到達の評価である。顧客を点数化したり、少数事例からスタッフの人柄や売上貢献を判定したりしない。知識、場面の成果、運用設計を区別して記録する。</p>
+  <div class="scroll"><table><thead><tr><th>評価軸</th><th>1｜未形成</th><th>2｜説明できる</th><th>3｜実践できる</th><th>4｜他者へ展開できる</th></tr></thead><tbody>
+    <tr><td data-label="評価軸">概念の区別</td><td data-label="1｜未形成">共創を顧客の作業量とみなす。</td><td data-label="2｜説明できる">共創と共同生産を区別する。</td><td data-label="3｜実践できる">任せる・参加を断る経路も設計。</td><td data-label="4｜他者へ展開できる">他者の参加強制の設計を問い直す。</td></tr>
+    <tr><td data-label="評価軸">観察と文脈</td><td data-label="1｜未形成">提供者の感想だけ。</td><td data-label="2｜説明できる">事実と未確認を分ける。</td><td data-label="3｜実践できる">目的と条件を本人の言葉等から確認。</td><td data-label="4｜他者へ展開できる">文脈が異なる場面を比較し限界を説明。</td></tr>
+    <tr><td data-label="評価軸">資源接続</td><td data-label="1｜未形成">個人の努力だけを求める。</td><td data-label="2｜説明できる">資源と利用者を列挙。</td><td data-label="3｜実践できる">到達・理解・利用の断点を修正。</td><td data-label="4｜他者へ展開できる">複数部門の更新責任・代替経路を設計。</td></tr>
+    <tr><td data-label="評価軸">検証と更新</td><td data-label="1｜未形成">実施したことを成功扱い。</td><td data-label="2｜説明できる">提供と利用の証拠を区別。</td><td data-label="3｜実践できる">受益・負担・未確認を残し更新判断。</td><td data-label="4｜他者へ展開できる">条件差を扱い、基準と次回確認へ反映。</td></tr>
+    <tr><td data-label="評価軸">教え返し</td><td data-label="1｜未形成">同じ台詞を暗記させる。</td><td data-label="2｜説明できる">自分の場面を説明。</td><td data-label="3｜実践できる">他者が別場面へ読み替えられる。</td><td data-label="4｜他者へ展開できる">二人の別接点シートを校正し運用化。</td></tr>
+  </tbody></table></div>
+  <ul class="check"><li><strong>L1：</strong>概念の区別・観察と文脈が2以上。支援へつなぐ条件を説明する。</li><li><strong>L2：</strong>最初の4軸が3以上。実施3件と条件シートを提出する。</li><li><strong>L3：</strong>全軸3以上。二人が別接点で使えることを実演で確認する。</li><li><strong>L4：</strong>全軸3以上、資源接続・検証と更新が4。運用責任者と再確認日が決まっている。</li></ul>
+  <div class="callout alert"><strong>修了保留：</strong>顧客の拒否を無視する、未確認情報を断定する、安全に関わる既存確認を省く場合は、点数に関係なく該当設計を見直す。顧客が好意的だったことだけでは免除しない。</div>
+</section>
+
+<section id="c6-guide"><span class="tag">FACILITATOR GUIDE</span><h2>指導者は「誰が悪いか」から問いをずらす</h2>
+  <div class="grid"><div class="card"><b>「もっと説明して」から</b>相手が選ぶために使えない情報は何か。説明を増やす以外の案は何か。</div><div class="card"><b>「気が利かない」から</b>必要な情報・時間・権限は使える状態だったか。どこで途切れたか。</div><div class="card"><b>「共創してもらう」から</b>相手はどんな関わり方を望んだか。任せる選択でも目的を果たせるか。</div><div class="card"><b>「売上が上がった」から</b>何件の、どんな条件で、何が利用できたか。別の要因はあり得るか。</div></div>
+  <h3>二分の教え返し台本</h3><ol><li>30秒：対象場面、顧客目的、未確認事項を述べる。</li><li>30秒：使えていない資源と、断点の根拠を述べる。</li><li>30秒：一条件の変更と、それを支える役割・ルールを述べる。</li><li>30秒：証拠、負担、適用しない条件、次の観察を述べる。</li></ol>
+  <p>聞き手は最後に「別の接点なら何が変わるか」を一つ返す。説明の上手さより、本人が根拠から再設計できるかを見る。</p>
+</section>
+
+<section id="c6-path"><span class="tag">EIGHT-VOLUME CONNECTION</span><h2>第6章を、全8巻の接続点にする</h2>
+  <div class="scroll"><table><thead><tr><th>巻・章範囲</th><th>第6章から渡すもの</th><th>そこで深める判断</th></tr></thead><tbody>
+    <tr><td data-label="巻・章範囲">I Philosophy｜1–9</td><td data-label="第6章から渡すもの">理念・目的・品質と、利用文脈をつなぐ。</td><td data-label="そこで深める判断">第7章で、体験の編集と受け取られる意味を分ける。</td></tr>
+    <tr><td data-label="巻・章範囲">II Experience Design｜10–18</td><td data-label="第6章から渡すもの">資源が使えなくなる接点と条件。</td><td data-label="そこで深める判断">第10章で時系列、第18章で表・裏・支援を設計する。</td></tr>
+    <tr><td data-label="巻・章範囲">III Human Psychology｜19–26</td><td data-label="第6章から渡すもの">理解、期待、意思決定の未確認仮説。</td><td data-label="そこで深める判断">顧客心理を決めつけず、事実と解釈を分ける。</td></tr>
+    <tr><td data-label="巻・章範囲">IV Human Development｜27–36</td><td data-label="第6章から渡すもの">役割別の観察・接続・教え返しの証拠。</td><td data-label="そこで深める判断">第29・31・33章で育成と段階認定に組み込む。</td></tr>
+    <tr><td data-label="巻・章範囲">V Restaurant Management｜37–45</td><td data-label="第6章から渡すもの">資源負担・責任者・更新経路。</td><td data-label="そこで深める判断">第38・42・45章で指標、役割、会議へつなぐ。</td></tr>
+    <tr><td data-label="巻・章範囲">VI RSA理論｜46–55</td><td data-label="第6章から渡すもの">理念→利用条件→担当→証拠の一枚。</td><td data-label="そこで深める判断">第48・49・50章で統合し、第55章で設計を診る。</td></tr>
+    <tr><td data-label="巻・章範囲">VII Field Implementation｜56–64</td><td data-label="第6章から渡すもの">一週間の小実験と、保留・撤回を含む判断。</td><td data-label="そこで深める判断">第57・64章で継続運用と定着を確認する。</td></tr>
+    <tr><td data-label="巻・章範囲">VIII Future Restaurant｜65–73</td><td data-label="第6章から渡すもの">人・技術・顧客が使える条件と代替経路。</td><td data-label="そこで深める判断">第66〜68章でAI・DX・個別化を利用負担から評価する。</td></tr>
+  </tbody></table></div>
+  <div class="callout"><strong>次の本文制作候補：</strong>第7章「Experience Economy」。第6章の「価値は店だけで完成させられない」を受け、店が編集できる体験条件と、顧客自身が受け取る意味・記憶の関係を深める。</div>
+</section>
+
+<section id="c6-sources"><span class="tag">PRIMARY SOURCES &amp; EDITORIAL SCOPE</span><h2>原典とRSAの実装解釈</h2>
+  <p>原典確認日：2026年10月21日。最新ニュースの紹介ではなく、2008・2016年の基礎論文と著者運営サイトの公理を確認したうえで章を編集した。</p>
+  <ol><li><a href="https://www.sdlogic.net/pdf/VargoLusch2008JAMSContinuing.pdf">Vargo &amp; Lusch（2008）Service-dominant logic: continuing the evolution</a>｜serviceの意味範囲、共同生産と価値共創の区別。</li><li><a href="https://www.sdlogic.net/foundations.html">S-D Logic｜Foundations</a>｜五つの公理の確認。</li><li><a href="https://www.sdlogic.net/pdf/vargo_lusch_2016_jams-6.pdf">Vargo &amp; Lusch（2016）Institutions and axioms: an extension and update of service-dominant logic</a>｜複数主体、制度・制度的取り決め、サービス・エコシステム。</li></ol>
+  <p>飲食現場への問い、三層の証拠、価値成立条件シート、70分研修、L1〜L4評価、一週間実験、二人への教え返しはRSA独自の教育・実装提案である。原著が検証した効果や標準プログラムとして扱わない。</p>
+  <p class="small">版：RSA Weekly 08／Chapter 06／2026-10-21。統合版では既存第1〜5章に本章を追加し、第4・5章のOIDIE表記を修正。全73章の骨格のうち、第1〜6章を深化本文として収録する。</p>
+</section>
+<div class="footer">Restaurant Service Architect — The Complete Framework｜Chapter 06 Complete Learning Module</div>
+</article>
+
 <a class="backtop" href="#toc">章一覧へ戻る</a>
 </main></body></html>
